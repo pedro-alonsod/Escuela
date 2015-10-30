@@ -65,6 +65,7 @@ class MainMenuViewController: UIViewController {
     
     @IBAction func salirTapped(sender: UIButton) {
     
+        self.dismissViewControllerAnimated(true, completion: nil)
     }
     
 }
