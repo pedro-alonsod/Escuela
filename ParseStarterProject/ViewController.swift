@@ -15,6 +15,9 @@ class ViewController: UIViewController {
     @IBOutlet weak var usernameText: UITextField!
     @IBOutlet weak var passwordText: UITextField!
 
+    let mainMenuSegue = "MainMenuSegue"
+    let changePasswordSegue = "ChangePasswordSegue"
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,10 +32,14 @@ class ViewController: UIViewController {
     
     
     @IBAction func entrarTapped(sender: UIButton) {
+        
+        self.performSegueWithIdentifier(mainMenuSegue, sender: self)
+        
     
     }
     
     @IBAction func cambiarTapped(sender: UIButton) {
     
+        self.performSegueWithIdentifier(changePasswordSegue, sender: self)
     }
 }

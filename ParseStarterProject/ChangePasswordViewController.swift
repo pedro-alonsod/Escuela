@@ -11,9 +11,9 @@ import UIKit
 class ChangePasswordViewController: UIViewController {
 
     @IBOutlet weak var usernameBlockedText: UITextField!
-    @IBOutlet weak var passwordNewText: UITextField!
     @IBOutlet weak var emailText: UITextField!
     @IBOutlet weak var phoneText: UITextField!
+    @IBOutlet weak var passwordNewText: UITextField!
     
     
     
