@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ChangePasswordViewController: UIViewController {
+class ChangePasswordViewController: UIViewController, UITextFieldDelegate {
 
     @IBOutlet weak var usernameBlockedText: UITextField!
     @IBOutlet weak var emailText: UITextField!
@@ -47,5 +47,19 @@ class ChangePasswordViewController: UIViewController {
     @IBAction func cancelarTapped(sender: UIButton) {
     
     
+        self.dismissViewControllerAnimated(true, completion: nil)
+        
+        
+    }
+    
+    func textFieldDidEndEditing(textField: UITextField) {
+        
+        textField.resignFirstResponder()
+        
+    }
+    
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        
+        view.endEditing(true)
     }
 }

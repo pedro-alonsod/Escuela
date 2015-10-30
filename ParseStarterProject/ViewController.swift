@@ -42,4 +42,15 @@ class ViewController: UIViewController {
     
         self.performSegueWithIdentifier(changePasswordSegue, sender: self)
     }
+    
+    func textFieldDidEndEditing(textField: UITextField) {
+        
+        textField.resignFirstResponder()
+        
+    }
+    
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        
+        view.endEditing(true)
+    }
 }
