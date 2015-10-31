@@ -19,6 +19,10 @@ class MainMenuViewController: UIViewController {
     
     var papa: PFUser!
     
+    var hijos: [PFObject]!
+    
+    var calificacionesArray: [String : PFObject]!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,6 +30,8 @@ class MainMenuViewController: UIViewController {
         // Do any additional setup after loading the view.
         
         titleMenuLabel.text = "Bienvenido \(papa.username!)"
+        
+        getCalificaciones()
     }
 
     override func didReceiveMemoryWarning() {
@@ -76,4 +82,79 @@ class MainMenuViewController: UIViewController {
         self.dismissViewControllerAnimated(true, completion: nil)
     }
     
+    func getCalificaciones() {
+        
+        if papa != nil {
+            
+            var hijosTry: [PFObject] = []
+            let queryHijos = PFQuery(className: "PapaList")
+            queryHijos.whereKey("papa", equalTo: papa)
+            
+            do {
+            
+                hijosTry = try queryHijos.findObjects()
+            } catch let error {
+                
+                print("\(error)")
+            }
+            
+            if hijosTry.count > 0 {
+                let hijosArrayIndex = "hijos"
+                print("tienes \(hijosTry.count) hijos")
+                print("\(hijosTry[0][hijosArrayIndex])")
+                
+                for alumno in hijosTry[0][hijosArrayIndex] as! [PFObject] {
+                    
+                    
+                    print("testeando \(alumno.debugDescription)")
+                    
+                    let queryCalificacionesHijo: PFQuery = PFQuery(className: "Calificaciones")
+                    queryCalificacionesHijo.whereKey("alumnoId", equalTo: alumno)
+                    var calificacionesInter: [PFObject]!
+                    
+                    do {
+                    
+                        calificacionesInter = try queryCalificacionesHijo.findObjects()
+                        
+                    } catch let error {
+                        
+                        print("hubo este error obteniendo las calificacionesInter \(error)")
+                    }
+                    
+                    if calificacionesInter.count > 0 {
+                        
+                        print("is working \(calificacionesInter.count)")
+                        let valor = "valor", mensaje = "Mensaje"
+                        print("we have this grade \(calificacionesInter[0][valor]) with this Mensaje \(calificacionesInter[0][mensaje])")
+                    }
+                    
+                }
+                
+                
+                
+                
+            } else {
+                
+                displayError("Error", message: "No tienes hijos asignados en la aplicacion comunicate con el encargado.")
+            }
+        
+            
+        } else {
+            
+            displayError("Error", message: "Algo inesperado ha pasado, reinicia la aplicacion.")
+            
+        }
+        
+    }
+    
+    func displayError(error: String, message: String) {
+        
+        let alert: UIAlertController = UIAlertController(title: error, message: message, preferredStyle: UIAlertControllerStyle.Alert)
+        alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default) { alert in
+            
+            self.dismissViewControllerAnimated(true, completion: nil)
+            })
+        presentViewController(alert, animated: true, completion: nil)
+        
+    }
 }
