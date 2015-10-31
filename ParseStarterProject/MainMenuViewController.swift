@@ -21,8 +21,9 @@ class MainMenuViewController: UIViewController {
     
     var hijos: [PFObject]!
     
-    var calificacionesArray: [String : PFObject]!
+    var calificacionesArray: [String : [String]]!
     
+    var nombresArray: [String] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -100,13 +101,30 @@ class MainMenuViewController: UIViewController {
             
             if hijosTry.count > 0 {
                 let hijosArrayIndex = "hijos"
-                print("tienes \(hijosTry.count) hijos")
-                print("\(hijosTry[0][hijosArrayIndex])")
+                //print("tienes \(hijosTry.count) hijos")
+                //print("\(hijosTry[0][hijosArrayIndex])")
                 
                 for alumno in hijosTry[0][hijosArrayIndex] as! [PFObject] {
                     
+                    var nombre: PFObject?
+                    var queryNombres = PFQuery(className: "Alumnos")
                     
-                    print("testeando \(alumno.debugDescription)")
+                    do {
+                    
+                       nombre = try queryNombres.getObjectWithId(alumno.objectId!)
+                        
+                    } catch let error {
+                        
+                        print(error)
+                    }
+                    if let name = nombre {
+                        
+                        //print(name)
+                        nombresArray.append(name["nombre"] as! String)
+                    }
+                    print("\(nombresArray)")
+                    
+                    //print("testeando \(alumno.debugDescription)")
                     
                     let queryCalificacionesHijo: PFQuery = PFQuery(className: "Calificaciones")
                     queryCalificacionesHijo.whereKey("alumnoId", equalTo: alumno)
@@ -125,7 +143,17 @@ class MainMenuViewController: UIViewController {
                         
                         print("is working \(calificacionesInter.count)")
                         let valor = "valor", mensaje = "Mensaje"
-                        print("we have this grade \(calificacionesInter[0][valor]) with this Mensaje \(calificacionesInter[0][mensaje])")
+                        //print(alumno)
+                        var califToSaveInDictionary: [String]!
+                        
+                        for grade in calificacionesInter {
+                            
+                        
+                            print("we have this grade \(grade[valor]) with this Mensaje \(grade[mensaje])")
+                            //califToSaveInDictionary.append(<#T##newElement: Element##Element#>)
+                            
+                        }
+                        
                     }
                     
                 }
