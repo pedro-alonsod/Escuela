@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Parse
 
 class MainMenuViewController: UIViewController {
 
@@ -16,11 +17,15 @@ class MainMenuViewController: UIViewController {
     let avisosSegue = "AvisosSegue"
     let privadosSegue = "PrivadosSegue"
     
+    var papa: PFUser!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        
+        titleMenuLabel.text = "Bienvenido \(papa.username!)"
     }
 
     override func didReceiveMemoryWarning() {
@@ -29,7 +34,7 @@ class MainMenuViewController: UIViewController {
     }
     
 
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -37,7 +42,8 @@ class MainMenuViewController: UIViewController {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
     }
-    */
+
+    //
 
     @IBAction func calificacionesTapped(sender: UIButton) {
     
@@ -64,6 +70,8 @@ class MainMenuViewController: UIViewController {
     }
     
     @IBAction func salirTapped(sender: UIButton) {
+        
+        PFUser.logOut()
     
         self.dismissViewControllerAnimated(true, completion: nil)
     }

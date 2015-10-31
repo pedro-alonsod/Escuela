@@ -13,6 +13,7 @@ class CalificacionesTableViewCell: UITableViewCell {
     @IBOutlet weak var examenOTareaLabel: UILabel!
     @IBOutlet weak var nombreAlumnoLabel: UILabel!
     @IBOutlet weak var calificacionIconImage: UIImageView!
+    @IBOutlet weak var messageCalificaciones: UILabel!
     
     
     

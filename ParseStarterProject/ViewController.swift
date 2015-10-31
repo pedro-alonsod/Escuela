@@ -18,10 +18,13 @@ class ViewController: UIViewController {
     let mainMenuSegue = "MainMenuSegue"
     let changePasswordSegue = "ChangePasswordSegue"
     
+    var papa: PFUser?
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        
     }
     
     
@@ -33,14 +36,81 @@ class ViewController: UIViewController {
     
     @IBAction func entrarTapped(sender: UIButton) {
         
-        self.performSegueWithIdentifier(mainMenuSegue, sender: self)
+        print("\(usernameText.text!) \(passwordText.text!)")
+        
+        if usernameText.text! != "" || passwordText.text! != "" {
+            
+            
+            if passwordText.text! == "098" {
+                
+                print("el pass es \(passwordText.text!)")
+                
+                displayError("Error", message: "No puedes accesar con la contraseña por defecto.")
+                
+            } else {
+                
+                print("campos ok")
+                
+                do {
+                    
+                    papa = try PFUser.logInWithUsername(usernameText.text!, password: passwordText.text!)
+                
+                } catch let error {
+                    
+                    print(error)
+                    
+                }
+                //displayError("Ok", message: "Entrando")
+                
+                if papa != nil {
+                    
+                    print("we are cooking dope \(papa!)")
+                    
+                    let role: PFObject = papa!["role"] as! PFObject
+                    
+                    if role.objectId == "dSK2DNKOkX" {
+                        
+                        print("role ok let them walk tru fire")
+                        self.performSegueWithIdentifier(mainMenuSegue, sender: self)
+                    } else {
+                        
+                        print("role not ok")
+                        displayError("Error", message: "Solo los papas pueden usar esta aplicacion")
+                        PFUser.logOut()
+                    }
+                    
+                } else {
+                    
+                    displayError("Error", message: "No estas dado de alta.")
+                }
+                
+            }
+            
+            
+        } else {
+            
+            displayError("Error", message: "Los campos no deben estar vacios.")
+            
+            
+        }
+        
+        
+        //self.performSegueWithIdentifier(mainMenuSegue, sender: self)
         
     
     }
     
     @IBAction func cambiarTapped(sender: UIButton) {
     
-        self.performSegueWithIdentifier(changePasswordSegue, sender: self)
+        if usernameText.text! != "" && passwordText.text! == "098"{
+        
+            self.performSegueWithIdentifier(changePasswordSegue, sender: self)
+            
+        } else {
+            
+            displayError("Error", message: "Necesitas poner el usuario al que le quieres cambiar la contraseña, si no lo has hecho ya, y la contraseña por defecto.")
+        }
+        
     }
     
     func textFieldDidEndEditing(textField: UITextField) {
@@ -52,5 +122,64 @@ class ViewController: UIViewController {
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         
         view.endEditing(true)
+    }
+    
+    @IBAction func unwindSegueHere(segue: UIStoryboardSegue) {
+        
+        print("unwinding")
+        let changePassVC = segue.sourceViewController as! ChangePasswordViewController
+        
+        passwordText.text! = changePassVC.passToSend
+    }
+    
+    func displayError(error: String, message: String) {
+        
+        let alert: UIAlertController = UIAlertController(title: error, message: message, preferredStyle: UIAlertControllerStyle.Alert)
+        alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default) { alert in
+            
+            self.dismissViewControllerAnimated(true, completion: nil)
+            })
+        presentViewController(alert, animated: true, completion: nil)
+    
+    }
+    override func shouldPerformSegueWithIdentifier(identifier: String, sender: AnyObject?) -> Bool {
+        
+        if identifier == changePasswordSegue {
+            
+            return true
+            
+        }
+        
+        if papa != nil && identifier == mainMenuSegue {
+            
+            print("logged in")
+            
+            return true
+        } else {
+            
+            print("not logged in")
+            
+            return false
+            
+        }
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        
+        if segue.identifier == changePasswordSegue {
+            
+            let changePasswordVC = segue.destinationViewController as! ChangePasswordViewController
+            
+            changePasswordVC.userToChange = usernameText.text!
+            
+            
+        } else if segue.identifier == mainMenuSegue {
+            
+            let topNavigation = segue.destinationViewController as! UINavigationController
+            let mainMenuVC = topNavigation.topViewController as! MainMenuViewController
+            
+            mainMenuVC.papa = papa!
+            
+        }
     }
 }
