@@ -32,7 +32,9 @@ class MainMenuViewController: UIViewController {
         
         titleMenuLabel.text = "Bienvenido \(papa.username!)"
         
-        getCalificaciones()
+        //getCalificaciones()
+        
+        findAlumnos()
     }
 
     override func didReceiveMemoryWarning() {
@@ -184,5 +186,29 @@ class MainMenuViewController: UIViewController {
             })
         presentViewController(alert, animated: true, completion: nil)
         
+    }
+    
+    func findAlumnos() {
+        
+        if papa == PFUser.currentUser()! {
+            
+            let queryHijos = PFQuery(className: "PapaList")
+            queryHijos.whereKey("papa", equalTo: papa)
+            
+            do {
+                
+                hijos = try queryHijos.findObjects()
+                
+            } catch let error {
+                
+                print(error)
+            }
+            
+            if hijos != nil {
+                
+                print(hijos[0])
+            }
+            
+        }
     }
 }
