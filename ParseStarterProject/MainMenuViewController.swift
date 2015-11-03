@@ -20,8 +20,14 @@ class MainMenuViewController: UIViewController {
     var papa: PFUser!
     
     var hijos: [PFObject]!
+    var alumnosPapa: [PFObject] = []
     
-    var calificacionesArray: [String : [String]]!
+    var nombres: [String] = []
+    var alumnosObjetosId: [String] = []
+    
+    var calificacionesArray: [String : [PFObject]] = [:]
+    var tareasDictionaryAlumno: [String : [PFObject]] = [:]
+    var privadosDictionaryAlumno: [String : [PFObject]] = [:]
     
     var nombresArray: [String] = []
     
@@ -35,6 +41,20 @@ class MainMenuViewController: UIViewController {
         //getCalificaciones()
         
         findAlumnos()
+        
+        if nombres.count > 0 {
+        
+            getCalificaciones()
+            getTareas()
+            getPrivados()
+            
+            
+        } else {
+            
+            displayError("Error", message: "Hay un problema con tus alumnos asignados.")
+        }
+        
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -87,95 +107,128 @@ class MainMenuViewController: UIViewController {
     
     func getCalificaciones() {
         
-        if papa != nil {
+        
+        if self.alumnosPapa.count > 0 {
             
-            var hijosTry: [PFObject] = []
-            let queryHijos = PFQuery(className: "PapaList")
-            queryHijos.whereKey("papa", equalTo: papa)
             
-            do {
-            
-                hijosTry = try queryHijos.findObjects()
-            } catch let error {
+            for alumnoId in self.alumnosPapa {
                 
-                print("\(error)")
-            }
-            
-            if hijosTry.count > 0 {
-                let hijosArrayIndex = "hijos"
-                //print("tienes \(hijosTry.count) hijos")
-                //print("\(hijosTry[0][hijosArrayIndex])")
+                let queryCalificacionesAlumno = PFQuery(className: "Calificaciones")
+                print(" alumnoactual \(alumnoId)")
                 
-                for alumno in hijosTry[0][hijosArrayIndex] as! [PFObject] {
+                queryCalificacionesAlumno.whereKey("alumnoId", equalTo: alumnoId)
+                queryCalificacionesAlumno.includeKey("tareasId")
+                
+                do {
                     
-                    var nombre: PFObject?
-                    var queryNombres = PFQuery(className: "Alumnos")
+                    let calif = try queryCalificacionesAlumno.findObjects()
                     
-                    do {
+                    print("got it")
+                    print(calif)
+                    print(alumnoId["nombre"])
                     
-                       nombre = try queryNombres.getObjectWithId(alumno.objectId!)
-                        
-                    } catch let error {
-                        
-                        print(error)
-                    }
-                    if let name = nombre {
-                        
-                        //print(name)
-                        nombresArray.append(name["nombre"] as! String)
-                    }
-                    print("\(nombresArray)")
+                    let nombreAlumno = alumnoId["nombre"] as! String
+                
+                    print(nombreAlumno)
                     
-                    //print("testeando \(alumno.debugDescription)")
+                    calificacionesArray[nombreAlumno] = calif
                     
-                    let queryCalificacionesHijo: PFQuery = PFQuery(className: "Calificaciones")
-                    queryCalificacionesHijo.whereKey("alumnoId", equalTo: alumno)
-                    var calificacionesInter: [PFObject]!
-                    
-                    do {
-                    
-                        calificacionesInter = try queryCalificacionesHijo.findObjects()
-                        
-                    } catch let error {
-                        
-                        print("hubo este error obteniendo las calificacionesInter \(error)")
-                    }
-                    
-                    if calificacionesInter.count > 0 {
-                        
-                        print("is working \(calificacionesInter.count)")
-                        let valor = "valor", mensaje = "Mensaje"
-                        //print(alumno)
-                        var califToSaveInDictionary: [String]!
-                        
-                        for grade in calificacionesInter {
-                            
-                        
-                            print("we have this grade \(grade[valor]) with this Mensaje \(grade[mensaje])")
-                            //califToSaveInDictionary.append(<#T##newElement: Element##Element#>)
-                            
-                        }
-                        
-                    }
-                    
+                } catch let error {
+                    print(error)
                 }
-                
-                
-                
-                
-            } else {
-                
-                displayError("Error", message: "No tienes hijos asignados en la aplicacion comunicate con el encargado.")
             }
+            
+            
+        }
+            
+            
+        
+        
         
             
-        } else {
+    }
+    
+    func getTareas() {
+        
+        
+        if self.alumnosPapa.count > 0 {
             
-            displayError("Error", message: "Algo inesperado ha pasado, reinicia la aplicacion.")
+            for alumnoId in alumnosPapa {
+                
+                let queryTareasAlumno = PFQuery(className: "Tareas")
+                
+                print("este alumno \(alumnoId)")
+                
+                queryTareasAlumno.whereKey("alumnoId", equalTo: alumnoId)
+                queryTareasAlumno.includeKey("grupoId")
+                
+                do {
+                    
+                    let tareas = try queryTareasAlumno.findObjects()
+                    
+                    print(tareas)
+                    print(alumnoId["nombre"])
+                    
+                    let nombreAlumno = alumnoId["nombre"] as! String
+                    
+                    print(nombreAlumno)
+                    
+                    tareasDictionaryAlumno[nombreAlumno] = tareas
+                    
+                    
+                } catch let error {
+                    
+                    print(error)
+                }
+            }
+        }
+    }
+    
+    func getPrivados() {
+        
+    
+        if self.alumnosPapa.count > 0 {
+            
+            for alumnoId in alumnosPapa {
+                
+                
+                let queryPrivados = PFQuery(className: "AvisosPrivados")
+                
+                print("estos privados son de \(alumnoId)")
+                
+                queryPrivados.whereKey("alumnoId", equalTo: alumnoId)
+                queryPrivados.includeKey("maestroId")
+                
+                do {
+                    
+                    let privados = try queryPrivados.findObjects()
+                    
+                    print(privados)
+                    print(alumnoId["nombre"])
+                    
+                    let nombreAlumno = alumnoId["nombre"] as! String
+                    
+                    print(nombreAlumno)
+                    
+                    privadosDictionaryAlumno[nombreAlumno] = privados
+                    
+                    
+                    
+                } catch let error {
+                    
+                    print(error)
+                }
+            }
             
         }
         
     }
+    
+    func getAvisos() {
+        
+        
+    }
+    
     
     func displayError(error: String, message: String) {
         
@@ -194,21 +247,59 @@ class MainMenuViewController: UIViewController {
             
             let queryHijos = PFQuery(className: "PapaList")
             queryHijos.whereKey("papa", equalTo: papa)
-            
+            queryHijos.includeKey("hijos")
+            print("papa = \(papa)")
             do {
                 
                 hijos = try queryHijos.findObjects()
                 
+                let hijosIdx = "hijos"
+                let nombre = "nombre"
+                let objectId = "objectId"
+                
+                let hijoOne = hijos[0][hijosIdx]
+                print("\(hijos[0].valueForKey(hijosIdx)?.valueForKey(nombre)!)")
+                print("primer hijo \(hijoOne)")
+                
+                for alumno in hijos {
+                    
+                    print("\(alumno.valueForKey(hijosIdx)![0] as! PFObject)")
+                    
+                    
+                    let objectAlumno = alumno.valueForKey(hijosIdx)![0] as! PFObject
+                    
+                    alumnosPapa.append(objectAlumno)
+                    
+                    print(self.alumnosPapa)
+                    
+                    
+                    print("\(alumno.valueForKey(hijosIdx)!.valueForKey(nombre)![0] as! String)")
+                    print("\(alumno.valueForKey(hijosIdx)!.valueForKey(objectId)![0] as! String)")
+                    
+                    let nombreAlumno = alumno.valueForKey(hijosIdx)!.valueForKey(nombre)![0] as! String
+                    let objectAlumnoId = alumno.valueForKey(hijosIdx)!.valueForKey(objectId)![0] as! String
+                    
+                    print("\(nombreAlumno) \(objectAlumnoId)")
+                    
+                    self.nombres.append(nombreAlumno)
+                    self.alumnosObjetosId.append(objectAlumnoId)
+                    
+                    print("test \(nombres) \(alumnosObjetosId)")
+                    
+                    
+                }
+                
             } catch let error {
                 
                 print(error)
-            }
-            
-            if hijos != nil {
                 
-                print(hijos[0])
+                displayError("Error", message: "No tienes hijos en el sistema aun.")
+                
             }
             
         }
     }
+
 }
+
+
