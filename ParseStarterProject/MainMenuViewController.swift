@@ -28,6 +28,7 @@ class MainMenuViewController: UIViewController {
     var calificacionesArray: [String : [PFObject]] = [:]
     var tareasDictionaryAlumno: [String : [PFObject]] = [:]
     var privadosDictionaryAlumno: [String : [PFObject]] = [:]
+    var avisosDictionaryAlumno: [String : [PFObject]] = [:]
     
     var nombresArray: [String] = []
     
@@ -47,6 +48,7 @@ class MainMenuViewController: UIViewController {
             getCalificaciones()
             getTareas()
             getPrivados()
+            getAvisos()
             
             
         } else {
@@ -226,7 +228,67 @@ class MainMenuViewController: UIViewController {
     
     func getAvisos() {
         
-        
+        if self.alumnosPapa.count > 0 {
+            
+            
+            print("Estos avisos son para los grupos")
+            
+            
+            for alumnoInGrupo in alumnosPapa {
+            
+                let queryGrupos = PFQuery(className: "Alumnos")
+                print(alumnoInGrupo.objectId!)
+                queryGrupos.whereKey("objectId", equalTo: alumnoInGrupo.objectId!)
+                
+                queryGrupos.includeKey("grupoId")
+                
+                do {
+                    
+                    let grupoObject = try queryGrupos.getFirstObject()
+                    print(grupoObject["grupoId"]! as! PFObject)
+                    let grupoAlumno = grupoObject["grupoId"]! as! PFObject
+                    print("this is the object to use \(grupoAlumno)")
+                    
+                    
+                    let queryAvisoAlumno = PFQuery(className: "Avisos")
+                    
+                    queryAvisoAlumno.whereKey("grupoId", equalTo: grupoAlumno)
+                    queryAvisoAlumno.includeKey("maestroId")
+                    
+                    do {
+                        
+                        let avisos = try queryAvisoAlumno.findObjects()
+                        
+                        print(avisos)
+                        
+                        if avisos.count > 0 {
+                        
+                            let nombreAlumno = alumnoInGrupo["nombre"]! as! String
+                            print(nombreAlumno)
+                            
+                            avisosDictionaryAlumno[nombreAlumno] = avisos
+                            
+                        } else {
+                            
+                            displayError("Advertencia", message: "No tienes ningun aviso por el momento.")
+                        }
+                        
+                    } catch let error {
+                        
+                        print(error)
+                        
+                    }
+                    
+                    print("stop")
+                    
+                } catch let error {
+                 
+                    print(error)
+                    
+                }
+                
+            }
+        }
     }
     
     
