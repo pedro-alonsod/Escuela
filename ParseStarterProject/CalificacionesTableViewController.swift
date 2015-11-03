@@ -7,9 +7,15 @@
 //
 
 import UIKit
+import Parse
 
 class CalificacionesTableViewController: UITableViewController {
 
+    var calificacionesAlumno: [PFObject]!
+    var calificacionesCell = "CalificacionesCell"
+    var nombresArray: [String] = []
+    var arrayCalificaciones: [PFObject]!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -18,6 +24,17 @@ class CalificacionesTableViewController: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        print(calificacionesAlumno)
+        
+        
+        
+        print(nombresArray.count)
+        
+        //arrayCalificaciones = Array(calificacionesAlumno.)
+        
+        //print(arrayCalificaciones)
+        
+    
     }
 
     override func didReceiveMemoryWarning() {
@@ -29,23 +46,34 @@ class CalificacionesTableViewController: UITableViewController {
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        
+        
+    
+        return calificacionesAlumno.count
+        
     }
 
-    /*
+    
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath)
+        let cell = tableView.dequeueReusableCellWithIdentifier(calificacionesCell, forIndexPath: indexPath) as! CalificacionesTableViewCell
 
         // Configure the cell...
-
+        let nombre = "alumnoId", valor = "valor", alumnoOTareas = "nombre", tareasId = "tareasId", mensaje = "Mensaje"
+        cell.examenOTareaLabel.text = "\(calificacionesAlumno[indexPath.row][tareasId]!.valueForKey(alumnoOTareas)!): \(calificacionesAlumno[indexPath.row][valor])"
+        cell.messageCalificaciones.text = "\(calificacionesAlumno[indexPath.row][mensaje]!)"
+        cell.nombreAlumnoLabel.text = "\(calificacionesAlumno[indexPath.row][nombre].valueForKey(alumnoOTareas)!)"
+        
+        
+        print("el juancho \(calificacionesAlumno[indexPath.row][nombre]!.valueForKey(alumnoOTareas)!)")
+        print("l tarea oe examne es \(calificacionesAlumno[indexPath.row][tareasId]!.valueForKey(alumnoOTareas)!)")
         return cell
     }
-    */
+    
 
     /*
     // Override to support conditional editing of the table view.
@@ -92,4 +120,8 @@ class CalificacionesTableViewController: UITableViewController {
     }
     */
 
+    func getNombreAlumno(indexPath: NSIndexPath) {
+        
+        
+    }
 }

@@ -7,9 +7,13 @@
 //
 
 import UIKit
+import Parse
 
 class TareasTableViewController: UITableViewController {
 
+    var tareasAlumno: [PFObject]!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -18,6 +22,8 @@ class TareasTableViewController: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        
+        print(tareasAlumno)
     }
 
     override func didReceiveMemoryWarning() {

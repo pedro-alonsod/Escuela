@@ -7,9 +7,12 @@
 //
 
 import UIKit
+import Parse
 
 class AvisosTableViewController: UITableViewController {
 
+    var avisosAlumno: [PFObject]!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -18,6 +21,8 @@ class AvisosTableViewController: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        
+        print(avisosAlumno)
     }
 
     override func didReceiveMemoryWarning() {

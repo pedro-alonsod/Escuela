@@ -25,6 +25,7 @@
 		EB63787E1BE2C9FC0030911C /* PrivadosTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB63787D1BE2C9FC0030911C /* PrivadosTableViewController.swift */; };
 		EB6378801BE2CC710030911C /* CalificacionesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB63787F1BE2CC710030911C /* CalificacionesTableViewCell.swift */; };
 		EB6378821BE2CD4D0030911C /* TaraeasTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB6378811BE2CD4D0030911C /* TaraeasTableViewCell.swift */; };
+		EBE3F6771BE9271C005DEC5E /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBE3F6761BE9271C005DEC5E /* Utils.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -51,6 +52,7 @@
 		EB63787D1BE2C9FC0030911C /* PrivadosTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrivadosTableViewController.swift; sourceTree = "<group>"; };
 		EB63787F1BE2CC710030911C /* CalificacionesTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalificacionesTableViewCell.swift; sourceTree = "<group>"; };
 		EB6378811BE2CD4D0030911C /* TaraeasTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaraeasTableViewCell.swift; sourceTree = "<group>"; };
+		EBE3F6761BE9271C005DEC5E /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,6 +113,7 @@
 				EB6378771BE2C9960030911C /* CalificacionesTableViewController.swift */,
 				EB6378751BE2C7A90030911C /* MainMenuViewController.swift */,
 				EB6378731BE2C78B0030911C /* ChangePasswordViewController.swift */,
+				EBE3F6761BE9271C005DEC5E /* Utils.swift */,
 			);
 			path = ParseStarterProject;
 			sourceTree = "<group>";
@@ -234,6 +237,7 @@
 				81BA814D1A49DA1800E65899 /* ViewController.swift in Sources */,
 				EB6378821BE2CD4D0030911C /* TaraeasTableViewCell.swift in Sources */,
 				EB6378781BE2C9960030911C /* CalificacionesTableViewController.swift in Sources */,
+				EBE3F6771BE9271C005DEC5E /* Utils.swift in Sources */,
 				81BA814B1A49DA1800E65899 /* AppDelegate.swift in Sources */,
 				EB63787C1BE2C9D80030911C /* AvisosTableViewController.swift in Sources */,
 				EB63787A1BE2C9B50030911C /* TareasTableViewController.swift in Sources */,

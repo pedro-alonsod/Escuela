@@ -25,10 +25,10 @@ class MainMenuViewController: UIViewController {
     var nombres: [String] = []
     var alumnosObjetosId: [String] = []
     
-    var calificacionesArray: [String : [PFObject]] = [:]
-    var tareasDictionaryAlumno: [String : [PFObject]] = [:]
-    var privadosDictionaryAlumno: [String : [PFObject]] = [:]
-    var avisosDictionaryAlumno: [String : [PFObject]] = [:]
+    var calificacionesArray: [PFObject] = []
+    var tareasDictionaryAlumno: [PFObject] = []
+    var privadosDictionaryAlumno: [PFObject] = []
+    var avisosDictionaryAlumno: [PFObject] = []
     
     var nombresArray: [String] = []
     
@@ -74,7 +74,60 @@ class MainMenuViewController: UIViewController {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
+        
+        if segue.identifier == calificacionesSegue {
+            
+            let calificacionesVC = segue.destinationViewController as! CalificacionesTableViewController
+            
+            if calificacionesArray.count > 0 {
+                
+                calificacionesVC.calificacionesAlumno = calificacionesArray
+            } else {
+                
+                calificacionesVC.calificacionesAlumno = []
+                displayError("Error", message: "No fue posible obtener las calificacines.")
+            }
+        } else if segue.identifier == tareasSegue {
+            
+            let tareasVC = segue.destinationViewController as! TareasTableViewController
+            
+            if tareasDictionaryAlumno.count > 0 {
+                
+                tareasVC.tareasAlumno = tareasDictionaryAlumno
+                
+            } else {
+                
+                tareasVC.tareasAlumno = []
+                
+            }
+        } else if segue.identifier == avisosSegue {
+            
+            let avisosVC = segue.destinationViewController as! AvisosTableViewController
+            
+            if avisosDictionaryAlumno.count > 0 {
+                
+                avisosVC.avisosAlumno = avisosDictionaryAlumno
+                
+                
+            } else {
+                
+                avisosVC.avisosAlumno = []
+                
+            }
+        } else if segue.identifier == privadosSegue {
+            
+            let privadosVC = segue.destinationViewController as! PrivadosTableViewController
+            
+            if privadosDictionaryAlumno.count > 0 {
+                
+                privadosVC.privadosAlumno = privadosDictionaryAlumno
+            } else {
+                
+                privadosVC.privadosAlumno = []
+            }
+        }
     }
+    
 
     //
 
@@ -122,6 +175,7 @@ class MainMenuViewController: UIViewController {
                 
                 queryCalificacionesAlumno.whereKey("alumnoId", equalTo: alumnoId)
                 queryCalificacionesAlumno.includeKey("tareasId")
+                queryCalificacionesAlumno.includeKey("alumnoId")
                 
                 do {
                     
@@ -135,7 +189,7 @@ class MainMenuViewController: UIViewController {
                 
                     print(nombreAlumno)
                     
-                    calificacionesArray[nombreAlumno] = calif
+                    calificacionesArray = calif
                     
                 } catch let error {
                     print(error)
@@ -164,7 +218,8 @@ class MainMenuViewController: UIViewController {
                 print("este alumno \(alumnoId)")
                 
                 queryTareasAlumno.whereKey("alumnoId", equalTo: alumnoId)
-                queryTareasAlumno.includeKey("grupoId")
+                queryTareasAlumno.includeKey("alumnoId")
+            
                 
                 do {
                     
@@ -177,7 +232,7 @@ class MainMenuViewController: UIViewController {
                     
                     print(nombreAlumno)
                     
-                    tareasDictionaryAlumno[nombreAlumno] = tareas
+                    tareasDictionaryAlumno = tareas
                     
                     
                 } catch let error {
@@ -202,6 +257,7 @@ class MainMenuViewController: UIViewController {
                 
                 queryPrivados.whereKey("alumnoId", equalTo: alumnoId)
                 queryPrivados.includeKey("maestroId")
+                queryPrivados.includeKey("alumnoId")
                 
                 do {
                     
@@ -214,7 +270,7 @@ class MainMenuViewController: UIViewController {
                     
                     print(nombreAlumno)
                     
-                    privadosDictionaryAlumno[nombreAlumno] = privados
+                    privadosDictionaryAlumno = privados
                     
                     
                     
@@ -255,7 +311,8 @@ class MainMenuViewController: UIViewController {
                     let queryAvisoAlumno = PFQuery(className: "Avisos")
                     
                     queryAvisoAlumno.whereKey("grupoId", equalTo: grupoAlumno)
-                    queryAvisoAlumno.includeKey("maestroId")
+                    queryAvisoAlumno.includeKey("alumnoId")
+                    
                     
                     do {
                         
@@ -268,7 +325,7 @@ class MainMenuViewController: UIViewController {
                             let nombreAlumno = alumnoInGrupo["nombre"]! as! String
                             print(nombreAlumno)
                             
-                            avisosDictionaryAlumno[nombreAlumno] = avisos
+                            avisosDictionaryAlumno = avisos
                             
                         } else {
                             
