@@ -137,7 +137,7 @@ class ViewController: UIViewController {
         let alert: UIAlertController = UIAlertController(title: error, message: message, preferredStyle: UIAlertControllerStyle.Alert)
         alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default) { alert in
             
-            self.dismissViewControllerAnimated(true, completion: nil)
+            //self.dismissViewControllerAnimated(true, completion: nil)
             })
         presentViewController(alert, animated: true, completion: nil)
     
