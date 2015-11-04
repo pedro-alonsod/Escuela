@@ -52,6 +52,10 @@ class MainMenuViewController: UIViewController {
                 print(i)
             }
             
+            //to go back to the main queue outside this maybe
+//            dispatch_async(dispatch_get_main_queue()) { [unowned self] in
+//                self.tableView.reloadData()
+//            }
             
         }
         
