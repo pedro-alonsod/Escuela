@@ -15,7 +15,7 @@ import Parse
 // import ParseUI
 
 // If you want to use Crash Reporting - uncomment this line
-// import ParseCrashReporting
+//import ParseCrashReporting
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {

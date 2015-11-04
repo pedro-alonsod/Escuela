@@ -25,6 +25,15 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
+//        if let user = PFUser.currentUser()?.username {
+//            
+//            self.performSegueWithIdentifier(mainMenuSegue, sender: self)
+//            
+//        } else {
+//            
+//            print("not ready to jump")
+//        }
+//        
     }
     
     
@@ -129,7 +138,16 @@ class ViewController: UIViewController {
         print("unwinding")
         let changePassVC = segue.sourceViewController as! ChangePasswordViewController
         
-        passwordText.text! = changePassVC.passToSend
+        if changePassVC.passToSend != nil {
+        
+            passwordText.text! = changePassVC.passToSend
+        } else {
+            
+            passwordText.text! = ""
+            displayError("Alerta", message: "El password no se modifico.")
+        }
+        
+        
     }
     
     func displayError(error: String, message: String) {
@@ -178,7 +196,15 @@ class ViewController: UIViewController {
             let topNavigation = segue.destinationViewController as! UINavigationController
             let mainMenuVC = topNavigation.topViewController as! MainMenuViewController
             
-            mainMenuVC.papa = papa!
+            if papa != nil {
+            
+                mainMenuVC.papa = papa!
+                
+            } else {
+            
+                mainMenuVC.papa = PFUser.currentUser()
+                
+            }
             
         }
     }

@@ -560,12 +560,22 @@
                                                 </mask>
                                             </variation>
                                         </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wkq-Di-gzF">
+                                            <rect key="frame" x="-42" y="-21" width="42" height="21"/>
+                                            <animations/>
+                                            <string key="text">Descripcion ....................................................................................................................................</string>
+                                            <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Fecha Entrega:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uIQ-5r-xIu">
                                             <rect key="frame" x="-42" y="-21" width="42" height="21"/>
                                             <animations/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="21" id="JE7-rj-gXK"/>
-                                                <constraint firstAttribute="width" constant="180" id="daE-3V-fKd"/>
+                                                <constraint firstAttribute="width" constant="180" id="daE-3V-fKd">
+                                                    <variation key="widthClass=compact" constant="274"/>
+                                                </constraint>
                                             </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -582,14 +592,6 @@
                                                     <include reference="daE-3V-fKd"/>
                                                 </mask>
                                             </variation>
-                                        </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wkq-Di-gzF">
-                                            <rect key="frame" x="-42" y="-21" width="42" height="21"/>
-                                            <animations/>
-                                            <string key="text">Descripcion ....................................................................................................................................</string>
-                                            <fontDescription key="fontDescription" type="system" pointSize="10"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                            <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
                                     <animations/>
@@ -610,8 +612,8 @@
                                     <variation key="default">
                                         <mask key="subviews">
                                             <exclude reference="9sy-8i-ucK"/>
-                                            <exclude reference="uIQ-5r-xIu"/>
                                             <exclude reference="Wkq-Di-gzF"/>
+                                            <exclude reference="uIQ-5r-xIu"/>
                                         </mask>
                                         <mask key="constraints">
                                             <exclude reference="Jdj-fO-Fzn"/>
@@ -627,8 +629,8 @@
                                     <variation key="widthClass=compact">
                                         <mask key="subviews">
                                             <include reference="9sy-8i-ucK"/>
-                                            <include reference="uIQ-5r-xIu"/>
                                             <include reference="Wkq-Di-gzF"/>
+                                            <include reference="uIQ-5r-xIu"/>
                                         </mask>
                                         <mask key="constraints">
                                             <include reference="Jdj-fO-Fzn"/>

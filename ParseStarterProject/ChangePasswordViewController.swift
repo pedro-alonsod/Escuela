@@ -130,6 +130,7 @@ class ChangePasswordViewController: UIViewController, UITextFieldDelegate {
     
     
         //self.dismissViewControllerAnimated(true, completion: nil)
+        PFUser.logOut()
         self.performSegueWithIdentifier(mainSegue, sender: self)
         //self.shouldPerformSegueWithIdentifier(mainSegue, sender: self)
         

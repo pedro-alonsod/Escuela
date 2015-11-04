@@ -48,7 +48,7 @@ class AvisosTableViewController: UITableViewController {
 
         // Configure the cell...
         let texto = "texto", tittulo = "titulo", grupoId = "grupoId", maestroId = "maestroId", nombreMaestro = "nombre", grupoNombre = "nombre"
-        cell.textLabel!.text = "\(avisosAlumno[indexPath.row][grupoId]!.valueForKey(grupoNombre)!) \(avisosAlumno[indexPath.row][tittulo]!)"
+        cell.textLabel!.text = "Grupo \(avisosAlumno[indexPath.row][grupoId]!.valueForKey(grupoNombre)!): \(avisosAlumno[indexPath.row][tittulo]!)"
         cell.detailTextLabel!.text = "\(avisosAlumno[indexPath.row][texto]!) de \(avisosAlumno[indexPath.row][maestroId]!.valueForKey(nombreMaestro)!)"
 
         return cell
