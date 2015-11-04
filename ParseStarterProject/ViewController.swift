@@ -14,11 +14,14 @@ class ViewController: UIViewController {
 
     @IBOutlet weak var usernameText: UITextField!
     @IBOutlet weak var passwordText: UITextField!
+    @IBOutlet weak var savePasswordSwitc: UISwitch!
 
     let mainMenuSegue = "MainMenuSegue"
     let changePasswordSegue = "ChangePasswordSegue"
     
-    var papa: PFUser?
+    var papa: PFUser!
+    
+    let defaults = NSUserDefaults.standardUserDefaults()
     
     
     override func viewDidLoad() {
@@ -34,6 +37,15 @@ class ViewController: UIViewController {
 //            print("not ready to jump")
 //        }
 //        
+        if let savedName = defaults.stringForKey("username") {
+            
+            usernameText.text = savedName
+        }
+        
+        if let savedPassword = defaults.stringForKey("password") {
+            
+            passwordText.text = savedPassword
+        }
     }
     
     
@@ -60,6 +72,12 @@ class ViewController: UIViewController {
                 
                 print("campos ok")
                 
+                if savePasswordSwitc.on {
+                    
+                    defaults.setObject(usernameText.text!, forKey: "username")
+                    defaults.setObject(passwordText.text!, forKey: "password")
+                }
+                
                 do {
                     
                     papa = try PFUser.logInWithUsername(usernameText.text!, password: passwordText.text!)
@@ -71,6 +89,27 @@ class ViewController: UIViewController {
                 }
                 //displayError("Ok", message: "Entrando")
                 
+//                PFUser.logInWithUsernameInBackground(usernameText.text!, password: passwordText.text!) {
+//                    (usuario: PFUser?, error: NSError?) -> Void in
+//                    
+//                    if error == nil {
+//                        
+//                        self.papa = usuario
+//                        
+//                        let role: PFObject = self.papa!["role"] as! PFObject
+//                        
+//                        if role.objectId == "dSK2DNKOkX" {
+//                            
+//                            print("role ok let them walk tru fire")
+//                            self.performSegueWithIdentifier(self.mainMenuSegue, sender: self)
+//                            
+//                        
+//                    } else {
+//                        print(error)
+//                    }
+//                }
+//            }
+//                
                 if papa != nil {
                     
                     print("we are cooking dope \(papa!)")
@@ -87,7 +126,7 @@ class ViewController: UIViewController {
                         displayError("Error", message: "Solo los papas pueden usar esta aplicacion")
                         PFUser.logOut()
                     }
-                    
+                
                 } else {
                     
                     displayError("Error", message: "No estas dado de alta.")
