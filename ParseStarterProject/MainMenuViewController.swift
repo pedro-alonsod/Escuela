@@ -42,15 +42,28 @@ class MainMenuViewController: UIViewController {
         super.viewDidLoad()
 
         let priority = DISPATCH_QUEUE_PRIORITY_DEFAULT
+        let qos_user_class = QOS_CLASS_USER_INITIATED
+        
+        dispatch_async(dispatch_get_global_queue(qos_user_class, 0)) { [unowned self] in
+            
+            //this goes on and on in the backgorund I mey need it when queries are damn bad it took until "role ok" to run
+            for var i = 0; i < 10; i++ {
+                
+                print(i)
+            }
+            
+            
+        }
         
         dispatch_async(dispatch_get_global_queue(priority, 0)) {
-            //DO some wirk here
+            //DO some work here
             //...
+            self.displayError("Alerta", message: "Los datos se estan cargando.")
             dispatch_async(dispatch_get_main_queue()) {
                 
                 //update ui
                 //Less obvious the getObjects methods time maintaining the current work it shows a alertview in a new thread
-                self.displayError("ALerta", message: "Los datos se estan cargando.")
+                //self.displayError("ALerta", message: "Los datos se estan cargando.")
             }
             
         }
