@@ -45,7 +45,10 @@ class ViewController: UIViewController {
         if let savedPassword = defaults.stringForKey("password") {
             
             passwordText.text = savedPassword
+            
         }
+        
+        print(NSDate())
     }
     
     

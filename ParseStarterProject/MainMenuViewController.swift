@@ -41,6 +41,18 @@ class MainMenuViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        let priority = DISPATCH_QUEUE_PRIORITY_DEFAULT
+        
+        dispatch_async(dispatch_get_global_queue(priority, 0)) {
+            //DO some wirk here
+            //...
+            dispatch_async(dispatch_get_main_queue()) {
+                
+                //update ui
+                self.displayError("ALerta", message: "Los datos se estan cargando.")
+            }
+            
+        }
         // Do any additional setup after loading the view.
         
         titleMenuLabel.text = "Bienvenido \(papa.username!)"
@@ -53,7 +65,8 @@ class MainMenuViewController: UIViewController {
         
             getCalificaciones()
             getTareas()
-            displayError("Alerta", message: "Esta cargando la informacion por favor espera.")
+            
+            //displayError("Alerta", message: "Esta cargando la informacion por favor espera.")
             getPrivados()
             getAvisos()
             
@@ -190,6 +203,7 @@ class MainMenuViewController: UIViewController {
                 queryCalificacionesAlumno.whereKey("alumnoId", equalTo: alumnoId)
                 queryCalificacionesAlumno.includeKey("tareasId")
                 queryCalificacionesAlumno.includeKey("alumnoId")
+                queryCalificacionesAlumno.limit = 20
                 
                 do {
                     
@@ -234,6 +248,7 @@ class MainMenuViewController: UIViewController {
                 queryTareasAlumno.whereKey("alumnoId", equalTo: alumnoId)
                 queryTareasAlumno.includeKey("alumnoId")
             
+                queryTareasAlumno.limit = 20
                 
                 do {
                     
@@ -272,6 +287,7 @@ class MainMenuViewController: UIViewController {
                 queryPrivados.whereKey("alumnoId", equalTo: alumnoId)
                 queryPrivados.includeKey("maestroId")
                 queryPrivados.includeKey("alumnoId")
+                queryPrivados.limit = 20
                 
                 do {
                     
@@ -327,7 +343,7 @@ class MainMenuViewController: UIViewController {
                     queryAvisoAlumno.whereKey("grupoId", equalTo: grupoAlumno)
                     queryAvisoAlumno.includeKey("alumnoId")
                     queryAvisoAlumno.includeKey("maestroId")
-                    
+                    queryAvisoAlumno.limit = 20
                     
                     do {
                         
