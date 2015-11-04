@@ -505,6 +505,10 @@
                     </view>
                     <navigationItem key="navigationItem" id="i1A-Pr-5jV"/>
                     <connections>
+                        <outlet property="avisosNumeroLabel" destination="0o1-vZ-w2G" id="JkJ-h0-Zvp"/>
+                        <outlet property="calificacionesNumeroLabel" destination="bcc-YJ-GvL" id="c8u-hC-5Oi"/>
+                        <outlet property="privadosNumeroLabel" destination="SQg-Cs-e1G" id="nio-g7-SLb"/>
+                        <outlet property="tareasNumeroLabel" destination="HjD-Vj-Es8" id="SJm-0Y-Y4Q"/>
                         <outlet property="titleMenuLabel" destination="FBs-mN-aUq" id="d4e-zK-uQX"/>
                         <segue destination="cME-62-ouk" kind="show" identifier="TareasSegue" id="diI-Zf-RrC"/>
                         <segue destination="QFB-ZM-Yxz" kind="show" identifier="PrivadosSegue" id="XyL-sY-m7P"/>
@@ -540,7 +544,7 @@
                                                 <constraint firstAttribute="width" constant="113" id="JQV-vO-Etk"/>
                                                 <constraint firstAttribute="height" constant="21" id="ni3-iB-zKP"/>
                                             </constraints>
-                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
                                             <variation key="default">
@@ -563,7 +567,7 @@
                                                 <constraint firstAttribute="height" constant="21" id="JE7-rj-gXK"/>
                                                 <constraint firstAttribute="width" constant="180" id="daE-3V-fKd"/>
                                             </constraints>
-                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
                                             <variation key="default">
@@ -583,7 +587,7 @@
                                             <rect key="frame" x="-42" y="-21" width="42" height="21"/>
                                             <animations/>
                                             <string key="text">Descripcion ....................................................................................................................................</string>
-                                            <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
@@ -666,39 +670,87 @@
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="PrivadosCell" textLabel="l5q-Qm-ZaI" detailTextLabel="LcF-EB-0Je" rowHeight="78" style="IBUITableViewCellStyleSubtitle" id="fIo-le-T0U">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="PrivadosCell" rowHeight="78" id="fIo-le-T0U" customClass="PrivadosTableViewCell" customModule="ParseStarterProject_Swift" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="92" width="600" height="78"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="fIo-le-T0U" id="8YC-9t-X9O">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="77"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="l5q-Qm-ZaI">
-                                            <rect key="frame" x="15" y="18" width="34" height="21"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Titulo" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ouz-mH-gi9">
+                                            <rect key="frame" x="-42" y="-21" width="42" height="21"/>
                                             <animations/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="16" id="2na-M8-lL3"/>
+                                                <constraint firstAttribute="width" constant="260" id="eLr-mc-6Eo"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
+                                            <variation key="default">
+                                                <mask key="constraints">
+                                                    <exclude reference="2na-M8-lL3"/>
+                                                    <exclude reference="eLr-mc-6Eo"/>
+                                                </mask>
+                                            </variation>
                                             <variation key="widthClass=compact">
-                                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                <mask key="constraints">
+                                                    <include reference="2na-M8-lL3"/>
+                                                    <include reference="eLr-mc-6Eo"/>
+                                                </mask>
                                             </variation>
                                         </label>
-                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="LcF-EB-0Je">
-                                            <rect key="frame" x="15" y="39" width="59" height="21"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mensaje" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x1k-Vu-jDX">
+                                            <rect key="frame" x="-42" y="-21" width="42" height="21"/>
                                             <animations/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
-                                            <variation key="widthClass=compact">
-                                                <fontDescription key="fontDescription" type="system" pointSize="11"/>
-                                            </variation>
                                         </label>
                                     </subviews>
                                     <animations/>
+                                    <constraints>
+                                        <constraint firstItem="Ouz-mH-gi9" firstAttribute="top" secondItem="8YC-9t-X9O" secondAttribute="topMargin" id="8RC-da-emG"/>
+                                        <constraint firstItem="x1k-Vu-jDX" firstAttribute="leading" secondItem="Ouz-mH-gi9" secondAttribute="leading" id="Qaj-iB-ibZ"/>
+                                        <constraint firstItem="x1k-Vu-jDX" firstAttribute="bottom" secondItem="8YC-9t-X9O" secondAttribute="bottomMargin" id="Vrq-Gj-Ibh"/>
+                                        <constraint firstItem="Ouz-mH-gi9" firstAttribute="leading" secondItem="8YC-9t-X9O" secondAttribute="leadingMargin" constant="5" id="WzJ-xF-dbQ"/>
+                                        <constraint firstItem="x1k-Vu-jDX" firstAttribute="top" secondItem="Ouz-mH-gi9" secondAttribute="bottom" constant="4" id="pM6-1M-gst"/>
+                                        <constraint firstItem="x1k-Vu-jDX" firstAttribute="trailing" secondItem="8YC-9t-X9O" secondAttribute="trailingMargin" id="yTl-eX-nhO"/>
+                                    </constraints>
+                                    <variation key="default">
+                                        <mask key="subviews">
+                                            <exclude reference="Ouz-mH-gi9"/>
+                                            <exclude reference="x1k-Vu-jDX"/>
+                                        </mask>
+                                        <mask key="constraints">
+                                            <exclude reference="8RC-da-emG"/>
+                                            <exclude reference="WzJ-xF-dbQ"/>
+                                            <exclude reference="Qaj-iB-ibZ"/>
+                                            <exclude reference="Vrq-Gj-Ibh"/>
+                                            <exclude reference="pM6-1M-gst"/>
+                                            <exclude reference="yTl-eX-nhO"/>
+                                        </mask>
+                                    </variation>
+                                    <variation key="widthClass=compact">
+                                        <mask key="subviews">
+                                            <include reference="Ouz-mH-gi9"/>
+                                            <include reference="x1k-Vu-jDX"/>
+                                        </mask>
+                                        <mask key="constraints">
+                                            <include reference="8RC-da-emG"/>
+                                            <include reference="WzJ-xF-dbQ"/>
+                                            <include reference="Qaj-iB-ibZ"/>
+                                            <include reference="Vrq-Gj-Ibh"/>
+                                            <include reference="pM6-1M-gst"/>
+                                            <include reference="yTl-eX-nhO"/>
+                                        </mask>
+                                    </variation>
                                 </tableViewCellContentView>
                                 <animations/>
+                                <connections>
+                                    <outlet property="mensajePrivadosCell" destination="x1k-Vu-jDX" id="5uC-HS-1gY"/>
+                                    <outlet property="tituloPrivadosCell" destination="Ouz-mH-gi9" id="bxe-jF-flG"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -786,7 +838,7 @@
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Examen o Tarea:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YWx-dz-mPg">
                                             <rect key="frame" x="-42" y="-21" width="42" height="21"/>
                                             <animations/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
                                             <variation key="widthClass=compact" misplaced="YES">
@@ -822,7 +874,7 @@
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mensaje.........................................................................aaaaaaa" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WFr-8Q-IaG">
                                             <rect key="frame" x="-42" y="-21" width="42" height="21"/>
                                             <animations/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
                                             <variation key="widthClass=compact" misplaced="YES">

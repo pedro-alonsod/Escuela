@@ -32,6 +32,12 @@ class MainMenuViewController: UIViewController {
     
     var nombresArray: [String] = []
     
+    
+    @IBOutlet weak var calificacionesNumeroLabel: UILabel!
+    @IBOutlet weak var tareasNumeroLabel: UILabel!
+    @IBOutlet weak var avisosNumeroLabel: UILabel!
+    @IBOutlet weak var privadosNumeroLabel: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -50,6 +56,14 @@ class MainMenuViewController: UIViewController {
             displayError("Alerta", message: "Esta cargando la informacion por favor espera.")
             getPrivados()
             getAvisos()
+            
+            calificacionesNumeroLabel.text = (calificacionesArray.count > 0) ? "\(calificacionesArray.count)":"0"
+            
+            tareasNumeroLabel.text = (tareasDictionaryAlumno.count > 0) ? "\(tareasDictionaryAlumno.count)":"0"
+            
+            avisosNumeroLabel.text = (avisosDictionaryAlumno.count > 0) ? "\(avisosDictionaryAlumno.count)":"0"
+            
+            privadosNumeroLabel.text = (privadosDictionaryAlumno.count > 0) ? "\(privadosDictionaryAlumno.count)":"0"
             
             
             
@@ -312,6 +326,7 @@ class MainMenuViewController: UIViewController {
                     
                     queryAvisoAlumno.whereKey("grupoId", equalTo: grupoAlumno)
                     queryAvisoAlumno.includeKey("alumnoId")
+                    queryAvisoAlumno.includeKey("maestroId")
                     
                     
                     do {

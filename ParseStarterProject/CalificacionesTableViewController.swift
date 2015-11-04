@@ -68,6 +68,19 @@ class CalificacionesTableViewController: UITableViewController {
         cell.messageCalificaciones.text = "\(calificacionesAlumno[indexPath.row][mensaje]!)"
         cell.nombreAlumnoLabel.text = "\(calificacionesAlumno[indexPath.row][nombre].valueForKey(alumnoOTareas)!)"
         
+        let testValor = calificacionesAlumno[indexPath.row][valor] as! Int
+        
+        if testValor < 70 {
+            
+            print("cross")
+            cell.calificacionIconImage.image = UIImage(named: "crossIcon")
+        } else {
+            
+            print("check")
+            cell.calificacionIconImage.image = UIImage(named: "checkIcon")
+            cell.examenOTareaLabel.textColor! = UIColor.redColor()
+        }
+        
         
         print("el juancho \(calificacionesAlumno[indexPath.row][nombre]!.valueForKey(alumnoOTareas)!)")
         print("l tarea oe examne es \(calificacionesAlumno[indexPath.row][tareasId]!.valueForKey(alumnoOTareas)!)")

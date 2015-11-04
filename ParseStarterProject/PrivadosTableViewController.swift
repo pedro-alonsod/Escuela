@@ -35,23 +35,30 @@ class PrivadosTableViewController: UITableViewController {
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return privadosAlumno.count
     }
 
-    /*
+    
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath)
+        let cell = tableView.dequeueReusableCellWithIdentifier("PrivadosCell", forIndexPath: indexPath) as! PrivadosTableViewCell
+        
 
+        print(privadosAlumno)
+        
+    
+        
+        let alumnoId = "alumnoId", alumnoNombre = "nombre", maestroId = "maestroId", maestroNombre = "nombre", texto = "texto", titulo = "titulo"
         // Configure the cell...
-
+        cell.tituloPrivadosCell.text = "Titulo: \(privadosAlumno[indexPath.row][titulo]!)"
+        cell.mensajePrivadosCell.text = "Para \(privadosAlumno[indexPath.row][alumnoId]!.valueForKey(alumnoNombre)!) de \(privadosAlumno[indexPath.row][maestroId]!.valueForKey(maestroNombre)!): \(privadosAlumno[indexPath.row][texto]!)"
         return cell
     }
-    */
+    
 
     /*
     // Override to support conditional editing of the table view.

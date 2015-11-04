@@ -35,23 +35,27 @@ class TareasTableViewController: UITableViewController {
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return tareasAlumno.count
     }
 
-    /*
+    
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath)
+        let cell = tableView.dequeueReusableCellWithIdentifier("TareasCell", forIndexPath: indexPath) as! TaraeasTableViewCell
 
+        let tareaNombre = "nombre", fechaEntrega = "fechaEntrega", alumnoNombre = "nombre", alumnoId = "alumnoId"
         // Configure the cell...
+        cell.tareaNombreLabel.text = "\(tareasAlumno[indexPath.row][tareaNombre]!)"
+        cell.descripcionLabel.text = "Esto es para \(tareasAlumno[indexPath.row][alumnoId]!.valueForKey(alumnoNombre)!)"
+        cell.fechaEntregaLabel.text = "Entregar: \(tareasAlumno[indexPath.row][fechaEntrega]!)"
 
         return cell
     }
-    */
+    
 
     /*
     // Override to support conditional editing of the table view.

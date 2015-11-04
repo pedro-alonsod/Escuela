@@ -34,23 +34,26 @@ class AvisosTableViewController: UITableViewController {
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return avisosAlumno.count
     }
 
-    /*
+    
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath)
+        let cell = tableView.dequeueReusableCellWithIdentifier("AvisosCell", forIndexPath: indexPath) as UITableViewCell
 
         // Configure the cell...
+        let texto = "texto", tittulo = "titulo", grupoId = "grupoId", maestroId = "maestroId", nombreMaestro = "nombre", grupoNombre = "nombre"
+        cell.textLabel!.text = "\(avisosAlumno[indexPath.row][grupoId]!.valueForKey(grupoNombre)!) \(avisosAlumno[indexPath.row][tittulo]!)"
+        cell.detailTextLabel!.text = "\(avisosAlumno[indexPath.row][texto]!) de \(avisosAlumno[indexPath.row][maestroId]!.valueForKey(nombreMaestro)!)"
 
         return cell
     }
-    */
+    
 
     /*
     // Override to support conditional editing of the table view.
