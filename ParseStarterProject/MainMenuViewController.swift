@@ -49,6 +49,7 @@ class MainMenuViewController: UIViewController {
             dispatch_async(dispatch_get_main_queue()) {
                 
                 //update ui
+                //Less obvious the getObjects methods time maintaining the current work it shows a alertview in a new thread
                 self.displayError("ALerta", message: "Los datos se estan cargando.")
             }
             
