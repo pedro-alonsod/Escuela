@@ -46,13 +46,13 @@ class MainMenuViewController: UIViewController {
         
         dispatch_async(dispatch_get_global_queue(qos_user_class, 0)) { [unowned self] in
             
-            //this goes on and on in the backgorund I mey need it when queries are damn bad it took until "role ok" to run
+            //this goes on and on in the backgorund I may need it when queries are damn bad it took until "role ok" to run
             for var i = 0; i < 10; i++ {
                 
                 print(i)
             }
             
-            //to go back to the main queue outside this maybe
+            //to go back to the main queue outside this maybe queues QOS_CLASS_USER_INTERACTIVE, QOS_CLASS_UTILITY or QOS_CLASS_BACKGROUND.
 //            dispatch_async(dispatch_get_main_queue()) { [unowned self] in
 //                self.tableView.reloadData()
 //            }
