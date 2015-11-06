@@ -265,7 +265,7 @@ class MainMenuViewController: UIViewController {
                 
                 queryTareasAlumno.whereKey("alumnoId", equalTo: alumnoId)
                 queryTareasAlumno.includeKey("alumnoId")
-            
+                queryTareasAlumno.orderByDescending("createdAt")
                 queryTareasAlumno.limit = 20
                 
                 do {
@@ -305,6 +305,7 @@ class MainMenuViewController: UIViewController {
                 queryPrivados.whereKey("alumnoId", equalTo: alumnoId)
                 queryPrivados.includeKey("maestroId")
                 queryPrivados.includeKey("alumnoId")
+                queryPrivados.orderByDescending("createdAt")
                 queryPrivados.limit = 20
                 
                 do {
@@ -361,6 +362,7 @@ class MainMenuViewController: UIViewController {
                     queryAvisoAlumno.whereKey("grupoId", equalTo: grupoAlumno)
                     queryAvisoAlumno.includeKey("alumnoId")
                     queryAvisoAlumno.includeKey("maestroId")
+                    queryAvisoAlumno.orderByDescending("createdAt")
                     queryAvisoAlumno.limit = 20
                     
                     do {

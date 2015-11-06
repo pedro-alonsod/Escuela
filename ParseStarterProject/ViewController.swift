@@ -62,7 +62,7 @@ class ViewController: UIViewController {
         
         print("\(usernameText.text!) \(passwordText.text!)")
         
-        if usernameText.text! != "" || passwordText.text! != "" {
+        if usernameText.text! != "" &&  passwordText.text! != "" {
             
             
             if passwordText.text! == "098" {
