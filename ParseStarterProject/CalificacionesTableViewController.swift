@@ -74,11 +74,13 @@ class CalificacionesTableViewController: UITableViewController {
             
             print("cross")
             cell.calificacionIconImage.image = UIImage(named: "crossIcon")
+            cell.examenOTareaLabel.textColor! = UIColor.redColor()
+            
         } else {
             
             print("check")
             cell.calificacionIconImage.image = UIImage(named: "checkIcon")
-            cell.examenOTareaLabel.textColor! = UIColor.redColor()
+            
         }
         
         

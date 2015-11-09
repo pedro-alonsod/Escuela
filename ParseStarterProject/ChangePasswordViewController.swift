@@ -133,7 +133,7 @@ class ChangePasswordViewController: UIViewController, UITextFieldDelegate {
         PFUser.logOut()
         self.performSegueWithIdentifier(mainSegue, sender: self)
         //self.shouldPerformSegueWithIdentifier(mainSegue, sender: self)
-        
+        //navigationController?.popToRootViewControllerAnimated(true)
     }
     
     func textFieldDidEndEditing(textField: UITextField) {

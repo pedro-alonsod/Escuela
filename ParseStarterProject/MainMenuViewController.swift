@@ -235,7 +235,15 @@ class MainMenuViewController: UIViewController {
                 
                     print(nombreAlumno)
                     
-                    calificacionesArray = calif
+                    for clf in calif {
+                        
+                        print(clf)
+                        
+                        calificacionesArray.append(clf)
+                        
+                    }
+                    
+                    //calificacionesArray = calif
                     
                 } catch let error {
                     print(error)
@@ -279,7 +287,13 @@ class MainMenuViewController: UIViewController {
                     
                     print(nombreAlumno)
                     
-                    tareasDictionaryAlumno = tareas
+                    for trs in tareas {
+                      
+                        tareasDictionaryAlumno.append(trs)
+                        
+                    }
+                    
+                    //tareasDictionaryAlumno = tareas
                     
                     
                 } catch let error {
@@ -318,6 +332,11 @@ class MainMenuViewController: UIViewController {
                     let nombreAlumno = alumnoId["nombre"] as! String
                     
                     print(nombreAlumno)
+                    
+                    for prv in privados {
+                        
+                        privadosDictionaryAlumno.append(prv)
+                    }
                     
                     privadosDictionaryAlumno = privados
                     
@@ -376,7 +395,12 @@ class MainMenuViewController: UIViewController {
                             let nombreAlumno = alumnoInGrupo["nombre"]! as! String
                             print(nombreAlumno)
                             
-                            avisosDictionaryAlumno = avisos
+                            for avs in avisos {
+                                
+                                avisosDictionaryAlumno.append(avs)
+                            }
+                            
+                            //avisosDictionaryAlumno = avisos
                             
                         } else {
                             
@@ -424,32 +448,42 @@ class MainMenuViewController: UIViewController {
             do {
                 
                 hijos = try queryHijos.findObjects()
+                print(hijos)
                 
                 let hijosIdx = "hijos"
                 let nombre = "nombre"
                 let objectId = "objectId"
                 
+                print("conteo de objetos \(hijos.count)")
+                
                 let hijoOne = hijos[0][hijosIdx]
                 print("\(hijos[0].valueForKey(hijosIdx)?.valueForKey(nombre)!)")
                 print("primer hijo \(hijoOne)")
                 
-                for alumno in hijos {
+                print("lista de alumnos \(hijos[0].valueForKey(hijosIdx)!)")
+                
+                let alumnosList: [PFObject] = hijos[0].valueForKey(hijosIdx)! as! [PFObject]
+                
+                print("alumnos list has \(alumnosList.count)")
+                
+                for alumno in alumnosList {
                     
-                    print("\(alumno.valueForKey(hijosIdx)![0] as! PFObject)")
+                    print("\(alumno.valueForKey(nombre)!)")
                     
                     
-                    let objectAlumno = alumno.valueForKey(hijosIdx)![0] as! PFObject
+                    let objectAlumno = alumno
                     
                     alumnosPapa.append(objectAlumno)
                     
                     print(self.alumnosPapa)
                     
+                    print("printing one alumno")
                     
-                    print("\(alumno.valueForKey(hijosIdx)!.valueForKey(nombre)![0] as! String)")
-                    print("\(alumno.valueForKey(hijosIdx)!.valueForKey(objectId)![0] as! String)")
+                    print("\(alumno.valueForKey(nombre)! as! String)")
+                    print("\(alumno.valueForKey(nombre)! as! String)")
                     
-                    let nombreAlumno = alumno.valueForKey(hijosIdx)!.valueForKey(nombre)![0] as! String
-                    let objectAlumnoId = alumno.valueForKey(hijosIdx)!.valueForKey(objectId)![0] as! String
+                    let nombreAlumno = alumno.valueForKey(nombre)! as! String
+                    let objectAlumnoId = alumno.valueForKey(objectId)! as! String
                     
                     print("\(nombreAlumno) \(objectAlumnoId)")
                     
