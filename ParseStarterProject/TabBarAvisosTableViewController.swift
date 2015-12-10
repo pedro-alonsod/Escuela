@@ -1,19 +1,22 @@
 //
-//  TareasTableViewController.swift
-//  ParseStarterProject-Swift
+//  TabBarAvisosTableViewController.swift
+//  Escuela
 //
-//  Created by Pedro Alonso on 29/10/15.
-//  Copyright © 2015 Parse. All rights reserved.
+//  Created by Pedro Alonso on 09/12/15.
+//  Copyright © 2015 Pedro. All rights reserved.
 //
 
 import UIKit
 import Parse
 
-class TareasTableViewController: UITableViewController {
+class TabBarAvisosTableViewController: UITableViewController {
 
-    var tareasAlumno: [PFObject]!
+    let tabBarAvisosCell = "TabBarAvisosCell"
     
-    
+    var avisosAlumno: [PFObject]!
+
+    let formatter = NSDateFormatter()
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -22,8 +25,7 @@ class TareasTableViewController: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
-        
-        print(tareasAlumno)
+        print("We have so many avisos \(avisosAlumno.count)")
     }
 
     override func didReceiveMemoryWarning() {
@@ -40,23 +42,49 @@ class TareasTableViewController: UITableViewController {
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return tareasAlumno.count
+        return avisosAlumno.count
     }
 
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("TareasCell", forIndexPath: indexPath) as! TaraeasTableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier(tabBarAvisosCell, forIndexPath: indexPath)
 
-        let tareaNombre = "nombre", fechaEntrega = "fechaEntrega", alumnoNombre = "nombre", alumnoId = "alumnoId", materia = "materia", codigo = "codigo"
         // Configure the cell...
-        cell.tareaNombreLabel.text = "\(tareasAlumno[indexPath.row][tareaNombre]!) \(tareasAlumno[indexPath.row][materia]!)"
-        cell.descripcionLabel.text = "Esto es para \(tareasAlumno[indexPath.row][alumnoId]!.valueForKey(alumnoNombre)!)"
-        cell.fechaEntregaLabel.text = "Entregar: \(tareasAlumno[indexPath.row][fechaEntrega]!)  \(tareasAlumno[indexPath.row][codigo]!)"
+        
+        let texto = "texto", tittulo = "titulo", grupoId = "grupoId", maestroId = "maestroId", nombreMaestro = "nombre", grupoNombre = "nombre"
+        formatter.dateStyle = NSDateFormatterStyle.ShortStyle
+        
+        cell.textLabel!.text = "Grupo \(avisosAlumno[indexPath.row][grupoId]!.valueForKey(grupoNombre)!): \(avisosAlumno[indexPath.row][tittulo]!)"
+        cell.detailTextLabel!.text = "\(avisosAlumno[indexPath.row][texto]!) de \(avisosAlumno[indexPath.row][maestroId]!.valueForKey(nombreMaestro)!)"
 
         return cell
     }
     
 
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        
+        let rowSelected = tableView.indexPathForSelectedRow
+        
+        let currentCell = tableView.cellForRowAtIndexPath(rowSelected!)! as UITableViewCell
+        
+        print("Cell title: \(currentCell.textLabel?.text) Subtitle: \(currentCell.detailTextLabel?.text)")
+        
+        displayAlert(currentCell.textLabel!.text!, message: currentCell.detailTextLabel!.text!)
+    }
+    
+    
+    
+    func displayAlert(title: String, message: String) {
+        
+        let alert: UIAlertController = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.Alert)
+        alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default) { alert in
+            
+            //self.dismissViewControllerAnimated(true, completion: nil)
+            })
+        presentViewController(alert, animated: true, completion: nil)
+        
+    }
+    
     /*
     // Override to support conditional editing of the table view.
     override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {

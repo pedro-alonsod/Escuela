@@ -16,6 +16,14 @@ class MainMenuViewController: UIViewController {
     let tareasSegue = "TareasSegue"
     let avisosSegue = "AvisosSegue"
     let privadosSegue = "PrivadosSegue"
+    let tabBarSegue = "TabBarSegue"
+    let tabBarTareas = "TabBarTareasSegue"
+    let tabBarCalificaciones = "TabBarCalificacionesSegue"
+    let tabBarCalificacionesTareas = "TabBarCalificacionesTareasSegue"
+    let tabBarAvisosSegue = "TabBarAvisosSegue"
+    
+    @IBOutlet weak var infoSchoolLabel: UILabel!
+    
     
     var papa: PFUser!
     
@@ -32,11 +40,14 @@ class MainMenuViewController: UIViewController {
     
     var nombresArray: [String] = []
     
+    var item = 0
+    
     
     @IBOutlet weak var calificacionesNumeroLabel: UILabel!
     @IBOutlet weak var tareasNumeroLabel: UILabel!
     @IBOutlet weak var avisosNumeroLabel: UILabel!
     @IBOutlet weak var privadosNumeroLabel: UILabel!
+    @IBOutlet weak var schoolLogo: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -73,6 +84,27 @@ class MainMenuViewController: UIViewController {
         }
         // Do any additional setup after loading the view.
         
+        PFConfig.getConfigInBackgroundWithBlock {
+            
+            (config: PFConfig?, error: NSError?) -> Void in
+            
+            if error == nil {
+                
+                let ciclo = config!["Ciclo"]
+                let mensaje = config!["Mensaje"]
+                let fechaFin = config!["FechaFin"]
+                let descripcion = config!["Descripcion"]
+                
+                print("\(ciclo!): \(mensaje!) \n \(descripcion!) hasta \(fechaFin!)")
+                
+                self.infoSchoolLabel.text = "\(ciclo!): \(mensaje!) \n \(descripcion!).\n El ciclo hasta \(fechaFin!)"
+                
+            } else {
+                
+                self.displayError("Error", message: "Ha habido un problema al obtener la configuracion.")
+            }
+        }
+        
         titleMenuLabel.text = "Bienvenido \(papa.username!)"
         
         //getCalificaciones()
@@ -88,6 +120,9 @@ class MainMenuViewController: UIViewController {
             getPrivados()
             getAvisos()
             
+            //config escuela
+            getConfigSchool()
+            
             calificacionesNumeroLabel.text = (calificacionesArray.count > 0) ? "\(calificacionesArray.count)":"0"
             
             tareasNumeroLabel.text = (tareasDictionaryAlumno.count > 0) ? "\(tareasDictionaryAlumno.count)":"0"
@@ -102,6 +137,7 @@ class MainMenuViewController: UIViewController {
             
             displayError("Error", message: "Hay un problema con tus alumnos asignados.")
         }
+        
         
         
     }
@@ -170,34 +206,123 @@ class MainMenuViewController: UIViewController {
                 
                 privadosVC.privadosAlumno = []
             }
+        } else if segue.identifier == tabBarSegue {
+            
+            
+        } else if segue.identifier == tabBarCalificacionesTareas {
+            
+            //look how to set the view to tareastabbar
+            
+            let tabBarTareasVC = segue.destinationViewController as! TabBarCalificacionesTareasViewController
+            
+            tabBarTareasVC.selectedIndex = item
+            
+            tabBarTareasVC.selectedItem = item
+            
+            print("number sent \(item)")
+            
+            let tabBarVC = tabBarTareasVC.viewControllers![1] as! TareasViewController
+            
+            
+            if tareasDictionaryAlumno.count > 0 {
+                
+                tabBarVC.tareasAlumno = tareasDictionaryAlumno
+                
+            } else {
+                
+                tabBarVC.tareasAlumno = []
+                
+            }
+            
+            
+        
+            let tabBarVCSecond = tabBarTareasVC.viewControllers![0] as! CalificacionesViewController
+            
+            if calificacionesArray.count > 0 {
+                
+                tabBarVCSecond.calificacionesAlumno = calificacionesArray
+                
+            } else {
+                
+                tabBarVCSecond.calificacionesAlumno = []
+                
+                
+            }
+            
+        } else if segue.identifier == tabBarAvisosSegue {
+            
+            let tabBarAvisosVC = segue.destinationViewController as! TabBarAvisosViewController
+            
+            
+            tabBarAvisosVC.selectedItem = item
+            
+            print("Avisos number sent \(item)")
+            
+            let tabBarAvisosFirst = tabBarAvisosVC.viewControllers![0] as! TabBarAvisosTableViewController
+            
+            if avisosDictionaryAlumno.count > 0 {
+            
+                tabBarAvisosFirst.avisosAlumno = avisosDictionaryAlumno
+            } else {
+                
+                tabBarAvisosFirst.avisosAlumno = []
+                
+            }
+            
+            let tabBarPrivadosSecond = tabBarAvisosVC.viewControllers![1] as! TabBarPrivadosTableViewController
+            
+            if privadosDictionaryAlumno.count > 0 {
+                
+                tabBarPrivadosSecond.privadosAlumno = privadosDictionaryAlumno
+                
+            } else {
+                
+                tabBarPrivadosSecond.privadosAlumno = []
+                
+         
+            }
+            
+            tabBarAvisosVC.selectedIndex = item
+            
+            
         }
+        
     }
     
 
     //
 
     @IBAction func calificacionesTapped(sender: UIButton) {
+        
+        item = 0
+
     
-        self.performSegueWithIdentifier(calificacionesSegue, sender: self)
+        self.performSegueWithIdentifier(tabBarCalificacionesTareas, sender: self)
     
     }
     
     @IBAction func tareasTapped(sender: UIButton) {
+        
+        item = 1
    
-        self.performSegueWithIdentifier(tareasSegue, sender: self)
+        self.performSegueWithIdentifier(tabBarCalificacionesTareas, sender: self)
     
     }
     
     @IBAction func avisosTapped(sender: UIButton) {
+        
+        item = 0
     
-        self.performSegueWithIdentifier(avisosSegue, sender: self)
+        self.performSegueWithIdentifier(tabBarAvisosSegue, sender: self)
         
     
     }
     
     @IBAction func privadosTapped(sender: UIButton) {
+        
+        item = 1
   
-        self.performSegueWithIdentifier(privadosSegue, sender: self)
+        self.performSegueWithIdentifier(tabBarAvisosSegue, sender: self)
     }
     
     @IBAction func salirTapped(sender: UIButton) {
@@ -265,35 +390,59 @@ class MainMenuViewController: UIViewController {
         
         if self.alumnosPapa.count > 0 {
             
-            for alumnoId in alumnosPapa {
+            for alumnoInGrupo in alumnosPapa {
                 
-                let queryTareasAlumno = PFQuery(className: "Tareas")
+                let queryGrupos = PFQuery(className: "Alumnos")
                 
-                print("este alumno \(alumnoId)")
+                print("este alumno \(alumnoInGrupo.objectId!)")
                 
-                queryTareasAlumno.whereKey("alumnoId", equalTo: alumnoId)
-                queryTareasAlumno.includeKey("alumnoId")
-                queryTareasAlumno.orderByDescending("createdAt")
-                queryTareasAlumno.limit = 20
+                queryGrupos.whereKey("objectId", equalTo: alumnoInGrupo.objectId!)
+                queryGrupos.includeKey("grupoId")
+                
+                
                 
                 do {
                     
-                    let tareas = try queryTareasAlumno.findObjects()
+                    let grupoObject = try queryGrupos.getFirstObject()
                     
-                    print(tareas)
-                    print(alumnoId["nombre"])
+                    print(grupoObject["grupoId"]! as! PFObject)
                     
-                    let nombreAlumno = alumnoId["nombre"] as! String
+                    let grupoAlumno = grupoObject["grupoId"]! as! PFObject
                     
-                    print(nombreAlumno)
+                    print("this is the grupo of the student \(grupoAlumno) of \(alumnoInGrupo)")
+   
+                    let queryTareasAlumno = PFQuery(className: "Tareas")
                     
-                    for trs in tareas {
-                      
-                        tareasDictionaryAlumno.append(trs)
+                    queryTareasAlumno.whereKey("grupoId", equalTo: grupoAlumno)
+                    queryTareasAlumno.includeKey("maestroId")
+                    queryTareasAlumno.includeKey("alumnoId")
+                    queryTareasAlumno.orderByDescending("createdAt")
+                    queryTareasAlumno.limit = 50
+                    
+                    do {
+                        
+                        let tareas = try queryTareasAlumno.findObjects()
+                        
+                        print(tareas)
+                        
+                        if tareas.count > 0 {
+                            
+                            let nombreAlumno = alumnoInGrupo["nombre"]! as! String
+                            
+                            print(nombreAlumno)
+                            
+                            for trs in tareas {
+                                
+                                tareasDictionaryAlumno.append(trs)
+                            }
+                        }
+                    } catch let errorInner {
+                        
+                        print(errorInner)
                         
                     }
+                
                     
-                    //tareasDictionaryAlumno = tareas
                     
                     
                 } catch let error {
@@ -505,6 +654,63 @@ class MainMenuViewController: UIViewController {
             
         }
     }
+    
+    func getConfigSchool() {
+        
+        if papa == PFUser.currentUser()! {
+            
+            
+            let queryConfig = PFQuery(className: "Config")
+            
+            var nombreEscuela: String!, tipo: String!, ciclo: String!, cicloInicio: String!, cicloFin: String!
+            
+            
+            queryConfig.getFirstObjectInBackgroundWithBlock {
+                
+                (object: PFObject?, error: NSError?) -> Void in
+                
+                if error == nil || object != nil {
+                    
+                    print("object retieved \(object)")
+                    // self.infoSchoolLabel.text = (object!["Ciclo"] as! String) + "\n" + (object!["Info"] as! String) + ",  " + (object!["Institucion"] as! String)
+                    
+                    let schoolImage = object!["logo"] as! PFFile
+                    
+                    schoolImage.getDataInBackgroundWithBlock {
+                        
+                        (imageData: NSData?, error: NSError?) -> Void in
+                        
+                        if error == nil {
+                            
+                            if let image = imageData {
+                                
+                                let imgData = UIImage(data: image)
+                                
+                                //self.schoolLogo.image = imgData
+                                
+                                let imageView = UIImageView(image: imgData)
+                                
+                                self.navigationItem.titleView = imageView
+                                
+                                print("got something")
+                                
+                            }
+                        } else {
+                            
+                            print("\(error?.description)")
+                        }
+                    }
+                    
+                } else {
+                    
+                    print("error somewhere \(error)")
+                }
+            }
+            
+        }
+    }
+    
+    
 
 }
 

@@ -1,0 +1,153 @@
+
+/* Class = "UILabel"; text = "0"; ObjectID = "0o1-vZ-w2G"; */
+"0o1-vZ-w2G.text" = "0";
+
+/* Class = "UITextField"; placeholder = "Correo electronico"; ObjectID = "5xp-oF-gdf"; */
+"5xp-oF-gdf.placeholder" = "Correo electronico";
+
+/* Class = "UITextField"; placeholder = "Usuario"; ObjectID = "9er-lv-Awm"; */
+"9er-lv-Awm.placeholder" = "Usuario";
+
+/* Class = "UILabel"; text = "Tarea Nombre:"; ObjectID = "9sy-8i-ucK"; */
+"9sy-8i-ucK.text" = "Tarea Nombre:";
+
+/* Class = "UILabel"; text = "InfoLabel"; ObjectID = "AaV-T9-vV2"; */
+"AaV-T9-vV2.text" = "InfoLabel";
+
+/* Class = "UITextField"; placeholder = "Nueva contraseña"; ObjectID = "Alx-dw-A7t"; */
+"Alx-dw-A7t.placeholder" = "Nueva contraseña";
+
+/* Class = "UITabBarItem"; title = "Tareas"; ObjectID = "AuB-dl-T1J"; */
+"AuB-dl-T1J.title" = "Tareas";
+
+/* Class = "UILabel"; text = "Bienvenido Usuario:"; ObjectID = "FBs-mN-aUq"; */
+"FBs-mN-aUq.text" = "Bienvenido Usuario:";
+
+/* Class = "UILabel"; text = "Subtitle"; ObjectID = "Gfc-SF-qMZ"; */
+"Gfc-SF-qMZ.text" = "Subtitle";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "HjD-Vj-Es8"; */
+"HjD-Vj-Es8.text" = "0";
+
+/* Class = "UILabel"; text = "Nombre Alumno"; ObjectID = "ISb-ZI-Ubo"; */
+"ISb-ZI-Ubo.text" = "Nombre Alumno";
+
+/* Class = "UIButton"; normalTitle = "Cancelar"; ObjectID = "Ik8-73-YHF"; */
+"Ik8-73-YHF.normalTitle" = "Cancelar";
+
+/* Class = "UIButton"; normalTitle = "Listo"; ObjectID = "JEd-Ss-4hw"; */
+"JEd-Ss-4hw.normalTitle" = "Listo";
+
+/* Class = "UILabel"; text = "Title"; ObjectID = "Jbe-zT-eyy"; */
+"Jbe-zT-eyy.text" = "Title";
+
+/* Class = "UILabel"; text = "Recordar contraseña"; ObjectID = "Jer-ir-zPR"; */
+"Jer-ir-zPR.text" = "Recordar contraseña";
+
+/* Class = "UILabel"; text = "Introduce los datos requeridos:"; ObjectID = "NIg-Yd-6th"; */
+"NIg-Yd-6th.text" = "Introduce los datos requeridos:";
+
+/* Class = "UILabel"; text = "Titulo"; ObjectID = "Ouz-mH-gi9"; */
+"Ouz-mH-gi9.text" = "Titulo";
+
+/* Class = "UITextField"; placeholder = "Usuario"; ObjectID = "PHD-ba-sYX"; */
+"PHD-ba-sYX.placeholder" = "Usuario";
+
+/* Class = "UITabBarItem"; title = "Privados"; ObjectID = "PWt-jU-z4L"; */
+"PWt-jU-z4L.title" = "Privados";
+
+/* Class = "UIButton"; normalTitle = "Ver Tareas"; ObjectID = "SIz-bH-73c"; */
+"SIz-bH-73c.normalTitle" = "Ver Tareas";
+
+/* Class = "UIViewController"; title = "Calificaciones"; ObjectID = "SQP-kc-vJN"; */
+"SQP-kc-vJN.title" = "Calificaciones";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "SQg-Cs-e1G"; */
+"SQg-Cs-e1G.text" = "0";
+
+/* Class = "UILabel"; text = "Title"; ObjectID = "T0V-6b-MfS"; */
+"T0V-6b-MfS.text" = "Title";
+
+/* Class = "UILabel"; text = "Title"; ObjectID = "TFY-Zi-QA0"; */
+"TFY-Zi-QA0.text" = "Title";
+
+/* Class = "UILabel"; text = "Mensaje.........................................................................aaaaaaa"; ObjectID = "WFr-8Q-IaG"; */
+"WFr-8Q-IaG.text" = "Mensaje.........................................................................aaaaaaa";
+
+/* Class = "UILabel"; text = "Descripcion ...................................................................................................................................."; ObjectID = "Wkq-Di-gzF"; */
+"Wkq-Di-gzF.text" = "Descripcion ....................................................................................................................................";
+
+/* Class = "UITabBarItem"; title = "Calificaciones"; ObjectID = "Xe3-XC-Vxy"; */
+"Xe3-XC-Vxy.title" = "Calificaciones";
+
+/* Class = "UILabel"; text = "Examen o Tarea:"; ObjectID = "YWx-dz-mPg"; */
+"YWx-dz-mPg.text" = "Examen o Tarea:";
+
+/* Class = "UILabel"; text = "Subtitle"; ObjectID = "Ygk-aJ-BL1"; */
+"Ygk-aJ-BL1.text" = "Subtitle";
+
+/* Class = "UIViewController"; title = "Tareas"; ObjectID = "ZC5-xJ-Tte"; */
+"ZC5-xJ-Tte.title" = "Tareas";
+
+/* Class = "UIBarButtonItem"; title = "Anterior"; ObjectID = "ZMw-JJ-aHQ"; */
+"ZMw-JJ-aHQ.title" = "Anterior";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "bcc-YJ-GvL"; */
+"bcc-YJ-GvL.text" = "0";
+
+/* Class = "UIButton"; normalTitle = "Salir"; ObjectID = "fsm-Li-dJ9"; */
+"fsm-Li-dJ9.normalTitle" = "Salir";
+
+/* Class = "UIButton"; normalTitle = "Ver Privados"; ObjectID = "hbS-SM-Ezb"; */
+"hbS-SM-Ezb.normalTitle" = "Ver Privados";
+
+/* Class = "UINavigationItem"; title = "Menu"; ObjectID = "i1A-Pr-5jV"; */
+"i1A-Pr-5jV.title" = "Menu";
+
+/* Class = "UILabel"; text = "¿Que deseas ver?"; ObjectID = "ibY-T0-UN9"; */
+"ibY-T0-UN9.text" = "¿Que deseas ver?";
+
+/* Class = "UITabBarItem"; title = "Avisos"; ObjectID = "kaa-gv-ghl"; */
+"kaa-gv-ghl.title" = "Avisos";
+
+/* Class = "UITextField"; placeholder = "Numero telefonico"; ObjectID = "ktn-Un-HDr"; */
+"ktn-Un-HDr.placeholder" = "Numero telefonico";
+
+/* Class = "UIButton"; normalTitle = "Ver Calificaciones"; ObjectID = "mC3-Z4-kcI"; */
+"mC3-Z4-kcI.normalTitle" = "Ver Calificaciones";
+
+/* Class = "UILabel"; text = "Subtitle"; ObjectID = "mjW-0S-SJd"; */
+"mjW-0S-SJd.text" = "Subtitle";
+
+/* Class = "UIButton"; normalTitle = "Entrar"; ObjectID = "nU0-hk-ofh"; */
+"nU0-hk-ofh.normalTitle" = "Entrar";
+
+/* Class = "UITextField"; placeholder = "Contraseña"; ObjectID = "oRr-lN-XDy"; */
+"oRr-lN-XDy.placeholder" = "Contraseña";
+
+/* Class = "UILabel"; text = "Title"; ObjectID = "obl-0I-CSC"; */
+"obl-0I-CSC.text" = "Title";
+
+/* Class = "UILabel"; text = "Title"; ObjectID = "tX3-xz-Ana"; */
+"tX3-xz-Ana.text" = "Title";
+
+/* Class = "UILabel"; text = "Fecha Entrega:"; ObjectID = "uIQ-5r-xIu"; */
+"uIQ-5r-xIu.text" = "Fecha Entrega:";
+
+/* Class = "UILabel"; text = "Subtitle"; ObjectID = "uKr-ak-ykA"; */
+"uKr-ak-ykA.text" = "Subtitle";
+
+/* Class = "UIButton"; normalTitle = "Ver Avisos"; ObjectID = "vpk-UX-urr"; */
+"vpk-UX-urr.normalTitle" = "Ver Avisos";
+
+/* Class = "UILabel"; text = "Inicio ingresa tu cuenta."; ObjectID = "w2s-07-sc1"; */
+"w2s-07-sc1.text" = "Inicio ingresa tu cuenta.";
+
+/* Class = "UILabel"; text = "Subtitle"; ObjectID = "wrP-mO-2Kq"; */
+"wrP-mO-2Kq.text" = "Subtitle";
+
+/* Class = "UILabel"; text = "Mensaje"; ObjectID = "x1k-Vu-jDX"; */
+"x1k-Vu-jDX.text" = "Mensaje";
+
+/* Class = "UIButton"; normalTitle = "Cambiar contraseña"; ObjectID = "z0c-UK-o9g"; */
+"z0c-UK-o9g.normalTitle" = "Cambiar contraseña";
