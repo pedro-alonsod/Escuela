@@ -91,26 +91,37 @@ class TareasViewController: UIViewController, UITableViewDataSource, UITableView
         // Configure the cell...
         
         formatter.dateStyle = NSDateFormatterStyle.LongStyle
-        let tareaNombre = "nombre", fechaEntrega = "fechaEntrega", grupoNombre = "nombre", grupoId = "grupoId", materia = "materia"
+        let tareaNombre = "nombre", fechaEntrega = "fechaEntrega", grupoNombre = "nombre", grupoId = "grupoId", materia = "materia", tareaDescripcion = "descripcion"
         
         let dateString = tareasAlumno[indexPath.row][fechaEntrega]! as! NSDate
         
         
         print("La fecha es: \(formatter.stringFromDate(dateString))")
         
-        cell.titleLabel.text = "\(tareasAlumno[indexPath.row][tareaNombre]!) \(tareasAlumno[indexPath.row][materia]!)"
-        cell.subtitleLabel.text = "Grupo - \(tareasAlumno[indexPath.row][grupoId]!.valueForKey(grupoNombre)!) Entregar: \(formatter.stringFromDate(dateString))"
+        cell.titleLabel.text = "\(tareasAlumno[indexPath.row][tareaNombre]!)"
+        cell.materiaLabel.text = "\(tareasAlumno[indexPath.row][materia]!)"
+        cell.subtitleLabel.text = "\(tareasAlumno[indexPath.row][grupoId]!.valueForKey(grupoNombre)!)"
+        cell.tareaDescripcionLabel.text = "\(tareasAlumno[indexPath.row][tareaDescripcion]!)"
+        
+        formatter.dateFormat = "dd  MMMM"
+        cell.fechaLabel.text = "\(formatter.stringFromDate(dateString))"
         
         let colorOfGrupo = tareasAlumno[indexPath.row][grupoId]!.valueForKey("color") as! String
         
         let rgb = colorOfGrupo.componentsSeparatedByString(",")
         
-        cell.titleLabel.backgroundColor = UIColor(red: CGFloat(Int(rgb[0])!), green: CGFloat(Int(rgb[1])!), blue: CGFloat(Int(rgb[2])!), alpha: 1.0)
+        let colorForText = UIColor(red: CGFloat(Int(rgb[0])!) / 255.0, green: CGFloat(Int(rgb[1])!) / 255.0, blue: CGFloat(Int(rgb[2])!) / 255.0, alpha: 0.1)
         
-        cell.subtitleLabel.backgroundColor = UIColor(red: CGFloat(Int(rgb[0])!), green: CGFloat(Int(rgb[1])!), blue: CGFloat(Int(rgb[2])!), alpha: 1.0)
+        //cell.backgroundColor = UIColor(red: CGFloat(Int(rgb[0])!) / 255.0, green: CGFloat(Int(rgb[1])!) / 255.0, blue: CGFloat(Int(rgb[2])!) / 255.0, alpha: 0.1)
+        cell.materiaLabel.backgroundColor = colorForText
+        //cell.fechaLabel.textColor = colorForText
+        cell.subtitleLabel.backgroundColor = colorForText
+        //cell.subtitleLabel.textColor = UIColor(red: CGFloat(Int(rgb[0])!) / 255.0, green: CGFloat(Int(rgb[1])!) / 255.0, blue: CGFloat(Int(rgb[2])!) / 255.0, alpha: 0.1)
         
         
-        print("\(rgb[0]) \(rgb[1]) \(rgb[2])")
+        print("\(CGFloat(Int(rgb[0])!) / 255.0) \(CGFloat(Int(rgb[1])!)) \(CGFloat(Int(rgb[2])!))")
+        
+        //print(UIColor(red: CGFloat(Int(rgb[0])!), green: CGFloat(Int(rgb[1])!), blue: CGFloat(Int(rgb[2])!), alpha: 1.0))
         
         
         for avatarAlumnos in alumnosData {
@@ -172,9 +183,15 @@ class TareasViewController: UIViewController, UITableViewDataSource, UITableView
         
         let mensaje = tareasAlumno[indexPath.row]["tipo"] as! String
         
+        let tareaDescripcion = tareasAlumno[indexPath.row]["descripcion"] as! String
+        let fechaEntrega = tareasAlumno[indexPath.row]["fechaEntrega"] as! NSDate
+        
         print(mensaje)
         
-        let texto = "Nombre: \(currentCell.subtitleLabel.text!) \n Tipo: \(mensaje)"
+        formatter.dateStyle = NSDateFormatterStyle.LongStyle
+
+        
+        let texto = "Nombre: \(currentCell.subtitleLabel.text!) \n Tipo: \(mensaje) \n Descripcion: \(tareaDescripcion) \n Entrega: \(formatter.stringFromDate(fechaEntrega))"
         
         print(texto)
         
