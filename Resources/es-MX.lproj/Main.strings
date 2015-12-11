@@ -57,7 +57,7 @@
 "PWt-jU-z4L.title" = "Privados";
 
 /* Class = "UIButton"; normalTitle = "Ver Tareas"; ObjectID = "SIz-bH-73c"; */
-"SIz-bH-73c.normalTitle" = "Ver Tareas";
+"SIz-bH-73c.normalTitle" = "Actividades";
 
 /* Class = "UIViewController"; title = "Calificaciones"; ObjectID = "SQP-kc-vJN"; */
 "SQP-kc-vJN.title" = "Calificaciones";
@@ -99,7 +99,7 @@
 "fsm-Li-dJ9.normalTitle" = "Salir";
 
 /* Class = "UIButton"; normalTitle = "Ver Privados"; ObjectID = "hbS-SM-Ezb"; */
-"hbS-SM-Ezb.normalTitle" = "Ver Privados";
+"hbS-SM-Ezb.normalTitle" = "Privados";
 
 /* Class = "UINavigationItem"; title = "Menu"; ObjectID = "i1A-Pr-5jV"; */
 "i1A-Pr-5jV.title" = "Menu";
@@ -114,7 +114,7 @@
 "ktn-Un-HDr.placeholder" = "Numero telefonico";
 
 /* Class = "UIButton"; normalTitle = "Ver Calificaciones"; ObjectID = "mC3-Z4-kcI"; */
-"mC3-Z4-kcI.normalTitle" = "Ver Calificaciones";
+"mC3-Z4-kcI.normalTitle" = "Calificaciones";
 
 /* Class = "UILabel"; text = "Subtitle"; ObjectID = "mjW-0S-SJd"; */
 "mjW-0S-SJd.text" = "Subtitle";
@@ -138,7 +138,7 @@
 "uKr-ak-ykA.text" = "Subtitle";
 
 /* Class = "UIButton"; normalTitle = "Ver Avisos"; ObjectID = "vpk-UX-urr"; */
-"vpk-UX-urr.normalTitle" = "Ver Avisos";
+"vpk-UX-urr.normalTitle" = "Avisos";
 
 /* Class = "UILabel"; text = "Inicio ingresa tu cuenta."; ObjectID = "w2s-07-sc1"; */
 "w2s-07-sc1.text" = "Inicio ingresa tu cuenta.";

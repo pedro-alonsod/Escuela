@@ -15,6 +15,7 @@ class TabBarPrivadosTableViewController: UITableViewController {
     var privadosAlumno: [PFObject]!
     
     let formatter = NSDateFormatter()
+    
 
     
     override func viewDidLoad() {
@@ -34,6 +35,32 @@ class TabBarPrivadosTableViewController: UITableViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        
+    
+        privadosAlumno.sortInPlace({ $0.createdAt > $1.createdAt })
+    }
+    override func viewDidLayoutSubviews() {
+        
+        //print(self.tableView.frame.size)
+        //self.tableView.frame = CGRectMake(0, 0, 320, 480)
+        //self.tableView.frame = CGRectMake(self.tableView.frame.origin.x, self.tableView.frame.origin.y, self.tableView.frame.width, self.tableView.frame.height)
+        //self.tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: self.view.bounds.height - 100, right: 0)
+
+//        var frame = self.tableView.frame
+//        frame.origin.y += tableView.frame.height
+//        self.tableView.frame = frame
+        
+        //self.tableView.contentInset = UIEdgeInsetsMake(58,0,0,0);
+
+        if let rect = self.navigationController?.navigationBar.frame {
+            let y = rect.size.height + rect.origin.y
+            self.tableView.contentInset = UIEdgeInsetsMake(y, 0, 0, 0)
+        }
+        
+        self.automaticallyAdjustsScrollViewInsets = true
     }
 
     // MARK: - Table view data source

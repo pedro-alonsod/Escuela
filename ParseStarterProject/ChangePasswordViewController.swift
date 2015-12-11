@@ -15,6 +15,9 @@ class ChangePasswordViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var emailText: UITextField!
     @IBOutlet weak var phoneText: UITextField!
     @IBOutlet weak var passwordNewText: UITextField!
+    @IBOutlet weak var listoButton: UIButton!
+    @IBOutlet weak var cancelarButton: UIButton!
+    @IBOutlet weak var loadingActivity: UIActivityIndicatorView!
     
     let mainSegue = "MainSegue"
     var passToSend: String!
@@ -29,6 +32,41 @@ class ChangePasswordViewController: UIViewController, UITextFieldDelegate {
         // Do any additional setup after loading the view.
         
         usernameBlockedText.text! = userToChange
+        
+        loadingActivity.hidden = true
+        
+        
+        //listoButton.backgroundColor = UIColor.blueColor()
+        listoButton.layer.cornerRadius = 5
+        listoButton.layer.borderWidth = 1
+        listoButton.layer.borderColor = UIColor.clearColor().CGColor
+
+        //cancelarButton.backgroundColor = UIColor.blueColor()
+        cancelarButton.layer.cornerRadius = 5
+        cancelarButton.layer.borderWidth = 1
+        cancelarButton.layer.borderColor = UIColor.clearColor().CGColor
+        
+        usernameBlockedText.backgroundColor = UIColor.clearColor()
+        usernameBlockedText.layer.cornerRadius = 5
+        usernameBlockedText.layer.borderWidth = 3
+        usernameBlockedText.layer.borderColor = UIColor.lightGrayColor().CGColor
+
+        emailText.backgroundColor = UIColor.clearColor()
+        emailText.layer.cornerRadius = 5
+        emailText.layer.borderWidth = 3
+        emailText.layer.borderColor = UIColor.lightGrayColor().CGColor
+
+        phoneText.backgroundColor = UIColor.clearColor()
+        phoneText.layer.cornerRadius = 5
+        phoneText.layer.borderWidth = 3
+        phoneText.layer.borderColor = UIColor.lightGrayColor().CGColor
+
+        passwordNewText.backgroundColor = UIColor.clearColor()
+        passwordNewText.layer.cornerRadius = 5
+        passwordNewText.layer.borderWidth = 3
+        passwordNewText.layer.borderColor = UIColor.lightGrayColor().CGColor
+
+
     }
 
     override func didReceiveMemoryWarning() {

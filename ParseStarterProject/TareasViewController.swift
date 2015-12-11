@@ -13,6 +13,7 @@ class TareasViewController: UIViewController, UITableViewDataSource, UITableView
 
     let tareasTabBarCell = "TareasTabBarCell"
     var tareasAlumno: [PFObject]!
+    var alumnosData: [PFObject]!
 
     
     let formatter = NSDateFormatter()
@@ -24,6 +25,16 @@ class TareasViewController: UIViewController, UITableViewDataSource, UITableView
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        
+//        print(tareasAlumno[0])
+//        
+//        tareasAlumno.sortInPlace({ $0.createdAt > $1.createdAt })
+//        
+//        print(tareasAlumno[0])
+//        
+        
+        
+
         
     }
     
@@ -38,6 +49,16 @@ class TareasViewController: UIViewController, UITableViewDataSource, UITableView
         print(" we have # \(tareasAlumno.count)")
         
         print("Tareas object \(tareasAlumno)")
+        
+        print(tareasAlumno[0])
+        
+        tareasAlumno.sortInPlace({ $0.createdAt > $1.createdAt })
+        
+        print(tareasAlumno[0])
+        
+        print("Los hijos de este papa son \(alumnosData.count)")
+                
+
 
         
     }
@@ -65,25 +86,79 @@ class TareasViewController: UIViewController, UITableViewDataSource, UITableView
     
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier(tareasTabBarCell, forIndexPath: indexPath) 
+        let cell = tableView.dequeueReusableCellWithIdentifier(tareasTabBarCell, forIndexPath: indexPath) as! TabBarTareasTableViewCell
         
         // Configure the cell...
         
-        formatter.dateStyle = NSDateFormatterStyle.MediumStyle
-        let tareaNombre = "nombre", fechaEntrega = "fechaEntrega", grupoNombre = "nombre", grupoId = "grupoId", materia = "materia", codigo = "codigo"
+        formatter.dateStyle = NSDateFormatterStyle.LongStyle
+        let tareaNombre = "nombre", fechaEntrega = "fechaEntrega", grupoNombre = "nombre", grupoId = "grupoId", materia = "materia"
+        
         let dateString = tareasAlumno[indexPath.row][fechaEntrega]! as! NSDate
         
         
         print("La fecha es: \(formatter.stringFromDate(dateString))")
         
-        cell.textLabel!.text = "\(tareasAlumno[indexPath.row][tareaNombre]!) \(tareasAlumno[indexPath.row][materia]!)"
-        cell.detailTextLabel!.text = "Grupo: \(tareasAlumno[indexPath.row][grupoId]!.valueForKey(grupoNombre)!) Entregar: \(formatter.stringFromDate(dateString))"
+        cell.titleLabel.text = "\(tareasAlumno[indexPath.row][tareaNombre]!) \(tareasAlumno[indexPath.row][materia]!)"
+        cell.subtitleLabel.text = "Grupo - \(tareasAlumno[indexPath.row][grupoId]!.valueForKey(grupoNombre)!) Entregar: \(formatter.stringFromDate(dateString))"
+        
+        let colorOfGrupo = tareasAlumno[indexPath.row][grupoId]!.valueForKey("color") as! String
+        
+        let rgb = colorOfGrupo.componentsSeparatedByString(",")
+        
+        cell.titleLabel.backgroundColor = UIColor(red: CGFloat(Int(rgb[0])!), green: CGFloat(Int(rgb[1])!), blue: CGFloat(Int(rgb[2])!), alpha: 1.0)
+        
+        cell.subtitleLabel.backgroundColor = UIColor(red: CGFloat(Int(rgb[0])!), green: CGFloat(Int(rgb[1])!), blue: CGFloat(Int(rgb[2])!), alpha: 1.0)
+        
+        
+        print("\(rgb[0]) \(rgb[1]) \(rgb[2])")
+        
+        
+        for avatarAlumnos in alumnosData {
+            
+            if tareasAlumno[indexPath.row][grupoId].objectId == avatarAlumnos[grupoId].objectId {
+                
+                print("para el renglon \(indexPath.row) este  \(avatarAlumnos[tareaNombre])")
+                
+                
+                let avatar = avatarAlumnos["foto"] as! PFFile
+                
+                avatar.getDataInBackgroundWithBlock {
+                    
+                    (imageData: NSData?, error: NSError?) -> Void in
+                    
+                    if error == nil {
+                        
+                        if let image = imageData {
+                            
+                            let imgData = UIImage(data: image)
+                            
+                            //self.schoolLogo.image = imgData
+                            
+                            cell.avatarAlumno.image = imgData
+                            
+//                            let imageView = UIImageView(image: imgData)
+                            
+//                            self.navigationItem.titleView = imageView
+//                            
+//                            print("got something")
+//                            
+                        }
+                    } else {
+                        
+                        print("\(error?.description)")
+                    }
+                }
+                
+                
+            }
+        }
         
 //        cell.tareaNombreLabel.text = "\(tareasAlumno[indexPath.row][tareaNombre]!) \(tareasAlumno[indexPath.row][materia]!)"
 //        cell.descripcionLabel.text = "Esto es para \(tareasAlumno[indexPath.row][alumnoId]!.valueForKey(alumnoNombre)!)"
 //        cell.fechaEntregaLabel.text = "Entregar: \(tareasAlumno[indexPath.row][fechaEntrega]!)  \(tareasAlumno[indexPath.row][codigo]!)"
 
-        
+        //let gbDateFormat = NSDateFormatter.dateFormatFromTemplate("MMddyyyy", options: 0, locale: NSLocale(localeIdentifier: "en-GB"))
+
         
         return cell
     }
@@ -93,11 +168,19 @@ class TareasViewController: UIViewController, UITableViewDataSource, UITableView
         
         let rowSelected = tableView.indexPathForSelectedRow
         
-        let currentCell = tableView.cellForRowAtIndexPath(rowSelected!)! as UITableViewCell
+        let currentCell = tableView.cellForRowAtIndexPath(rowSelected!)! as! TabBarTareasTableViewCell
         
-        print("Cell title: \(currentCell.textLabel?.text) Subtitle: \(currentCell.detailTextLabel?.text)")
+        let mensaje = tareasAlumno[indexPath.row]["tipo"] as! String
         
-        displayAlert(currentCell.textLabel!.text!, message: currentCell.detailTextLabel!.text!)
+        print(mensaje)
+        
+        let texto = "Nombre: \(currentCell.subtitleLabel.text!) \n Tipo: \(mensaje)"
+        
+        print(texto)
+        
+        print("Cell title: \(currentCell.titleLabel.text) Subtitle: \(currentCell.subtitleLabel.text)")
+        
+        displayAlert(currentCell.titleLabel.text!, message: texto)
     }
     
     

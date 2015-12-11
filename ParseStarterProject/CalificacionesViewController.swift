@@ -38,6 +38,9 @@ class CalificacionesViewController: UIViewController, UITableViewDelegate, UITab
         
         print("we have # of calif \(calificacionesAlumno.count)")
         
+        calificacionesAlumno.sortInPlace({ $0.createdAt > $1.createdAt })
+        
+        
         
     }
 

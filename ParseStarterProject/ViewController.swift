@@ -15,6 +15,10 @@ class ViewController: UIViewController {
     @IBOutlet weak var usernameText: UITextField!
     @IBOutlet weak var passwordText: UITextField!
     @IBOutlet weak var savePasswordSwitc: UISwitch!
+    @IBOutlet weak var entrarButton: UIButton!
+    @IBOutlet weak var cambiarButton: UIButton!
+    
+    @IBOutlet weak var loadingActivity: UIActivityIndicatorView!
 
     let mainMenuSegue = "MainMenuSegue"
     let changePasswordSegue = "ChangePasswordSegue"
@@ -36,7 +40,37 @@ class ViewController: UIViewController {
 //            
 //            print("not ready to jump")
 //        }
-//        
+        
+        self.loadingActivity.hidden = true
+        self.loadingActivity.stopAnimating()
+        
+        self.loadingActivity.hidesWhenStopped = true
+        
+        
+        //entrarButton.backgroundColor = UIColor(red: 00, green: 122, blue: 255, alpha: 1)
+        entrarButton.layer.cornerRadius = 5
+        entrarButton.layer.borderWidth = 1
+        entrarButton.layer.borderColor = UIColor.clearColor().CGColor
+    
+
+        //cambiarButton.backgroundColor = UIColor(red: 00, green: 122, blue: 255, alpha: 1)
+        cambiarButton.layer.cornerRadius = 5
+        cambiarButton.layer.borderWidth = 1
+        cambiarButton.layer.borderColor = UIColor.clearColor().CGColor
+        
+        usernameText.backgroundColor = UIColor.clearColor()
+        usernameText.layer.cornerRadius = 5
+        usernameText.layer.borderWidth = 3
+        usernameText.layer.borderColor = UIColor.lightGrayColor().CGColor
+
+        
+        passwordText.backgroundColor = UIColor.clearColor()
+        passwordText.layer.cornerRadius = 5
+        passwordText.layer.borderWidth = 3
+        passwordText.layer.borderColor = UIColor.lightGrayColor().CGColor
+
+        
+        
         if let savedName = defaults.stringForKey("username") {
             
             usernameText.text = savedName
@@ -57,6 +91,13 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    override func viewWillAppear(animated: Bool) {
+        
+        self.loadingActivity.stopAnimating()
+        self.loadingActivity.hidden = true
+        self.loadingActivity.hidesWhenStopped = true
+    }
+    
     
     @IBAction func entrarTapped(sender: UIButton) {
         
@@ -72,6 +113,10 @@ class ViewController: UIViewController {
                 displayError("Error", message: "No puedes accesar con la contraseña por defecto.")
                 
             } else {
+                
+                self.loadingActivity.hidden = false
+                self.loadingActivity.startAnimating()
+                
                 
                 print("campos ok")
                 
@@ -115,6 +160,7 @@ class ViewController: UIViewController {
 //                
                 if papa != nil {
                     
+                    
                     print("we are cooking dope \(papa!)")
                     
                     let role: PFObject = papa!["role"] as! PFObject
@@ -122,17 +168,25 @@ class ViewController: UIViewController {
                     if role.objectId == "dSK2DNKOkX" {
                         
                         print("role ok let them walk tru fire")
+
                         self.performSegueWithIdentifier(mainMenuSegue, sender: self)
                     } else {
                         
                         print("role not ok")
                         displayError("Error", message: "Solo los papas pueden usar esta aplicacion")
                         PFUser.logOut()
+                        self.loadingActivity.stopAnimating()
+                        self.loadingActivity.hidden = true
+                        
                     }
                 
                 } else {
                     
                     displayError("Error", message: "No estas dado de alta.")
+                    
+                    self.loadingActivity.stopAnimating()
+                    self.loadingActivity.hidden = true
+                    
                 }
                 
             }
@@ -154,6 +208,9 @@ class ViewController: UIViewController {
     @IBAction func cambiarTapped(sender: UIButton) {
     
         if usernameText.text! != "" && passwordText.text! == "098"{
+            
+            self.loadingActivity.hidden = false
+            self.loadingActivity.startAnimating()
         
             self.performSegueWithIdentifier(changePasswordSegue, sender: self)
             

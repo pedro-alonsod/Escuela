@@ -23,6 +23,11 @@ class MainMenuViewController: UIViewController {
     let tabBarAvisosSegue = "TabBarAvisosSegue"
     
     @IBOutlet weak var infoSchoolLabel: UILabel!
+    @IBOutlet weak var salirButton: UIButton!
+    @IBOutlet weak var calificacionesButton: UIButton!
+    @IBOutlet weak var tareasButton: UIButton!
+    @IBOutlet weak var avisosButton: UIButton!
+    @IBOutlet weak var privadosButtton: UIButton!
     
     
     var papa: PFUser!
@@ -52,6 +57,29 @@ class MainMenuViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        //salirButton.backgroundColor = UIColor.clearColor()
+        salirButton.layer.cornerRadius = 5
+        salirButton.layer.borderWidth = 1
+        salirButton.layer.borderColor = UIColor.clearColor().CGColor
+
+        
+        
+        
+        //tareasButton.backgroundColor = UIColor.clearColor()
+        tareasButton.layer.cornerRadius = 5
+        tareasButton.layer.borderWidth = 1
+        tareasButton.layer.borderColor = UIColor.clearColor().CGColor
+
+        
+        //avisosButton.backgroundColor = UIColor.clearColor()
+        avisosButton.layer.cornerRadius = 5
+        avisosButton.layer.borderWidth = 1
+        avisosButton.layer.borderColor = UIColor.clearColor().CGColor
+
+        
+        
+        
+        
         let priority = DISPATCH_QUEUE_PRIORITY_DEFAULT
         let qos_user_class = QOS_CLASS_USER_INITIATED
         
@@ -94,10 +122,11 @@ class MainMenuViewController: UIViewController {
                 let mensaje = config!["Mensaje"]
                 let fechaFin = config!["FechaFin"]
                 let descripcion = config!["Descripcion"]
+                let nombre = config!["Nombre"]
                 
                 print("\(ciclo!): \(mensaje!) \n \(descripcion!) hasta \(fechaFin!)")
                 
-                self.infoSchoolLabel.text = "\(ciclo!): \(mensaje!) \n \(descripcion!).\n El ciclo hasta \(fechaFin!)"
+                self.infoSchoolLabel.text = "Al ciclo: \(ciclo!) en la escuela \(nombre!) \n \(descripcion!).\n \(mensaje!)"
                 
             } else {
                 
@@ -123,13 +152,13 @@ class MainMenuViewController: UIViewController {
             //config escuela
             getConfigSchool()
             
-            calificacionesNumeroLabel.text = (calificacionesArray.count > 0) ? "\(calificacionesArray.count)":"0"
+            //calificacionesNumeroLabel.text = (calificacionesArray.count > 0) ? "\(calificacionesArray.count)":"0"
             
-            tareasNumeroLabel.text = (tareasDictionaryAlumno.count > 0) ? "\(tareasDictionaryAlumno.count)":"0"
+            tareasNumeroLabel.text = (tareasDictionaryAlumno.count > 0) ? "\(tareasDictionaryAlumno.count + calificacionesArray.count)":"0"
             
-            avisosNumeroLabel.text = (avisosDictionaryAlumno.count > 0) ? "\(avisosDictionaryAlumno.count)":"0"
+            avisosNumeroLabel.text = (avisosDictionaryAlumno.count > 0) ? "\(avisosDictionaryAlumno.count + privadosDictionaryAlumno.count)":"0"
             
-            privadosNumeroLabel.text = (privadosDictionaryAlumno.count > 0) ? "\(privadosDictionaryAlumno.count)":"0"
+            //privadosNumeroLabel.text = (privadosDictionaryAlumno.count > 0) ? "\(privadosDictionaryAlumno.count)":"0"
             
             
             
@@ -215,9 +244,9 @@ class MainMenuViewController: UIViewController {
             
             let tabBarTareasVC = segue.destinationViewController as! TabBarCalificacionesTareasViewController
             
-            tabBarTareasVC.selectedIndex = item
+            tabBarTareasVC.selectedIndex = 1
             
-            tabBarTareasVC.selectedItem = item
+            tabBarTareasVC.selectedItem = 1
             
             print("number sent \(item)")
             
@@ -227,6 +256,7 @@ class MainMenuViewController: UIViewController {
             if tareasDictionaryAlumno.count > 0 {
                 
                 tabBarVC.tareasAlumno = tareasDictionaryAlumno
+                tabBarVC.alumnosData = alumnosPapa
                 
             } else {
                 
@@ -241,6 +271,7 @@ class MainMenuViewController: UIViewController {
             if calificacionesArray.count > 0 {
                 
                 tabBarVCSecond.calificacionesAlumno = calificacionesArray
+                
                 
             } else {
                 
@@ -282,7 +313,8 @@ class MainMenuViewController: UIViewController {
          
             }
             
-            tabBarAvisosVC.selectedIndex = item
+            tabBarAvisosVC.selectedIndex = 0
+            
             
             
         }
@@ -390,6 +422,8 @@ class MainMenuViewController: UIViewController {
         
         if self.alumnosPapa.count > 0 {
             
+            print(alumnosPapa)
+            
             for alumnoInGrupo in alumnosPapa {
                 
                 let queryGrupos = PFQuery(className: "Alumnos")
@@ -415,8 +449,9 @@ class MainMenuViewController: UIViewController {
                     
                     queryTareasAlumno.whereKey("grupoId", equalTo: grupoAlumno)
                     queryTareasAlumno.includeKey("maestroId")
-                    queryTareasAlumno.includeKey("alumnoId")
-                    queryTareasAlumno.orderByDescending("createdAt")
+                    queryTareasAlumno.includeKey("grupoId")
+                    //queryTareasAlumno.includeKey("alumnoId")
+                    queryTareasAlumno.orderByDescending("fechaEntrega")
                     queryTareasAlumno.limit = 50
                     
                     do {

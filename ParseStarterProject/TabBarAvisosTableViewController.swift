@@ -26,6 +26,13 @@ class TabBarAvisosTableViewController: UITableViewController {
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
         print("We have so many avisos \(avisosAlumno.count)")
+        
+        self.automaticallyAdjustsScrollViewInsets = true
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        
+        avisosAlumno.sortInPlace({ $0.createdAt > $1.createdAt })
     }
 
     override func didReceiveMemoryWarning() {

@@ -24,6 +24,11 @@ class TareasTableViewController: UITableViewController {
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
         
         print(tareasAlumno)
+        
+        tareasAlumno.sortInPlace({ $0.createdAt > $1.createdAt })
+        
+        print(tareasAlumno)
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -55,6 +60,8 @@ class TareasTableViewController: UITableViewController {
 
         return cell
     }
+    
+    
     
 
     /*
