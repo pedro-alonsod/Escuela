@@ -28,6 +28,7 @@ class MainMenuViewController: UIViewController {
     @IBOutlet weak var tareasButton: UIButton!
     @IBOutlet weak var avisosButton: UIButton!
     @IBOutlet weak var privadosButtton: UIButton!
+    @IBOutlet weak var logoEnView: UIImageView!
     
     
     var papa: PFUser!
@@ -112,6 +113,20 @@ class MainMenuViewController: UIViewController {
         }
         // Do any additional setup after loading the view.
         
+        if let test = PFUser.currentUser() {
+            
+            print("a Pop \(test.username!)")
+            
+            self.papa = test
+            
+            
+        } else {
+            
+            displayError("Error!", message: "Ha habido un error, por favor sal y vuelve a entrar a la aplicacion.")
+        }
+        
+    
+        
         PFConfig.getConfigInBackgroundWithBlock {
             
             (config: PFConfig?, error: NSError?) -> Void in
@@ -119,14 +134,41 @@ class MainMenuViewController: UIViewController {
             if error == nil {
                 
                 let ciclo = config!["Ciclo"]
-                let mensaje = config!["Mensaje"]
-                let fechaFin = config!["FechaFin"]
+                //let mensaje = config!["Mensaje"]
+                //let fechaFin = config!["FechaFin"]
                 let descripcion = config!["Descripcion"]
                 let nombre = config!["Nombre"]
                 
-                print("\(ciclo!): \(mensaje!) \n \(descripcion!) hasta \(fechaFin!)")
+                print("\(ciclo!):  \n \(descripcion!)")
                 
-                self.infoSchoolLabel.text = "Al ciclo: \(ciclo!) en la escuela \(nombre!) \n \(descripcion!).\n \(mensaje!)"
+                self.infoSchoolLabel.text = "Al ciclo: \(ciclo!) en la escuela \(nombre!) \n \(descripcion!)."
+                
+                let schoolImage = config!["Logotipo"] as! PFFile
+                
+                schoolImage.getDataInBackgroundWithBlock {
+                    
+                    (imageData: NSData?, error: NSError?) -> Void in
+                    
+                    if error == nil {
+                        
+                        if let image = imageData {
+                            
+                            let imgData = UIImage(data: image)
+                            
+                            //self.schoolLogo.image = imgData
+                            
+                            let imageView = UIImageView(image: imgData)
+                            
+                            self.navigationItem.titleView = imageView
+                            
+                            print("got something")
+                            
+                        }
+                    } else {
+                        
+                        print("\(error?.description)")
+                    }
+                }
                 
             } else {
                 
@@ -134,8 +176,8 @@ class MainMenuViewController: UIViewController {
             }
         }
         
-        titleMenuLabel.text = "Bienvenido \(papa.username!)"
-        
+        //titleMenuLabel.text = "Bienvenido \(papa.username!)"
+        titleMenuLabel.text = "Bienvenido \(PFUser.currentUser()!.username!)"
         //getCalificaciones()
         
         findAlumnos()
@@ -154,10 +196,10 @@ class MainMenuViewController: UIViewController {
             
             //calificacionesNumeroLabel.text = (calificacionesArray.count > 0) ? "\(calificacionesArray.count)":"0"
             
-            tareasNumeroLabel.text = (tareasDictionaryAlumno.count > 0) ? "\(tareasDictionaryAlumno.count + calificacionesArray.count)":"0"
-            
-            avisosNumeroLabel.text = (avisosDictionaryAlumno.count > 0) ? "\(avisosDictionaryAlumno.count + privadosDictionaryAlumno.count)":"0"
-            
+//            tareasNumeroLabel.text = (tareasDictionaryAlumno.count > 0) ? "\(tareasDictionaryAlumno.count + calificacionesArray.count)":"0"
+//            
+//            avisosNumeroLabel.text = (avisosDictionaryAlumno.count > 0) ? "\(avisosDictionaryAlumno.count + privadosDictionaryAlumno.count)":"0"
+//            
             //privadosNumeroLabel.text = (privadosDictionaryAlumno.count > 0) ? "\(privadosDictionaryAlumno.count)":"0"
             
             
@@ -167,6 +209,17 @@ class MainMenuViewController: UIViewController {
             displayError("Error", message: "Hay un problema con tus alumnos asignados.")
         }
         
+        
+        
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        
+        
+        tareasNumeroLabel.text = ((tareasDictionaryAlumno.count + calificacionesArray.count) > 0) ? "\((tareasDictionaryAlumno.count + calificacionesArray.count))":"0"
+        print(" numero de calificaciones y tareas aki \((tareasDictionaryAlumno.count + calificacionesArray.count))")
+        
+        avisosNumeroLabel.text = (avisosDictionaryAlumno.count > 0) ? "\(avisosDictionaryAlumno.count + privadosDictionaryAlumno.count)":"0"
         
         
     }
@@ -257,6 +310,7 @@ class MainMenuViewController: UIViewController {
                 
                 tabBarVC.tareasAlumno = tareasDictionaryAlumno
                 tabBarVC.alumnosData = alumnosPapa
+                tabBarVC.calificacionesAlumnos = calificacionesArray
                 
             } else {
                 
@@ -385,7 +439,7 @@ class MainMenuViewController: UIViewController {
                     let calif = try queryCalificacionesAlumno.findObjects()
                     
                     print("got it")
-                    print(calif)
+                    print(" el num de calificaciones \(calif.count)")
                     print(alumnoId["nombre"])
                     
                     let nombreAlumno = alumnoId["nombre"] as! String
@@ -458,7 +512,7 @@ class MainMenuViewController: UIViewController {
                         
                         let tareas = try queryTareasAlumno.findObjects()
                         
-                        print(tareas)
+                        print("el numero de tareas es \(tareas.count)")
                         
                         if tareas.count > 0 {
                             
@@ -623,6 +677,8 @@ class MainMenuViewController: UIViewController {
     
     func findAlumnos() {
         
+        print(PFUser.currentUser()?.username!)
+        
         if papa == PFUser.currentUser()! {
             
             let queryHijos = PFQuery(className: "PapaList")
@@ -709,9 +765,9 @@ class MainMenuViewController: UIViewController {
                     print("object retieved \(object)")
                     // self.infoSchoolLabel.text = (object!["Ciclo"] as! String) + "\n" + (object!["Info"] as! String) + ",  " + (object!["Institucion"] as! String)
                     
-                    let schoolImage = object!["logo"] as! PFFile
+                    let displayLogo = object!["display"] as! PFFile
                     
-                    schoolImage.getDataInBackgroundWithBlock {
+                    displayLogo.getDataInBackgroundWithBlock {
                         
                         (imageData: NSData?, error: NSError?) -> Void in
                         
@@ -723,9 +779,11 @@ class MainMenuViewController: UIViewController {
                                 
                                 //self.schoolLogo.image = imgData
                                 
-                                let imageView = UIImageView(image: imgData)
+                                //let imageView = UIImageView(image: imgData)
                                 
-                                self.navigationItem.titleView = imageView
+                                //self.navigationItem.titleView = imageView
+                                
+                                self.logoEnView.image = imgData
                                 
                                 print("got something")
                                 
@@ -741,6 +799,16 @@ class MainMenuViewController: UIViewController {
                     print("error somewhere \(error)")
                 }
             }
+            
+        }
+    }
+    
+    
+    func getConfigTable() {
+        
+        
+        if papa == PFUser.currentUser() {
+            
             
         }
     }

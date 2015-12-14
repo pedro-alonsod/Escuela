@@ -15,6 +15,7 @@ class TareasViewController: UIViewController, UITableViewDataSource, UITableView
     var tareasAlumno: [PFObject]!
     var alumnosData: [PFObject]!
 
+    var calificacionesAlumnos: [PFObject]!
     
     let formatter = NSDateFormatter()
     
@@ -57,6 +58,8 @@ class TareasViewController: UIViewController, UITableViewDataSource, UITableView
         print(tareasAlumno[0])
         
         print("Los hijos de este papa son \(alumnosData.count)")
+        
+        calificadasFuncion()
                 
 
 
@@ -123,46 +126,109 @@ class TareasViewController: UIViewController, UITableViewDataSource, UITableView
         
         //print(UIColor(red: CGFloat(Int(rgb[0])!), green: CGFloat(Int(rgb[1])!), blue: CGFloat(Int(rgb[2])!), alpha: 1.0))
         
+        let materiaForSwitch = tareasAlumno[indexPath.row][materia] as! String
         
-        for avatarAlumnos in alumnosData {
+        var imgData: UIImage!
+        
+        switch materiaForSwitch {
             
-            if tareasAlumno[indexPath.row][grupoId].objectId == avatarAlumnos[grupoId].objectId {
-                
-                print("para el renglon \(indexPath.row) este  \(avatarAlumnos[tareaNombre])")
-                
-                
-                let avatar = avatarAlumnos["foto"] as! PFFile
-                
-                avatar.getDataInBackgroundWithBlock {
-                    
-                    (imageData: NSData?, error: NSError?) -> Void in
-                    
-                    if error == nil {
-                        
-                        if let image = imageData {
-                            
-                            let imgData = UIImage(data: image)
-                            
-                            //self.schoolLogo.image = imgData
-                            
-                            cell.avatarAlumno.image = imgData
-                            
-//                            let imageView = UIImageView(image: imgData)
-                            
-//                            self.navigationItem.titleView = imageView
-//                            
-//                            print("got something")
-//                            
-                        }
-                    } else {
-                        
-                        print("\(error?.description)")
-                    }
-                }
-                
-                
-            }
+        case "Artes":
+                print("Artes")
+                imgData = UIImage(named: "Artes")
+        case "Biologia":
+                print("Biologia")
+                imgData = UIImage(named: "Biologia")
+        case "Computacion":
+                print("Computacion")
+                imgData = UIImage(named: "Computacion")
+        case "Deportes":
+                print("Deportes")
+                imgData = UIImage(named: "Deportes")
+        case "Dibujo":
+                print("Dibujo")
+                imgData = UIImage(named: "Dibujo")
+        case "Ecologia":
+                print("Ecologia")
+                imgData = UIImage(named: "Ecologia")
+        case "Espanol":
+                print("Espanol")
+                imgData = UIImage(named: "Espanol")
+        case "Etica":
+                print("Etica")
+                imgData = UIImage(named: "Etica")
+        case "Fisica":
+                print("Fisica")
+                imgData = UIImage(named: "Fisica")
+        case "Geografia":
+                print("Geografia")
+                imgData = UIImage(named: "Goegrafia")
+        case "Historia":
+                print("Historia")
+                imgData = UIImage(named: "Historia")
+        case "Ingles":
+                print("Ingles")
+                imgData = UIImage(named: "Ingles")
+        case "Matematicas":
+                print("Matematicas")
+                imgData = UIImage(named: "Matematicas")
+        case "Musica":
+                print("Musica")
+                imgData = UIImage(named: "Musica")
+        case "Quimica":
+                print("Quimica")
+                imgData = UIImage(named: "Quimica")
+        case "Sociales":
+                print("Sociales")
+                imgData = UIImage(named: "Sociales")
+        case "Valores":
+                print("Valores")
+                imgData = UIImage(named: "Valores")
+        default:
+            print("Default")
+            imgData = UIImage(named: "crossIcon")
         }
+        
+        cell.avatarAlumno.image = imgData
+//        
+//        for avatarAlumnos in alumnosData {
+//            
+//            if tareasAlumno[indexPath.row][grupoId].objectId == avatarAlumnos[grupoId].objectId {
+//                
+//                print("para el renglon \(indexPath.row) este  \(avatarAlumnos[tareaNombre])")
+//                
+//                
+//                let avatar = avatarAlumnos["foto"] as! PFFile
+//                
+//                avatar.getDataInBackgroundWithBlock {
+//                    
+//                    (imageData: NSData?, error: NSError?) -> Void in
+//                    
+//                    if error == nil {
+//                        
+//                        if let image = imageData {
+//                            
+//                            let imgData = UIImage(data: image)
+//                            
+//                            //self.schoolLogo.image = imgData
+//                            
+//                            cell.avatarAlumno.image = imgData
+//                            
+////                            let imageView = UIImageView(image: imgData)
+//                            
+////                            self.navigationItem.titleView = imageView
+////                            
+////                            print("got something")
+////                            
+//                        }
+//                    } else {
+//                        
+//                        print("\(error?.description)")
+//                    }
+//                }
+//                
+//                
+//            }
+//        }
         
 //        cell.tareaNombreLabel.text = "\(tareasAlumno[indexPath.row][tareaNombre]!) \(tareasAlumno[indexPath.row][materia]!)"
 //        cell.descripcionLabel.text = "Esto es para \(tareasAlumno[indexPath.row][alumnoId]!.valueForKey(alumnoNombre)!)"
@@ -211,6 +277,32 @@ class TareasViewController: UIViewController, UITableViewDataSource, UITableView
             })
         presentViewController(alert, animated: true, completion: nil)
         
+    }
+    
+    
+    func calificadasFuncion() {
+        
+        print(calificacionesAlumnos)
+        var tareaId = "tareasId"
+        
+        for calif in calificacionesAlumnos {
+            
+            for tarea in tareasAlumno {
+                
+                if calif[tareaId]!.objectId! as String! == tarea.objectId! {
+                    
+                    print("done")
+                    
+                    let idx = tareasAlumno.indexOf(tarea)
+                    
+                    print(idx!)
+                    
+                    tareasAlumno.removeAtIndex(idx!)
+                }
+                
+                print("\(calif[tareaId]!.objectId! as String!) == \(tarea.objectId!)")
+            }
+        }
     }
 
     /*

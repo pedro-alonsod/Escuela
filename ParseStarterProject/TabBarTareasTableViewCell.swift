@@ -13,7 +13,6 @@ class TabBarTareasTableViewCell: UITableViewCell {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var subtitleLabel: UILabel!
     @IBOutlet weak var avatarAlumno: UIImageView!
-    @IBOutlet weak var materiaImgView: UIImageView!
     @IBOutlet weak var materiaLabel: UILabel!
     @IBOutlet weak var fechaLabel: UILabel!
     @IBOutlet weak var tareaDescripcionLabel: UILabel!

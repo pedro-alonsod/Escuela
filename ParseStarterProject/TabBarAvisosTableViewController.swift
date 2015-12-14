@@ -54,15 +54,52 @@ class TabBarAvisosTableViewController: UITableViewController {
 
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier(tabBarAvisosCell, forIndexPath: indexPath)
+        let cell = tableView.dequeueReusableCellWithIdentifier(tabBarAvisosCell, forIndexPath: indexPath) as! TabBarAvisosTableViewCell
 
         // Configure the cell...
         
         let texto = "texto", tittulo = "titulo", grupoId = "grupoId", maestroId = "maestroId", nombreMaestro = "nombre", grupoNombre = "nombre"
         formatter.dateStyle = NSDateFormatterStyle.ShortStyle
         
-        cell.textLabel!.text = "Grupo \(avisosAlumno[indexPath.row][grupoId]!.valueForKey(grupoNombre)!): \(avisosAlumno[indexPath.row][tittulo]!)"
-        cell.detailTextLabel!.text = "\(avisosAlumno[indexPath.row][texto]!) de \(avisosAlumno[indexPath.row][maestroId]!.valueForKey(nombreMaestro)!)"
+        cell.titleAvisosCell.text = "Grupo \(avisosAlumno[indexPath.row][grupoId]!.valueForKey(grupoNombre)!): \(avisosAlumno[indexPath.row][tittulo]!)"
+        cell.detailAvisosCell.text = "\(avisosAlumno[indexPath.row][texto]!) de \(avisosAlumno[indexPath.row][maestroId]!.valueForKey(nombreMaestro)!)"
+        
+        let colorOfGroup = avisosAlumno[indexPath.row][grupoId]!.valueForKey("color") as! String
+        
+        let rgb = colorOfGroup.componentsSeparatedByString(",")
+        
+        let colorForText = UIColor(red: CGFloat(Int(rgb[0])!) / 255.0, green: CGFloat(Int(rgb[1])!) / 255.0, blue: CGFloat(Int(rgb[2])!) / 255.0, alpha: 0.1)
+        
+        cell.titleAvisosCell.backgroundColor = colorForText
+        
+        
+        
+        if let avatarProffesor = avisosAlumno[indexPath.row]["img"] as! PFFile? {
+            
+            avatarProffesor.getDataInBackgroundWithBlock {
+                (imageData: NSData?, error: NSError?) -> Void in
+                
+                if error == nil {
+                    
+                    if let image = imageData {
+                        
+                        let avatarData = UIImage(data: image)
+                        
+                        cell.avatarAvisosProfessor.image = avatarData
+                        
+                        print("done the image")
+                    }
+                } else {
+                    
+                    print("Something odd happened")
+                }
+            }
+        } else {
+            
+            print("apparently there is no file yet check it out")
+        }
+        
+        
 
         return cell
     }
@@ -72,11 +109,11 @@ class TabBarAvisosTableViewController: UITableViewController {
         
         let rowSelected = tableView.indexPathForSelectedRow
         
-        let currentCell = tableView.cellForRowAtIndexPath(rowSelected!)! as UITableViewCell
+        let currentCell = tableView.cellForRowAtIndexPath(rowSelected!)! as! TabBarAvisosTableViewCell
         
         print("Cell title: \(currentCell.textLabel?.text) Subtitle: \(currentCell.detailTextLabel?.text)")
         
-        displayAlert(currentCell.textLabel!.text!, message: currentCell.detailTextLabel!.text!)
+        displayAlert(currentCell.titleAvisosCell.text!, message: currentCell.detailAvisosCell.text!)
     }
     
     

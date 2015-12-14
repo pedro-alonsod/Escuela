@@ -105,7 +105,7 @@
 "i1A-Pr-5jV.title" = "Menu";
 
 /* Class = "UILabel"; text = "¿Que deseas ver?"; ObjectID = "ibY-T0-UN9"; */
-"ibY-T0-UN9.text" = "¿Que deseas ver?";
+"ibY-T0-UN9.text" = "Menu";
 
 /* Class = "UITabBarItem"; title = "Avisos"; ObjectID = "kaa-gv-ghl"; */
 "kaa-gv-ghl.title" = "Avisos";
