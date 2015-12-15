@@ -61,7 +61,10 @@ class TabBarAvisosTableViewController: UITableViewController {
         let texto = "texto", tittulo = "titulo", grupoId = "grupoId", maestroId = "maestroId", nombreMaestro = "nombre", grupoNombre = "nombre"
         formatter.dateStyle = NSDateFormatterStyle.ShortStyle
         
-        cell.titleAvisosCell.text = "Grupo \(avisosAlumno[indexPath.row][grupoId]!.valueForKey(grupoNombre)!): \(avisosAlumno[indexPath.row][tittulo]!)"
+        cell.titleAvisosCell.text = "\(avisosAlumno[indexPath.row][grupoId]!.valueForKey(grupoNombre)!): \(avisosAlumno[indexPath.row][tittulo]!)"
+        
+        cell.titleAvisosCell.sizeToFit()
+        
         cell.detailAvisosCell.text = "\(avisosAlumno[indexPath.row][texto]!) de \(avisosAlumno[indexPath.row][maestroId]!.valueForKey(nombreMaestro)!)"
         
         let colorOfGroup = avisosAlumno[indexPath.row][grupoId]!.valueForKey("color") as! String

@@ -85,10 +85,10 @@ class TabBarPrivadosTableViewController: UITableViewController {
         
         formatter.dateStyle = NSDateFormatterStyle.ShortStyle
         
-        cell.titleLabel.text = "Titulo: \(privadosAlumno[indexPath.row][titulo]!)"
+        cell.titleLabel.text = "\(privadosAlumno[indexPath.row][titulo]!)"
         cell.subtitleLabel.text = "Para \(privadosAlumno[indexPath.row][alumnoId]!.valueForKey(alumnoNombre)!) de \(privadosAlumno[indexPath.row][maestroId]!.valueForKey(maestroNombre)!): \(privadosAlumno[indexPath.row][texto]!)"
         
-        cell.titleLabel.backgroundColor = UIColor.lightGrayColor()
+        cell.titleLabel.backgroundColor = UIColor.lightTextColor()
         
         
         if let avatarProffesor = privadosAlumno[indexPath.row][maestroId]!.valueForKey("img") as! PFFile? {
