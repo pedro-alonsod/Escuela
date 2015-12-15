@@ -1561,7 +1561,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="TabBarPrivadosCell" rowHeight="137" id="KX8-y7-fJa" customClass="TabBarPrivadosTableViewCell" customModule="ParseStarterProject_Swift" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="TabBarPrivadosCell" rowHeight="137" id="KX8-y7-fJa" customClass="TabBarAvisosPrivadosTableViewCell" customModule="ParseStarterProject_Swift" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="600" height="137"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KX8-y7-fJa" id="HeL-LI-sO8">
@@ -1571,7 +1571,7 @@
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HbM-jN-kF8">
                                             <rect key="frame" x="-42" y="-21" width="42" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="0.65000000000000002" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                             <variation key="widthClass=compact" fixedFrame="YES">
                                                 <rect key="frame" x="8" y="8" width="179" height="23"/>
@@ -1608,6 +1608,11 @@
                                         </mask>
                                     </variation>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="someImg" destination="aB4-RK-FY2" id="2c9-Jm-YiY"/>
+                                    <outlet property="subtitleLabel" destination="BLf-kS-FjP" id="3rV-oh-YPy"/>
+                                    <outlet property="titleLabel" destination="HbM-jN-kF8" id="zAN-WL-JiB"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>

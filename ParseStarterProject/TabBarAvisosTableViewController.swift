@@ -74,7 +74,7 @@ class TabBarAvisosTableViewController: UITableViewController {
         
         
         
-        if let avatarProffesor = avisosAlumno[indexPath.row]["img"] as! PFFile? {
+        if let avatarProffesor = avisosAlumno[indexPath.row][maestroId]!.valueForKey("img") as! PFFile? {
             
             avatarProffesor.getDataInBackgroundWithBlock {
                 (imageData: NSData?, error: NSError?) -> Void in

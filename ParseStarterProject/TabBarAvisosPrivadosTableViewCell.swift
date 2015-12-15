@@ -1,5 +1,5 @@
 //
-//  TabBarPrivadosTableViewCell.swift
+//  TabBarAvisosPrivadosTableViewCell.swift
 //  Escuela
 //
 //  Created by Pedro Alonso on 14/12/15.
@@ -8,9 +8,11 @@
 
 import UIKit
 
-class TabBarPrivadosTableViewCell: UITableViewCell {
+class TabBarAvisosPrivadosTableViewCell: UITableViewCell {
 
-    
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var someImg: UIImageView!
+    @IBOutlet weak var subtitleLabel: UILabel!
     
     
     override func awakeFromNib() {

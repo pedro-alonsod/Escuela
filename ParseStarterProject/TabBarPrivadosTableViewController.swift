@@ -29,7 +29,8 @@ class TabBarPrivadosTableViewController: UITableViewController {
         
         print("We have \(privadosAlumno.count)")
         
-        self.tableView.rowHeight = UITableViewAutomaticDimension
+    
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -60,7 +61,7 @@ class TabBarPrivadosTableViewController: UITableViewController {
             self.tableView.contentInset = UIEdgeInsetsMake(y, 0, 0, 0)
         }
         
-        self.automaticallyAdjustsScrollViewInsets = true
+        self.automaticallyAdjustsScrollViewInsets = false
     }
 
     // MARK: - Table view data source
@@ -77,15 +78,47 @@ class TabBarPrivadosTableViewController: UITableViewController {
 
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier(tabBarPrivadosCell, forIndexPath: indexPath)
+        let cell = tableView.dequeueReusableCellWithIdentifier(tabBarPrivadosCell, forIndexPath: indexPath) as! TabBarAvisosPrivadosTableViewCell
 
         // Configure the cell...
         let alumnoId = "alumnoId", alumnoNombre = "nombre", maestroId = "maestroId", maestroNombre = "nombre", texto = "texto", titulo = "titulo"
         
         formatter.dateStyle = NSDateFormatterStyle.ShortStyle
         
-        cell.textLabel!.text = "Titulo: \(privadosAlumno[indexPath.row][titulo]!)"
-        cell.detailTextLabel?.text = "Para \(privadosAlumno[indexPath.row][alumnoId]!.valueForKey(alumnoNombre)!) de \(privadosAlumno[indexPath.row][maestroId]!.valueForKey(maestroNombre)!): \(privadosAlumno[indexPath.row][texto]!)"
+        cell.titleLabel.text = "Titulo: \(privadosAlumno[indexPath.row][titulo]!)"
+        cell.subtitleLabel.text = "Para \(privadosAlumno[indexPath.row][alumnoId]!.valueForKey(alumnoNombre)!) de \(privadosAlumno[indexPath.row][maestroId]!.valueForKey(maestroNombre)!): \(privadosAlumno[indexPath.row][texto]!)"
+        
+        cell.titleLabel.backgroundColor = UIColor.lightGrayColor()
+        
+        
+        if let avatarProffesor = privadosAlumno[indexPath.row][maestroId]!.valueForKey("img") as! PFFile? {
+            
+            avatarProffesor.getDataInBackgroundWithBlock {
+                (imageData: NSData?, error: NSError?) -> Void in
+                
+                if error == nil {
+                    
+                    if let image = imageData {
+                        
+                        let avatarData = UIImage(data: image)
+                        
+                        cell.someImg.image = avatarData
+                        
+                        print("done the image")
+                    }
+                } else {
+                    
+                    print("Something odd happened")
+                }
+            }
+        } else {
+            
+            print("apparently there is no file yet check it out")
+        }
+        
+        
+
+        
 
         return cell
     }
@@ -95,11 +128,11 @@ class TabBarPrivadosTableViewController: UITableViewController {
         
         let rowSelected = tableView.indexPathForSelectedRow
         
-        let currentCell = tableView.cellForRowAtIndexPath(rowSelected!)! as UITableViewCell
+        let currentCell = tableView.cellForRowAtIndexPath(rowSelected!)! as! TabBarAvisosPrivadosTableViewCell
         
         print("Cell title: \(currentCell.textLabel?.text) Subtitle: \(currentCell.detailTextLabel?.text)")
         
-        displayAlert(currentCell.textLabel!.text!, message: currentCell.detailTextLabel!.text!)
+        displayAlert(currentCell.titleLabel.text!, message: currentCell.subtitleLabel.text!)
     }
     
     
