@@ -327,6 +327,8 @@ class MainMenuViewController: UIViewController {
                 tabBarVC.alumnosData = []
                 tabBarVC.calificacionesAlumnos = []
                 
+                //changes here
+                
             }
             
             
