@@ -31,6 +31,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Remove this line if you don't want to use Local Datastore features or want to use cachePolicy.
         Parse.enableLocalDatastore()
 
+        UIApplication.sharedApplication().applicationIconBadgeNumber = 0
+
         // ****************************************************************************
         // Uncomment this line if you want to enable Crash Reporting
         // ParseCrashReporting.enable()
@@ -108,7 +110,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         installation.setDeviceTokenFromData(deviceToken)
         installation.saveInBackground()
 
-        PFPush.subscribeToChannelInBackground("") { (succeeded: Bool, error: NSError?) in
+        PFPush.subscribeToChannelInBackground("Messages") { (succeeded: Bool, error: NSError?) in
             if succeeded {
                 print("ParseStarterProject successfully subscribed to push notifications on the broadcast channel.\n");
             } else {
@@ -126,7 +128,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject]) {
-        PFPush.handlePush(userInfo)
+       
+        var notification: NSDictionary = userInfo["aps"] as! NSDictionary
+        
+        if (notification.objectForKey("content-available") != nil) {
+            
+            
+        } else {
+        
+            PFPush.handlePush(userInfo)
+            
+            
+        }
+        
         if application.applicationState == UIApplicationState.Inactive {
             PFAnalytics.trackAppOpenedWithRemoteNotificationPayload(userInfo)
         }
@@ -135,11 +149,43 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     ///////////////////////////////////////////////////////////
     // Uncomment this method if you want to use Push Notifications with Background App Refresh
     ///////////////////////////////////////////////////////////
-    // func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject], fetchCompletionHandler completionHandler: (UIBackgroundFetchResult) -> Void) {
-    //     if application.applicationState == UIApplicationState.Inactive {
-    //         PFAnalytics.trackAppOpenedWithRemoteNotificationPayload(userInfo)
-    //     }
-    // }
+     func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject], fetchCompletionHandler completionHandler: (UIBackgroundFetchResult) -> Void) {
+        
+        var mess:String?
+        var displayName:String?
+        
+        print(userInfo)
+        
+        
+        if let result = userInfo["aps"] as? NSDictionary {
+            
+            if let alert = result["alert"] as? String {
+                
+                mess = alert
+                
+                if let extra = userInfo["extra"] as? NSDictionary
+                {
+                    
+                    if let name = extra["displayName"] as? String
+                    {
+                        
+                        displayName = name
+                        
+                        var alert = UIAlertView(title: "You have a new message from \(displayName!)", message: mess, delegate: nil, cancelButtonTitle: "OK")
+                        alert.show()
+                        
+                    }
+                    
+                }
+                NSNotificationCenter.defaultCenter().postNotificationName("newMessageReceived", object: nil)
+                
+            }
+            
+        }
+         if application.applicationState == UIApplicationState.Inactive {
+             PFAnalytics.trackAppOpenedWithRemoteNotificationPayload(userInfo)
+         }
+     }
 
     //--------------------------------------
     // MARK: Facebook SDK Integration

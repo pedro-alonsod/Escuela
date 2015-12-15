@@ -168,6 +168,14 @@ class ViewController: UIViewController {
                     if role.objectId == "dSK2DNKOkX" {
                         
                         print("role ok let them walk tru fire")
+                        
+                        let installation: PFInstallation = PFInstallation.currentInstallation()
+                        
+//                        installation.addUniqueObject("Reload", forKey: "Channels")
+//                        
+//                        installation["user"] = PFUser.currentUser()
+//                        
+//                        installation.saveInBackground()
 
                         self.performSegueWithIdentifier(mainMenuSegue, sender: self)
                     } else {
@@ -306,5 +314,12 @@ class ViewController: UIViewController {
             }
             
         }
+    }
+    
+    
+    func getPush() {
+        
+        
+        
     }
 }

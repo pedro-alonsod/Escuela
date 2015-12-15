@@ -79,7 +79,9 @@ class MainMenuViewController: UIViewController {
 
         
         
+        //push
         
+        //NSNotificationCenter.defaultCenter().addObserver(self, selector: "showPush", name: "reloadTimeLine", object: nil)
         
         let priority = DISPATCH_QUEUE_PRIORITY_DEFAULT
         let qos_user_class = QOS_CLASS_USER_INITIATED
@@ -815,6 +817,7 @@ class MainMenuViewController: UIViewController {
     
     
 
+    
 }
 
 
