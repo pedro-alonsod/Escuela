@@ -43,6 +43,8 @@ class MainMenuViewController: UIViewController {
     var tareasDictionaryAlumno: [PFObject] = []
     var privadosDictionaryAlumno: [PFObject] = []
     var avisosDictionaryAlumno: [PFObject] = []
+    var config: PFObject!
+    
     
     var nombresArray: [String] = []
     
@@ -141,6 +143,8 @@ class MainMenuViewController: UIViewController {
                 let descripcion = config!["Descripcion"]
                 let nombre = config!["Nombre"]
                 
+                //self.config = config
+                
                 print("\(ciclo!):  \n \(descripcion!)")
                 
                 self.infoSchoolLabel.text = "Al ciclo: \(ciclo!) en la escuela \(nombre!) \n \(descripcion!)."
@@ -186,6 +190,10 @@ class MainMenuViewController: UIViewController {
         
         if nombres.count > 0 {
         
+            //config escuela
+            getConfigSchool()
+            
+            
             getCalificaciones()
             getTareas()
             
@@ -193,8 +201,7 @@ class MainMenuViewController: UIViewController {
             getPrivados()
             getAvisos()
             
-            //config escuela
-            getConfigSchool()
+            
             
             //calificacionesNumeroLabel.text = (calificacionesArray.count > 0) ? "\(calificacionesArray.count)":"0"
             
@@ -317,6 +324,8 @@ class MainMenuViewController: UIViewController {
             } else {
                 
                 tabBarVC.tareasAlumno = []
+                tabBarVC.alumnosData = []
+                tabBarVC.calificacionesAlumnos = []
                 
             }
             
@@ -432,6 +441,9 @@ class MainMenuViewController: UIViewController {
                 print(" alumnoactual \(alumnoId)")
                 
                 queryCalificacionesAlumno.whereKey("alumnoId", equalTo: alumnoId)
+                print(config["Inicio"])
+                
+                queryCalificacionesAlumno.whereKey("createdAt", greaterThan: config["Inicio"])
                 queryCalificacionesAlumno.includeKey("tareasId")
                 queryCalificacionesAlumno.includeKey("alumnoId")
                 queryCalificacionesAlumno.limit = 20
@@ -504,6 +516,7 @@ class MainMenuViewController: UIViewController {
                     let queryTareasAlumno = PFQuery(className: "Tareas")
                     
                     queryTareasAlumno.whereKey("grupoId", equalTo: grupoAlumno)
+                    queryTareasAlumno.whereKey("createdAt", greaterThan: config["Inicio"])
                     queryTareasAlumno.includeKey("maestroId")
                     queryTareasAlumno.includeKey("grupoId")
                     //queryTareasAlumno.includeKey("alumnoId")
@@ -557,6 +570,7 @@ class MainMenuViewController: UIViewController {
                 print("estos privados son de \(alumnoId)")
                 
                 queryPrivados.whereKey("alumnoId", equalTo: alumnoId)
+                queryPrivados.whereKey("createdAt", greaterThan: config["Inicio"])
                 queryPrivados.includeKey("maestroId")
                 queryPrivados.includeKey("alumnoId")
                 queryPrivados.orderByDescending("createdAt")
@@ -619,6 +633,7 @@ class MainMenuViewController: UIViewController {
                     let queryAvisoAlumno = PFQuery(className: "Avisos")
                     
                     queryAvisoAlumno.whereKey("grupoId", equalTo: grupoAlumno)
+                    queryAvisoAlumno.whereKey("createdAt", greaterThan: config["Inicio"])
                     queryAvisoAlumno.includeKey("alumnoId")
                     queryAvisoAlumno.includeKey("maestroId")
                     queryAvisoAlumno.orderByDescending("createdAt")
@@ -758,49 +773,97 @@ class MainMenuViewController: UIViewController {
             var nombreEscuela: String!, tipo: String!, ciclo: String!, cicloInicio: String!, cicloFin: String!
             
             
-            queryConfig.getFirstObjectInBackgroundWithBlock {
+            do {
                 
-                (object: PFObject?, error: NSError?) -> Void in
+                let object = try queryConfig.getFirstObject()
                 
-                if error == nil || object != nil {
+                self.config = object
+                
+                print(object)
+                
+                let displayLogo = object["display"] as! PFFile
+                
+                displayLogo.getDataInBackgroundWithBlock {
                     
-                    print("object retieved \(object)")
-                    // self.infoSchoolLabel.text = (object!["Ciclo"] as! String) + "\n" + (object!["Info"] as! String) + ",  " + (object!["Institucion"] as! String)
+                    (imageData: NSData?, error: NSError?) -> Void in
                     
-                    let displayLogo = object!["display"] as! PFFile
-                    
-                    displayLogo.getDataInBackgroundWithBlock {
+                    if error == nil {
                         
-                        (imageData: NSData?, error: NSError?) -> Void in
-                        
-                        if error == nil {
+                        if let image = imageData {
                             
-                            if let image = imageData {
-                                
-                                let imgData = UIImage(data: image)
-                                
-                                //self.schoolLogo.image = imgData
-                                
-                                //let imageView = UIImageView(image: imgData)
-                                
-                                //self.navigationItem.titleView = imageView
-                                
-                                self.logoEnView.image = imgData
-                                
-                                print("got something")
-                                
-                            }
-                        } else {
+                            let imgData = UIImage(data: image)
                             
-                            print("\(error?.description)")
+                            //self.schoolLogo.image = imgData
+                            
+                            //let imageView = UIImageView(image: imgData)
+                            
+                            //self.navigationItem.titleView = imageView
+                            
+                            self.logoEnView.image = imgData
+                            
+                            print("got something")
+                            
                         }
+                    } else {
+                        
+                        print("\(error?.description)")
                     }
-                    
-                } else {
-                    
-                    print("error somewhere \(error)")
                 }
+                
+                
+                
+            } catch let error {
+                
+                print(error)
             }
+            
+//            queryConfig.getFirstObjectInBackgroundWithBlock {
+//                
+//                (object: PFObject?, error: NSError?) -> Void in
+//                
+//                if error == nil || object != nil {
+//                    
+//                    self.config = object
+//                    
+//                    print("config school \(self.config)")
+//                    
+//                    print("object retieved \(object)")
+//                    // self.infoSchoolLabel.text = (object!["Ciclo"] as! String) + "\n" + (object!["Info"] as! String) + ",  " + (object!["Institucion"] as! String)
+//                    
+//                    let displayLogo = object!["display"] as! PFFile
+//                    
+//                    displayLogo.getDataInBackgroundWithBlock {
+//                        
+//                        (imageData: NSData?, error: NSError?) -> Void in
+//                        
+//                        if error == nil {
+//                            
+//                            if let image = imageData {
+//                                
+//                                let imgData = UIImage(data: image)
+//                                
+//                                //self.schoolLogo.image = imgData
+//                                
+//                                //let imageView = UIImageView(image: imgData)
+//                                
+//                                //self.navigationItem.titleView = imageView
+//                                
+//                                self.logoEnView.image = imgData
+//                                
+//                                print("got something")
+//                                
+//                            }
+//                        } else {
+//                            
+//                            print("\(error?.description)")
+//                        }
+//                    }
+//                    
+//                } else {
+//                    
+//                    print("error somewhere \(error)")
+//                }
+//            }
             
         }
     }

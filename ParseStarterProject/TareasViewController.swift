@@ -51,13 +51,13 @@ class TareasViewController: UIViewController, UITableViewDataSource, UITableView
         
         print("Tareas object \(tareasAlumno)")
         
-        print(tareasAlumno[0])
+        //print(tareasAlumno[0])
         
         tareasAlumno.sortInPlace({ $0.createdAt > $1.createdAt })
         
-        print(tareasAlumno[0])
+        //print(tareasAlumno[0])
         
-        print("Los hijos de este papa son \(alumnosData.count)")
+        //print("Los hijos de este papa son \(alumnosData.count)")
         
         calificadasFuncion()
                 
@@ -282,27 +282,34 @@ class TareasViewController: UIViewController, UITableViewDataSource, UITableView
     
     func calificadasFuncion() {
         
-        print(calificacionesAlumnos)
-        var tareaId = "tareasId"
-        
-        for calif in calificacionesAlumnos {
+        if calificacionesAlumnos.count > 0 {
+    
             
-            for tarea in tareasAlumno {
+            print(calificacionesAlumnos)
+            var tareaId = "tareasId"
+            
+            for calif in calificacionesAlumnos {
                 
-                if calif[tareaId]!.objectId! as String! == tarea.objectId! {
+                for tarea in tareasAlumno {
                     
-                    print("done")
+                    if calif[tareaId]!.objectId! as String! == tarea.objectId! {
+                        
+                        print("done")
+                        
+                        let idx = tareasAlumno.indexOf(tarea)
+                        
+                        print(idx!)
+                        
+                        tareasAlumno.removeAtIndex(idx!)
+                    }
                     
-                    let idx = tareasAlumno.indexOf(tarea)
-                    
-                    print(idx!)
-                    
-                    tareasAlumno.removeAtIndex(idx!)
+                    print("\(calif[tareaId]!.objectId! as String!) == \(tarea.objectId!)")
                 }
-                
-                print("\(calif[tareaId]!.objectId! as String!) == \(tarea.objectId!)")
             }
+
+            
         }
+        
     }
 
     /*
