@@ -106,7 +106,7 @@ class MainMenuViewController: UIViewController {
         dispatch_async(dispatch_get_global_queue(priority, 0)) {
             //DO some work here
             //...
-            self.displayError("Alerta", message: "Los datos se estan cargando.")
+            //self.displayError("Alerta", message: "Los datos se estan cargando.")
             dispatch_async(dispatch_get_main_queue()) {
                 
                 //update ui
@@ -116,6 +116,10 @@ class MainMenuViewController: UIViewController {
             
         }
         // Do any additional setup after loading the view.
+        var b = UIBarButtonItem(title: "Recargar", style: UIBarButtonItemStyle.Plain, target: self, action: "refresh")
+        
+        
+        navigationItem.rightBarButtonItem = b
         
         if let test = PFUser.currentUser() {
             
@@ -883,6 +887,29 @@ class MainMenuViewController: UIViewController {
     }
     
     
+     func refresh() {
+        
+        dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0)) {
+            //DO some work here
+            //...
+            self.displayError("Alerta", message: "Los datos se estan recargando.")
+            dispatch_async(dispatch_get_main_queue()) {
+                
+                //update ui
+                //Less obvious the getObjects methods time maintaining the current work it shows a alertview in a new thread
+                //self.displayError("ALerta", message: "Los datos se estan cargando.")
+            }
+            
+        }
+        
+        getCalificaciones()
+        getTareas()
+        
+        getPrivados()
+        getAvisos()
+        
+        
+    }
 
     
 }

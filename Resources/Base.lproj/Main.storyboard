@@ -1112,7 +1112,7 @@
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="str-cI-ElQ">
                                                     <rect key="frame" x="-42" y="-21" width="42" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                     <variation key="widthClass=compact" fixedFrame="YES">
                                                         <rect key="frame" x="98" y="22" width="165" height="38"/>
@@ -1436,13 +1436,13 @@
                                 <rect key="frame" x="0.0" y="92" width="600" height="105"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="HIs-wp-q0d" id="Ymt-kv-3EH">
-                                    <rect key="frame" x="0.0" y="0.0" width="533" height="104"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="104"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LQ8-Oc-Qqt">
                                             <rect key="frame" x="-42" y="-21" width="42" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="TtX-pi-G4j">
@@ -1469,7 +1469,7 @@
                                                 </constraint>
                                             </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                             <variation key="default">
                                                 <mask key="constraints">
@@ -1508,11 +1508,11 @@
                                             <exclude reference="O1B-eI-0Z0"/>
                                         </mask>
                                         <mask key="constraints">
-                                            <exclude reference="2ko-8N-BTR"/>
-                                            <exclude reference="Ft9-9t-Bdb"/>
                                             <exclude reference="2qk-9E-enH"/>
                                             <exclude reference="JvR-j1-ii4"/>
                                             <exclude reference="gKQ-Eu-sD0"/>
+                                            <exclude reference="2ko-8N-BTR"/>
+                                            <exclude reference="Ft9-9t-Bdb"/>
                                             <exclude reference="Zbd-Y1-noM"/>
                                             <exclude reference="eXg-hI-57c"/>
                                             <exclude reference="hLR-QI-cUM"/>
@@ -1527,11 +1527,11 @@
                                             <include reference="O1B-eI-0Z0"/>
                                         </mask>
                                         <mask key="constraints">
-                                            <include reference="2ko-8N-BTR"/>
-                                            <include reference="Ft9-9t-Bdb"/>
                                             <include reference="2qk-9E-enH"/>
                                             <include reference="JvR-j1-ii4"/>
                                             <include reference="gKQ-Eu-sD0"/>
+                                            <include reference="2ko-8N-BTR"/>
+                                            <include reference="Ft9-9t-Bdb"/>
                                             <include reference="Zbd-Y1-noM"/>
                                             <include reference="eXg-hI-57c"/>
                                             <include reference="hLR-QI-cUM"/>
@@ -1573,7 +1573,7 @@
                                 <rect key="frame" x="0.0" y="28" width="600" height="137"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KX8-y7-fJa" id="HeL-LI-sO8">
-                                    <rect key="frame" x="0.0" y="0.0" width="533" height="136"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="136"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HbM-jN-kF8">
@@ -1614,7 +1614,7 @@
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BLf-kS-FjP">
                                             <rect key="frame" x="-42" y="-21" width="42" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
@@ -1637,10 +1637,10 @@
                                             <exclude reference="BLf-kS-FjP"/>
                                         </mask>
                                         <mask key="constraints">
-                                            <exclude reference="fp7-c1-IEz"/>
-                                            <exclude reference="lte-oi-Yxz"/>
                                             <exclude reference="3Td-Px-dUo"/>
                                             <exclude reference="hmO-Ai-KxL"/>
+                                            <exclude reference="fp7-c1-IEz"/>
+                                            <exclude reference="lte-oi-Yxz"/>
                                             <exclude reference="BS1-uk-Nof"/>
                                             <exclude reference="Een-tX-ufc"/>
                                             <exclude reference="Rf3-cG-Qgb"/>
@@ -1656,10 +1656,10 @@
                                             <include reference="BLf-kS-FjP"/>
                                         </mask>
                                         <mask key="constraints">
-                                            <include reference="fp7-c1-IEz"/>
-                                            <include reference="lte-oi-Yxz"/>
                                             <include reference="3Td-Px-dUo"/>
                                             <include reference="hmO-Ai-KxL"/>
+                                            <include reference="fp7-c1-IEz"/>
+                                            <include reference="lte-oi-Yxz"/>
                                             <include reference="BS1-uk-Nof"/>
                                             <include reference="Een-tX-ufc"/>
                                             <include reference="Rf3-cG-Qgb"/>
