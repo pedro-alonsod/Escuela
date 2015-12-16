@@ -23,10 +23,7 @@
 		EB501F3F1C189EFE004EA952 /* TabBarPrivadosTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB501F3E1C189EFE004EA952 /* TabBarPrivadosTableViewController.swift */; };
 		EB6378741BE2C78B0030911C /* ChangePasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB6378731BE2C78B0030911C /* ChangePasswordViewController.swift */; };
 		EB6378761BE2C7A90030911C /* MainMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB6378751BE2C7A90030911C /* MainMenuViewController.swift */; };
-		EB6378781BE2C9960030911C /* CalificacionesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB6378771BE2C9960030911C /* CalificacionesTableViewController.swift */; };
 		EB63787A1BE2C9B50030911C /* TareasTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB6378791BE2C9B50030911C /* TareasTableViewController.swift */; };
-		EB63787C1BE2C9D80030911C /* AvisosTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB63787B1BE2C9D80030911C /* AvisosTableViewController.swift */; };
-		EB63787E1BE2C9FC0030911C /* PrivadosTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB63787D1BE2C9FC0030911C /* PrivadosTableViewController.swift */; };
 		EB6378801BE2CC710030911C /* CalificacionesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB63787F1BE2CC710030911C /* CalificacionesTableViewCell.swift */; };
 		EB6378821BE2CD4D0030911C /* TaraeasTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB6378811BE2CD4D0030911C /* TaraeasTableViewCell.swift */; };
 		EB6A33DF1C1A6E27003F47A8 /* CompareUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB6A33DE1C1A6E27003F47A8 /* CompareUtils.swift */; };
@@ -63,10 +60,7 @@
 		EB501F401C1916C6004EA952 /* es-MX */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "es-MX"; path = "es-MX.lproj/Main.strings"; sourceTree = "<group>"; };
 		EB6378731BE2C78B0030911C /* ChangePasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangePasswordViewController.swift; sourceTree = "<group>"; };
 		EB6378751BE2C7A90030911C /* MainMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainMenuViewController.swift; sourceTree = "<group>"; };
-		EB6378771BE2C9960030911C /* CalificacionesTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalificacionesTableViewController.swift; sourceTree = "<group>"; };
 		EB6378791BE2C9B50030911C /* TareasTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TareasTableViewController.swift; sourceTree = "<group>"; };
-		EB63787B1BE2C9D80030911C /* AvisosTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AvisosTableViewController.swift; sourceTree = "<group>"; };
-		EB63787D1BE2C9FC0030911C /* PrivadosTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrivadosTableViewController.swift; sourceTree = "<group>"; };
 		EB63787F1BE2CC710030911C /* CalificacionesTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalificacionesTableViewCell.swift; sourceTree = "<group>"; };
 		EB6378811BE2CD4D0030911C /* TaraeasTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaraeasTableViewCell.swift; sourceTree = "<group>"; };
 		EB6A33DE1C1A6E27003F47A8 /* CompareUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompareUtils.swift; sourceTree = "<group>"; };
@@ -141,11 +135,8 @@
 				EBE20CEA1C150FE400C36616 /* CalificacionesViewController.swift */,
 				EB6378811BE2CD4D0030911C /* TaraeasTableViewCell.swift */,
 				EB63787F1BE2CC710030911C /* CalificacionesTableViewCell.swift */,
-				EB63787D1BE2C9FC0030911C /* PrivadosTableViewController.swift */,
-				EB63787B1BE2C9D80030911C /* AvisosTableViewController.swift */,
 				EB6378791BE2C9B50030911C /* TareasTableViewController.swift */,
 				EB6A33DE1C1A6E27003F47A8 /* CompareUtils.swift */,
-				EB6378771BE2C9960030911C /* CalificacionesTableViewController.swift */,
 				EB6378751BE2C7A90030911C /* MainMenuViewController.swift */,
 				EBE20CEE1C152B5800C36616 /* TabBarCalificacionesTareasViewController.swift */,
 				EB6378731BE2C78B0030911C /* ChangePasswordViewController.swift */,
@@ -275,7 +266,6 @@
 			files = (
 				EB6378761BE2C7A90030911C /* MainMenuViewController.swift in Sources */,
 				EB6A33DF1C1A6E27003F47A8 /* CompareUtils.swift in Sources */,
-				EB63787E1BE2C9FC0030911C /* PrivadosTableViewController.swift in Sources */,
 				EB6378741BE2C78B0030911C /* ChangePasswordViewController.swift in Sources */,
 				EB6378801BE2CC710030911C /* CalificacionesTableViewCell.swift in Sources */,
 				EBF74B2A1C1F8F3F00616530 /* TabBarAvisosPrivadosTableViewCell.swift in Sources */,
@@ -286,14 +276,12 @@
 				EB501F391C188A00004EA952 /* TabBarAvisosViewController.swift in Sources */,
 				EBE20CED1C150FF900C36616 /* TareasViewController.swift in Sources */,
 				EB6378821BE2CD4D0030911C /* TaraeasTableViewCell.swift in Sources */,
-				EB6378781BE2C9960030911C /* CalificacionesTableViewController.swift in Sources */,
 				EBE3F6771BE9271C005DEC5E /* Utils.swift in Sources */,
 				EBF74B261C1F84B600616530 /* TabBarAvisosTableViewCell.swift in Sources */,
 				81BA814B1A49DA1800E65899 /* AppDelegate.swift in Sources */,
 				EBE3F67B1BE96923005DEC5E /* PrivadosTableViewCell.swift in Sources */,
 				EB6A33E31C1A7A5C003F47A8 /* TabBarTareasTableViewCell.swift in Sources */,
 				EB501F3F1C189EFE004EA952 /* TabBarPrivadosTableViewController.swift in Sources */,
-				EB63787C1BE2C9D80030911C /* AvisosTableViewController.swift in Sources */,
 				EBE20CEF1C152B5800C36616 /* TabBarCalificacionesTareasViewController.swift in Sources */,
 				EB63787A1BE2C9B50030911C /* TareasTableViewController.swift in Sources */,
 			);

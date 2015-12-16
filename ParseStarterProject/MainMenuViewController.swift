@@ -253,54 +253,54 @@ class MainMenuViewController: UIViewController {
         
         if segue.identifier == calificacionesSegue {
             
-            let calificacionesVC = segue.destinationViewController as! CalificacionesTableViewController
-            
-            if calificacionesArray.count > 0 {
-                
-                calificacionesVC.calificacionesAlumno = calificacionesArray
-            } else {
-                
-                calificacionesVC.calificacionesAlumno = []
-                displayError("Error", message: "No fue posible obtener las calificacines.")
-            }
+//            let calificacionesVC = segue.destinationViewController as! CalificacionesTableViewController
+//            
+//            if calificacionesArray.count > 0 {
+//                
+//                calificacionesVC.calificacionesAlumno = calificacionesArray
+//            } else {
+//                
+//                calificacionesVC.calificacionesAlumno = []
+//                displayError("Error", message: "No fue posible obtener las calificacines.")
+//            }
         } else if segue.identifier == tareasSegue {
             
-            let tareasVC = segue.destinationViewController as! TareasTableViewController
-            
-            if tareasDictionaryAlumno.count > 0 {
-                
-                tareasVC.tareasAlumno = tareasDictionaryAlumno
-                
-            } else {
-                
-                tareasVC.tareasAlumno = []
-                
-            }
+//            let tareasVC = segue.destinationViewController as! TareasTableViewController
+//            
+//            if tareasDictionaryAlumno.count > 0 {
+//                
+//                tareasVC.tareasAlumno = tareasDictionaryAlumno
+//                
+//            } else {
+//                
+//                tareasVC.tareasAlumno = []
+//                
+//            }
         } else if segue.identifier == avisosSegue {
             
-            let avisosVC = segue.destinationViewController as! AvisosTableViewController
-            
-            if avisosDictionaryAlumno.count > 0 {
-                
-                avisosVC.avisosAlumno = avisosDictionaryAlumno
-                
-                
-            } else {
-                
-                avisosVC.avisosAlumno = []
-                
-            }
+//            let avisosVC = segue.destinationViewController as! AvisosTableViewController
+//            
+//            if avisosDictionaryAlumno.count > 0 {
+//                
+//                avisosVC.avisosAlumno = avisosDictionaryAlumno
+//                
+//                
+//            } else {
+//                
+//                avisosVC.avisosAlumno = []
+//                
+//            }
         } else if segue.identifier == privadosSegue {
             
-            let privadosVC = segue.destinationViewController as! PrivadosTableViewController
-            
-            if privadosDictionaryAlumno.count > 0 {
-                
-                privadosVC.privadosAlumno = privadosDictionaryAlumno
-            } else {
-                
-                privadosVC.privadosAlumno = []
-            }
+//            let privadosVC = segue.destinationViewController as! PrivadosTableViewController
+//            
+//            if privadosDictionaryAlumno.count > 0 {
+//                
+//                privadosVC.privadosAlumno = privadosDictionaryAlumno
+//            } else {
+//                
+//                privadosVC.privadosAlumno = []
+//            }
         } else if segue.identifier == tabBarSegue {
             
             
