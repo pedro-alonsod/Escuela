@@ -667,7 +667,7 @@ class MainMenuViewController: UIViewController {
                             
                         } else {
                             
-                            displayError("Advertencia", message: "No tienes ningun aviso por el momento.")
+                            //displayError("Advertencia", message: "No tienes ningun aviso por el momento.")
                         }
                         
                     } catch let error {
@@ -889,24 +889,40 @@ class MainMenuViewController: UIViewController {
     
      func refresh() {
         
-        dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0)) {
+         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) { [unowned self] in
+        
+            self.getCalificaciones()
+            self.getTareas()
+            
+            self.getPrivados()
+            self.getAvisos()
+
+            
+        }
+        
+        
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
             //DO some work here
             //...
-            self.displayError("Alerta", message: "Los datos se estan recargando.")
+//            self.getCalificaciones()
+//            self.getTareas()
+//            
+//            self.getPrivados()
+//            self.getAvisos()
+            
+            //self.displayError("Alerta", message: "Los datos se estan recargando.")
             dispatch_async(dispatch_get_main_queue()) {
                 
                 //update ui
                 //Less obvious the getObjects methods time maintaining the current work it shows a alertview in a new thread
                 //self.displayError("ALerta", message: "Los datos se estan cargando.")
+                
+                self.displayError("Alerta", message: "Los datos se estan recargando.")
             }
             
         }
         
-        getCalificaciones()
-        getTareas()
         
-        getPrivados()
-        getAvisos()
         
         
     }
