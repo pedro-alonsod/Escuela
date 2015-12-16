@@ -896,31 +896,38 @@ class MainMenuViewController: UIViewController {
             
             self.getPrivados()
             self.getAvisos()
+            
+        }
+        
+        dispatch_async(dispatch_get_main_queue()) {
+            
+            self.displayError("Alerta", message: "Los datos se estan recargando.")
+        }
 
-            
-        }
         
         
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
-            //DO some work here
-            //...
-//            self.getCalificaciones()
-//            self.getTareas()
+//        
+//        
+//        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
+//            //DO some work here
+//            //...
+////            self.getCalificaciones()
+////            self.getTareas()
+////            
+////            self.getPrivados()
+////            self.getAvisos()
 //            
-//            self.getPrivados()
-//            self.getAvisos()
-            
-            //self.displayError("Alerta", message: "Los datos se estan recargando.")
-            dispatch_async(dispatch_get_main_queue()) {
-                
-                //update ui
-                //Less obvious the getObjects methods time maintaining the current work it shows a alertview in a new thread
-                //self.displayError("ALerta", message: "Los datos se estan cargando.")
-                
-                self.displayError("Alerta", message: "Los datos se estan recargando.")
-            }
-            
-        }
+//            //self.displayError("Alerta", message: "Los datos se estan recargando.")
+//            dispatch_async(dispatch_get_main_queue()) {
+//                
+//                //update ui
+//                //Less obvious the getObjects methods time maintaining the current work it shows a alertview in a new thread
+//                //self.displayError("ALerta", message: "Los datos se estan cargando.")
+//                
+//                self.displayError("Alerta", message: "Los datos se estan recargando.")
+//            }
+//            
+//        }
         
         
         
