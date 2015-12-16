@@ -61,11 +61,14 @@ class TabBarAvisosTableViewController: UITableViewController {
         let texto = "texto", tittulo = "titulo", grupoId = "grupoId", maestroId = "maestroId", nombreMaestro = "nombre", grupoNombre = "nombre"
         formatter.dateStyle = NSDateFormatterStyle.ShortStyle
         
-        cell.titleAvisosCell.text = "\(avisosAlumno[indexPath.row][grupoId]!.valueForKey(grupoNombre)!): \(avisosAlumno[indexPath.row][tittulo]!)"
-        
+        cell.titleAvisosCell.text = " \(avisosAlumno[indexPath.row][tittulo]!)"
+        cell.grupoLabel.text = "\(avisosAlumno[indexPath.row][grupoId]!.valueForKey(grupoNombre)!):"
         cell.titleAvisosCell.sizeToFit()
         
-        cell.detailAvisosCell.text = "\(avisosAlumno[indexPath.row][texto]!) de \(avisosAlumno[indexPath.row][maestroId]!.valueForKey(nombreMaestro)!)"
+        cell.titleAvisosCell.font = UIFont(name: "HelveticaNeue-Bold", size: 12)
+        
+        cell.detailAvisosCell.text = "\(avisosAlumno[indexPath.row][texto]!) de:"
+        cell.maestroLabel.text = "\(avisosAlumno[indexPath.row][maestroId]!.valueForKey(nombreMaestro)!)"
         
         let colorOfGroup = avisosAlumno[indexPath.row][grupoId]!.valueForKey("color") as! String
         
@@ -73,7 +76,7 @@ class TabBarAvisosTableViewController: UITableViewController {
         
         let colorForText = UIColor(red: CGFloat(Int(rgb[0])!) / 255.0, green: CGFloat(Int(rgb[1])!) / 255.0, blue: CGFloat(Int(rgb[2])!) / 255.0, alpha: 0.1)
         
-        cell.titleAvisosCell.backgroundColor = colorForText
+        cell.grupoLabel.backgroundColor = colorForText
         
         
         

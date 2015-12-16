@@ -13,6 +13,7 @@ class TabBarAvisosPrivadosTableViewCell: UITableViewCell {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var someImg: UIImageView!
     @IBOutlet weak var subtitleLabel: UILabel!
+    @IBOutlet weak var maestroLabel: UILabel!
     
     
     override func awakeFromNib() {

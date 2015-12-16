@@ -77,6 +77,8 @@ class CalificacionesViewController: UIViewController, UITableViewDelegate, UITab
         
         cell.textLabel!.text = "\(calificacionesAlumno[indexPath.row][tareasId]!.valueForKey(alumnoOTareas)!): \(calificacionesAlumno[indexPath.row][valor])"
         cell.detailTextLabel!.text = "\(calificacionesAlumno[indexPath.row][mensaje]!) \(calificacionesAlumno[indexPath.row][nombre].valueForKey(alumnoOTareas)!)"
+        cell.textLabel?.font = UIFont.boldSystemFontOfSize(14)
+        cell.detailTextLabel?.textColor = UIColor.lightGrayColor()
         
         return cell
     }

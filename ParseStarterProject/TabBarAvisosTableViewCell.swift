@@ -14,6 +14,8 @@ class TabBarAvisosTableViewCell: UITableViewCell {
     @IBOutlet weak var detailAvisosCell: UILabel!
     @IBOutlet weak var avatarAvisosProfessor: UIImageView!
     
+    @IBOutlet weak var maestroLabel: UILabel!
+    @IBOutlet weak var grupoLabel: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
