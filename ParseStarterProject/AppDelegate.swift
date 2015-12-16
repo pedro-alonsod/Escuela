@@ -110,7 +110,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         installation.setDeviceTokenFromData(deviceToken)
         installation.saveInBackground()
 
-        PFPush.subscribeToChannelInBackground("Messages") { (succeeded: Bool, error: NSError?) in
+        PFPush.subscribeToChannelInBackground("global") { (succeeded: Bool, error: NSError?) in
             if succeeded {
                 print("ParseStarterProject successfully subscribed to push notifications on the broadcast channel.\n");
             } else {
