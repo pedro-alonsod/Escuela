@@ -66,7 +66,7 @@ class MainMenuViewController: UIViewController {
         salirButton.layer.borderColor = UIColor.clearColor().CGColor
 
         salirButton.setTitle("Recargar", forState: UIControlState.Normal)
-        
+        //salirButton.setImage(UIImage(named: "reload-01"), forState: UIControlState.Normal)
         
         //tareasButton.backgroundColor = UIColor.clearColor()
         tareasButton.layer.cornerRadius = 5
