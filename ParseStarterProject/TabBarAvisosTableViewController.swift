@@ -117,7 +117,7 @@ class TabBarAvisosTableViewController: UITableViewController {
         
         let currentCell = tableView.cellForRowAtIndexPath(rowSelected!)! as! TabBarAvisosTableViewCell
         
-        print("Cell title: \(currentCell.textLabel?.text) Subtitle: \(currentCell.detailTextLabel?.text)")
+        //print("Cell title: \(currentCell.textLabel?.text) Subtitle: \(currentCell.detailTextLabel?.text)")
         
         displayAlert(currentCell.titleAvisosCell.text!, message: "\(currentCell.detailAvisosCell.text!): \(currentCell.maestroLabel.text!)")
     }
