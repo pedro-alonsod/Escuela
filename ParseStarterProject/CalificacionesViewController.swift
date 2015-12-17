@@ -68,18 +68,19 @@ class CalificacionesViewController: UIViewController, UITableViewDelegate, UITab
     
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier(calificacionesCell, forIndexPath: indexPath) 
+        let cell = tableView.dequeueReusableCellWithIdentifier(calificacionesCell, forIndexPath: indexPath) as! TabBarCalificacionesTableViewCell
         
         // Configure the cell...
         
         let nombre = "alumnoId", valor = "valor", alumnoOTareas = "nombre", tareasId = "tareasId", mensaje = "Mensaje"
         formatter.dateStyle = NSDateFormatterStyle.ShortStyle
         
-        cell.textLabel!.text = "\(calificacionesAlumno[indexPath.row][tareasId]!.valueForKey(alumnoOTareas)!): \(calificacionesAlumno[indexPath.row][valor])"
-        cell.detailTextLabel!.text = "\(calificacionesAlumno[indexPath.row][mensaje]!) \(calificacionesAlumno[indexPath.row][nombre].valueForKey(alumnoOTareas)!)"
-        cell.textLabel?.font = UIFont.boldSystemFontOfSize(14)
-        cell.detailTextLabel?.textColor = UIColor.lightGrayColor()
+        cell.materiaLabel.text = "\(calificacionesAlumno[indexPath.row][tareasId]!.valueForKey(alumnoOTareas)!):"
+        cell.calificacionLabel.text = "   \(calificacionesAlumno[indexPath.row][valor])"
+        cell.mensajeLabel.text = "\(calificacionesAlumno[indexPath.row][mensaje]!) \(calificacionesAlumno[indexPath.row][nombre].valueForKey(alumnoOTareas)!)"
         
+        cell.calificacionLabel.layer.borderWidth = 3
+        cell.calificacionLabel.layer.cornerRadius = 1
         return cell
     }
     
@@ -88,11 +89,13 @@ class CalificacionesViewController: UIViewController, UITableViewDelegate, UITab
         
         let rowSelected = tableView.indexPathForSelectedRow
         
-        let currentCell = tableView.cellForRowAtIndexPath(rowSelected!)! as UITableViewCell
+        let currentCell = tableView.cellForRowAtIndexPath(rowSelected!)! as! TabBarCalificacionesTableViewCell
         
         print("Cell title: \(currentCell.textLabel?.text) Subtitle: \(currentCell.detailTextLabel?.text)")
         
-        displayAlert(currentCell.textLabel!.text!, message: currentCell.detailTextLabel!.text!)
+        let title = "\(currentCell.materiaLabel.text!) \(currentCell.calificacionLabel.text!) "
+        
+        displayAlert(title, message: currentCell.mensajeLabel.text!)
     }
     
     

@@ -65,7 +65,7 @@ class MainMenuViewController: UIViewController {
         salirButton.layer.borderWidth = 1
         salirButton.layer.borderColor = UIColor.clearColor().CGColor
 
-        
+        salirButton.setTitle("Recargar", forState: UIControlState.Normal)
         
         
         //tareasButton.backgroundColor = UIColor.clearColor()
@@ -116,7 +116,7 @@ class MainMenuViewController: UIViewController {
             
         }
         // Do any additional setup after loading the view.
-        var b = UIBarButtonItem(title: "Recargar", style: UIBarButtonItemStyle.Plain, target: self, action: "refresh")
+        var b = UIBarButtonItem(title: "Salir", style: UIBarButtonItemStyle.Plain, target: self, action: "refresh")
         
         
         navigationItem.rightBarButtonItem = b
@@ -432,9 +432,21 @@ class MainMenuViewController: UIViewController {
     
     @IBAction func salirTapped(sender: UIButton) {
         
-        PFUser.logOut()
-    
-        self.dismissViewControllerAnimated(true, completion: nil)
+        
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) { [unowned self] in
+            
+            self.getCalificaciones()
+            self.getTareas()
+            
+            self.getPrivados()
+            self.getAvisos()
+            
+        }
+        
+        dispatch_async(dispatch_get_main_queue()) {
+            
+            self.displayError("Alerta", message: "Los datos se estan recargando.")
+        }
     }
     
     func getCalificaciones() {
@@ -889,22 +901,12 @@ class MainMenuViewController: UIViewController {
     
      func refresh() {
         
-         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) { [unowned self] in
-        
-            self.getCalificaciones()
-            self.getTareas()
-            
-            self.getPrivados()
-            self.getAvisos()
-            
-        }
-        
-        dispatch_async(dispatch_get_main_queue()) {
-            
-            self.displayError("Alerta", message: "Los datos se estan recargando.")
-        }
+   
 
         
+        PFUser.logOut()
+        
+        self.dismissViewControllerAnimated(true, completion: nil)
         
 //        
 //        

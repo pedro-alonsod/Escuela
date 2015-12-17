@@ -129,7 +129,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject]) {
        
-        var notification: NSDictionary = userInfo["aps"] as! NSDictionary
+        let notification: NSDictionary = userInfo["aps"] as! NSDictionary
         
         if (notification.objectForKey("content-available") != nil) {
             

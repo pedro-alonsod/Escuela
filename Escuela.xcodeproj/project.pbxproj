@@ -17,6 +17,7 @@
 		81BA81791A49E0DB00E65899 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81BA81781A49E0DB00E65899 /* AudioToolbox.framework */; };
 		81BA817B1A49E0E500E65899 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81BA817A1A49E0E500E65899 /* SystemConfiguration.framework */; };
 		81BA817F1A49E0F000E65899 /* libstdc++.6.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 81BA817E1A49E0F000E65899 /* libstdc++.6.dylib */; };
+		EB25C1FC1C2272F000AD5CFE /* TabBarCalificacionesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB25C1FB1C2272EF00AD5CFE /* TabBarCalificacionesTableViewCell.swift */; };
 		EB501F391C188A00004EA952 /* TabBarAvisosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB501F381C188A00004EA952 /* TabBarAvisosViewController.swift */; };
 		EB501F3B1C188A92004EA952 /* AvisosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB501F3A1C188A92004EA952 /* AvisosViewController.swift */; };
 		EB501F3D1C189EAD004EA952 /* TabBarAvisosTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB501F3C1C189EAD004EA952 /* TabBarAvisosTableViewController.swift */; };
@@ -53,6 +54,7 @@
 		81BA817A1A49E0E500E65899 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		81BA817E1A49E0F000E65899 /* libstdc++.6.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libstdc++.6.dylib"; path = "usr/lib/libstdc++.6.dylib"; sourceTree = SDKROOT; };
 		81BA81801A49E10C00E65899 /* ParseUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseUI.framework; sourceTree = "<group>"; };
+		EB25C1FB1C2272EF00AD5CFE /* TabBarCalificacionesTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarCalificacionesTableViewCell.swift; sourceTree = "<group>"; };
 		EB501F381C188A00004EA952 /* TabBarAvisosViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarAvisosViewController.swift; sourceTree = "<group>"; };
 		EB501F3A1C188A92004EA952 /* AvisosViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AvisosViewController.swift; sourceTree = "<group>"; };
 		EB501F3C1C189EAD004EA952 /* TabBarAvisosTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarAvisosTableViewController.swift; sourceTree = "<group>"; };
@@ -125,6 +127,7 @@
 				81BA814C1A49DA1800E65899 /* ViewController.swift */,
 				EBE3F67A1BE96923005DEC5E /* PrivadosTableViewCell.swift */,
 				814C3AC61B69877600E307BB /* Main.storyboard */,
+				EB25C1FB1C2272EF00AD5CFE /* TabBarCalificacionesTableViewCell.swift */,
 				EBF74B291C1F8F3F00616530 /* TabBarAvisosPrivadosTableViewCell.swift */,
 				EBF74B251C1F84B600616530 /* TabBarAvisosTableViewCell.swift */,
 				EB501F3E1C189EFE004EA952 /* TabBarPrivadosTableViewController.swift */,
@@ -264,6 +267,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EB25C1FC1C2272F000AD5CFE /* TabBarCalificacionesTableViewCell.swift in Sources */,
 				EB6378761BE2C7A90030911C /* MainMenuViewController.swift in Sources */,
 				EB6A33DF1C1A6E27003F47A8 /* CompareUtils.swift in Sources */,
 				EB6378741BE2C78B0030911C /* ChangePasswordViewController.swift in Sources */,
