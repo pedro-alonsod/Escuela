@@ -92,7 +92,7 @@ class MainMenuViewController: UIViewController {
         dispatch_async(dispatch_get_global_queue(qos_user_class, 0)) { [unowned self] in
             
             //this goes on and on in the backgorund I may need it when queries are damn bad it took until "role ok" to run
-            for var i = 0; i < 10; i++ {
+            for i in 0 ..< 10 {
                 
                 print(i)
             }

@@ -20,6 +20,8 @@ class SatsCamionViewController: UIViewController, MKMapViewDelegate, CLLocationM
     @IBOutlet weak var titleLabel: UILabel!
     
     let regionRadius: CLLocationDistance = 1000
+    
+    var locationOfParent: CLLocation!
 
     
     override func viewDidLoad() {
@@ -49,13 +51,12 @@ class SatsCamionViewController: UIViewController, MKMapViewDelegate, CLLocationM
         // set the map to the new region
         //mapForRoute.setRegion(newRegion, animated: false)
         
-        stasCamionMapView.showsUserLocation = true
+        //stasCamionMapView.showsUserLocation = true
         
         stasCamionMapView.showsBuildings = true
         
         let longPress = UILongPressGestureRecognizer(target: self, action: "action:")
         longPress.minimumPressDuration = 1.0
-        
         
         
 
@@ -66,6 +67,14 @@ class SatsCamionViewController: UIViewController, MKMapViewDelegate, CLLocationM
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    func mapViewDidFinishLoadingMap(mapView: MKMapView) {
+        
+        centerMapOnLocation(locationOfParent)
+        print(" the location of the parent is \(locationOfParent)")
+        
+    }
+    
     
 
     /*
@@ -115,7 +124,9 @@ class SatsCamionViewController: UIViewController, MKMapViewDelegate, CLLocationM
     
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         let locValue:CLLocationCoordinate2D = manager.location!.coordinate
-        print("locations = \(locValue.latitude) \(locValue.longitude)")
+        //print("locations = \(locValue.latitude) \(locValue.longitude)")
+        locationOfParent = manager.location!
+        
     }
     
     func centerMapOnLocation(location: CLLocation) {
