@@ -78,6 +78,7 @@ class SatsCamionViewController: UIViewController, MKMapViewDelegate, CLLocationM
     }
     */
     
+    //
     
     func printTimestamp() -> String {
         let timestamp = NSDateFormatter.localizedStringFromDate(NSDate(), dateStyle: .MediumStyle, timeStyle: .ShortStyle)
