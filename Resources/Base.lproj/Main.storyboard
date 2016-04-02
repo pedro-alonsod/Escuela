@@ -1029,6 +1029,11 @@
                     </view>
                     <navigationItem key="navigationItem" title="Camion" id="HUW-PG-kon">
                         <barButtonItem key="backBarButtonItem" title="Atras" id="2o4-zb-Efz"/>
+                        <barButtonItem key="leftBarButtonItem" title="&lt;" id="Wsf-uH-KvS">
+                            <connections>
+                                <action selector="salirTapped:" destination="2Ba-0L-wta" id="sc9-Lj-Fd0"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="stasCamionMapView" destination="TPe-Ds-A08" id="1wu-v8-JAj"/>
@@ -1037,7 +1042,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xOR-Zq-V9x" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3031.5" y="1782"/>
+            <point key="canvasLocation" x="2113.5" y="2164"/>
         </scene>
         <!--Tareas-->
         <scene sceneID="ssU-tg-E2n">
@@ -1695,7 +1700,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ktL-iX-etc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3880.5" y="1624"/>
+            <point key="canvasLocation" x="2803.5" y="1624"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="glm-yu-lWp">
@@ -1731,7 +1736,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="npT-de-7Lw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2113.5" y="1225"/>
+            <point key="canvasLocation" x="1783.5" y="1225"/>
         </scene>
     </scenes>
     <resources>

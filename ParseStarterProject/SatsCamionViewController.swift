@@ -135,5 +135,10 @@ class SatsCamionViewController: UIViewController, MKMapViewDelegate, CLLocationM
         stasCamionMapView.setRegion(coordinateRegion, animated: true)
     }
     
+    @IBAction func salirTapped(sender: UIBarButtonItem) {
+        
+        self.dismissViewControllerAnimated(true, completion: nil)
+        print("saliendo")
+    }
 
 }

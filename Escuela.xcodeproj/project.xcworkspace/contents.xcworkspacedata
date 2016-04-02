@@ -2,6 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:../File.swift">
+   </FileRef>
+   <FileRef
       location = "self:/Users/pedro/Desktop/NewEscuelaParse/Escuela2/parse-starter-project-1.9.0 (1)/ParseStarterProject-Swift/Escuela.xcodeproj">
    </FileRef>
 </Workspace>
