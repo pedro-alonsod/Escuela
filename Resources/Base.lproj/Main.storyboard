@@ -945,7 +945,7 @@
                         <outlet property="titleMenuLabel" destination="FBs-mN-aUq" id="d4e-zK-uQX"/>
                         <segue destination="RFx-jB-gCF" kind="show" identifier="TabBarCalificacionesTareasSegue" id="v63-WX-9dT"/>
                         <segue destination="WJq-j4-AmH" kind="show" identifier="TabBarAvisosSegue" id="Kei-ZU-jj7"/>
-                        <segue destination="wYC-0h-1wA" kind="show" identifier="SatsCamionSegue" id="Py1-x5-0Di"/>
+                        <segue destination="2Ba-0L-wta" kind="show" identifier="SatsCamionSegue" id="veq-uD-owp"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nTa-lP-Y5p" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1029,11 +1029,6 @@
                     </view>
                     <navigationItem key="navigationItem" title="Camion" id="HUW-PG-kon">
                         <barButtonItem key="backBarButtonItem" title="Atras" id="2o4-zb-Efz"/>
-                        <barButtonItem key="leftBarButtonItem" title="&lt;" id="Wsf-uH-KvS">
-                            <connections>
-                                <action selector="salirTapped:" destination="2Ba-0L-wta" id="sc9-Lj-Fd0"/>
-                            </connections>
-                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="stasCamionMapView" destination="TPe-Ds-A08" id="1wu-v8-JAj"/>
@@ -1042,7 +1037,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xOR-Zq-V9x" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2113.5" y="2164"/>
+            <point key="canvasLocation" x="1813.5" y="1122"/>
         </scene>
         <!--Tareas-->
         <scene sceneID="ssU-tg-E2n">
@@ -1719,24 +1714,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6eC-0g-kqV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1195.5" y="371"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="wZy-0w-FoQ">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="wYC-0h-1wA" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="foq-HO-BJk">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="2Ba-0L-wta" kind="relationship" relationship="rootViewController" id="Eax-yd-QWX"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="npT-de-7Lw" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1783.5" y="1225"/>
         </scene>
     </scenes>
     <resources>

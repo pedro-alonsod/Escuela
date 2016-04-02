@@ -393,7 +393,7 @@ class MainMenuViewController: UIViewController {
             
         } else if segue.identifier == satsCamionSegue {
             
-            let satsCamionVC = segue.destinationViewController as! UINavigationController
+            let satsCamionVC = segue.destinationViewController as! SatsCamionViewController
             
         }
         
