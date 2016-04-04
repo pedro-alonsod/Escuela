@@ -23,6 +23,7 @@ class SatsCamionViewController: UIViewController, MKMapViewDelegate, CLLocationM
     
     var locationOfParent: CLLocation!
 
+    var locationsInRoute: [CLLocation] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -62,6 +63,26 @@ class SatsCamionViewController: UIViewController, MKMapViewDelegate, CLLocationM
         
         
 
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        
+        
+        let latitudeOfParent = locationOfParent.coordinate.latitude
+        let longitudeOfParent = locationOfParent.coordinate.longitude
+        
+        var point1 = MKPointAnnotation()
+        var point2 = MKPointAnnotation()
+        
+        point1.coordinate = CLLocationCoordinate2DMake(latitudeOfParent, longitudeOfParent)
+        point1.title = "Fin"
+        point1.subtitle = "Del recoridor"
+        stasCamionMapView.addAnnotation(point1)
+        
+        point2.coordinate = CLLocationCoordinate2DMake(25.652059, -100.289477)
+        point2.title = "Inicio"
+        point2.subtitle = "Camion escolar"
+        stasCamionMapView.addAnnotation(point2)
 
     }
 
@@ -77,7 +98,7 @@ class SatsCamionViewController: UIViewController, MKMapViewDelegate, CLLocationM
         
     }
     
-    func mapView(mapView: MKMapView!, rendererForOverlay overlay: MKOverlay!) -> MKOverlayRenderer! {
+    func mapView(mapView: MKMapView, rendererForOverlay overlay: MKOverlay) -> MKOverlayRenderer {
         
         if overlay is MKPolyline {
             var polylineRenderer = MKPolylineRenderer(overlay: overlay)
@@ -85,7 +106,8 @@ class SatsCamionViewController: UIViewController, MKMapViewDelegate, CLLocationM
             polylineRenderer.lineWidth = 4
             return polylineRenderer
         }
-        return nil
+
+        return MKPolylineRenderer()
     }
     
     func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
@@ -173,6 +195,25 @@ class SatsCamionViewController: UIViewController, MKMapViewDelegate, CLLocationM
         let locValue:CLLocationCoordinate2D = manager.location!.coordinate
         //print("locations = \(locValue.latitude) \(locValue.longitude)")
         locationOfParent = manager.location!
+        
+        locationsInRoute.append(locations[0] )
+
+        
+        if locationsInRoute.count > 1 {
+            
+            
+            let c1 = locationOfParent.coordinate
+            //let c2 = locationsInRoute[destinationIndex].coordinate
+            let c2 = CLLocationCoordinate2DMake(25.652059, -100.289477)
+            var a = [c1, c2]
+            
+            let polyline = MKPolyline(coordinates: &a, count: a.count)
+            
+            stasCamionMapView.addOverlay(polyline)
+            
+            print("count of locations \(locationsInRoute.count)")
+            
+        }
         
     }
     
