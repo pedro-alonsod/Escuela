@@ -669,7 +669,6 @@
                                     <color key="titleShadowColor" red="0.0" green="1" blue="0.0" alpha="0.47999999999999998" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
-                                    <action selector="avisosTapped:" destination="6Wk-eF-Rzq" eventType="touchUpInside" id="QeD-E7-02K"/>
                                     <action selector="camionTapped:" destination="6Wk-eF-Rzq" eventType="touchUpInside" id="XvB-1j-lNe"/>
                                 </connections>
                             </button>

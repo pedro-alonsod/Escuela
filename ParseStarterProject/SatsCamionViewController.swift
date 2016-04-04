@@ -58,6 +58,8 @@ class SatsCamionViewController: UIViewController, MKMapViewDelegate, CLLocationM
         let longPress = UILongPressGestureRecognizer(target: self, action: "action:")
         longPress.minimumPressDuration = 1.0
         
+        stasCamionMapView.mapType = MKMapType.Hybrid
+        
         
 
 
@@ -73,6 +75,50 @@ class SatsCamionViewController: UIViewController, MKMapViewDelegate, CLLocationM
         centerMapOnLocation(locationOfParent)
         print(" the location of the parent is \(locationOfParent)")
         
+    }
+    
+    func mapView(mapView: MKMapView!, rendererForOverlay overlay: MKOverlay!) -> MKOverlayRenderer! {
+        
+        if overlay is MKPolyline {
+            var polylineRenderer = MKPolylineRenderer(overlay: overlay)
+            polylineRenderer.strokeColor = UIColor.blueColor()
+            polylineRenderer.lineWidth = 4
+            return polylineRenderer
+        }
+        return nil
+    }
+    
+    func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
+        
+        
+        //let viewForDot = MKAnnotationView()
+        let reuseId = "pin"
+        
+        var pinView = mapView.dequeueReusableAnnotationViewWithIdentifier(reuseId)
+        
+        
+        if annotation.isKindOfClass(MKUserLocation) {
+            
+            //pinView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: reuseId)
+            pinView = MKAnnotationView(annotation: annotation, reuseIdentifier: reuseId)
+            
+            pinView?.canShowCallout = true
+            
+            //pinView?.backgroundColor = UIColor.greenColor()
+            
+            pinView?.image = UIImage(named: "Camion.png")
+            
+        }
+        
+        
+        //pinView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: reuseId)
+        //pinView!.canShowCallout = true
+        //pinView!.animatesDrop = true
+        //pinView!.image = UIImage(named: "checkIcon.png")
+        
+        //return viewForDot
+        
+        return pinView
     }
     
     
@@ -122,11 +168,19 @@ class SatsCamionViewController: UIViewController, MKMapViewDelegate, CLLocationM
     }
     
     
+    
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         let locValue:CLLocationCoordinate2D = manager.location!.coordinate
         //print("locations = \(locValue.latitude) \(locValue.longitude)")
         locationOfParent = manager.location!
         
+    }
+    
+    func mapView(mapView: MKMapView, viewForOverlay overlay: MKOverlay) -> MKOverlayView {
+        
+        let overlayMap = MKOverlayView()
+        
+        return overlayMap
     }
     
     func centerMapOnLocation(location: CLLocation) {
@@ -137,6 +191,8 @@ class SatsCamionViewController: UIViewController, MKMapViewDelegate, CLLocationM
     
     @IBAction func salirTapped(sender: UIBarButtonItem) {
         
+        self.locationManager.stopUpdatingLocation()
+        self.locationManager.stopUpdatingHeading()
         self.dismissViewControllerAnimated(true, completion: nil)
         print("saliendo")
     }

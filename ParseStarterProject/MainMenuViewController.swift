@@ -117,7 +117,7 @@ class MainMenuViewController: UIViewController {
             
         }
         // Do any additional setup after loading the view.
-        var b = UIBarButtonItem(title: "Salir", style: UIBarButtonItemStyle.Plain, target: self, action: "refresh")
+        var b = UIBarButtonItem(title: "Salir", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(MainMenuViewController.refresh))
         
         
         navigationItem.rightBarButtonItem = b
@@ -437,6 +437,8 @@ class MainMenuViewController: UIViewController {
     
     
     @IBAction func camionTapped(sender: UIButton) {
+        
+        item = 2
         
         self.performSegueWithIdentifier(satsCamionSegue, sender: self)
     }
