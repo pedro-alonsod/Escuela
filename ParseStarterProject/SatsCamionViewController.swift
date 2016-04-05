@@ -102,12 +102,13 @@ class SatsCamionViewController: UIViewController, MKMapViewDelegate, CLLocationM
         
         if overlay is MKPolyline {
             var polylineRenderer = MKPolylineRenderer(overlay: overlay)
-            polylineRenderer.strokeColor = UIColor.blueColor()
+            polylineRenderer.strokeColor = UIColor.greenColor()
+            
             polylineRenderer.lineWidth = 4
             return polylineRenderer
         }
 
-        return MKPolylineRenderer()
+        return MKOverlayRenderer()
     }
     
     func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
@@ -209,6 +210,9 @@ class SatsCamionViewController: UIViewController, MKMapViewDelegate, CLLocationM
             
             let polyline = MKPolyline(coordinates: &a, count: a.count)
             
+            //polyline.strokeColor = UIColor.greenColor()
+            
+            
             stasCamionMapView.addOverlay(polyline)
             
             print("count of locations \(locationsInRoute.count)")
@@ -223,6 +227,7 @@ class SatsCamionViewController: UIViewController, MKMapViewDelegate, CLLocationM
         
         return overlayMap
     }
+    
     
     func centerMapOnLocation(location: CLLocation) {
         let coordinateRegion = MKCoordinateRegionMakeWithDistance(location.coordinate,
